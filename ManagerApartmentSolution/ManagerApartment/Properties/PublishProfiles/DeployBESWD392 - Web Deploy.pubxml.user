@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAfXetNhvjDEuljZrL4W34CwAAAAACAAAAAAAQZgAAAAEAACAAAACFnFPUNwCRDKzkwz/HgYcax53VPn9V7SycdUxDirSApQAAAAAOgAAAAAIAACAAAADxOFwr+7lrVcv1enMEu3wHoyvNhxlNIlH67xPX7ogAL4AAAAD+bW9Q4kjOX9exJ50+B13QFVLRBJ5sswfr0GA2eghH3bpgZwpmsLVWVsPOEPK58w8cOszA5dVOn/H3ZgVhR6ePGG6NU+90CcHF+PxvLziRbQXCK5CpKkgFm18jw7GbsKjUT/SHf3yMJPw9SO5ufDQPRf4W0Mb6Pk+h4bIt8mlDM0AAAAB2jarx7O0ezlQ3ObLeJCk/wu5IK/WB+J+R9iOmaa3+wzzgel4ZgHy//N1JA0avo+7lqTuP666Qw/WKrM+Ke1rl</EncryptedPassword>
+    <History>True|2023-09-22T05:50:26.4549884Z;True|2023-09-22T11:05:02.4737566+07:00;True|2023-09-22T08:58:24.2386721+07:00;True|2023-09-21T17:28:17.6901528+07:00;True|2023-09-21T17:10:56.1745012+07:00;True|2023-09-21T16:51:40.7563500+07:00;True|2023-09-21T16:03:37.8568285+07:00;True|2023-09-21T15:57:44.8834090+07:00;True|2023-09-21T14:49:17.8223817+07:00;True|2023-09-21T14:45:03.6401951+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="database">
+      <Value>Data Source=tcp:managerapartmentdbserver.database.windows.net,1433%3bInitial Catalog=ManagerApartment_db%3bUser Id=dinhthanh%40managerapartmentdbserver%3bPassword=Sunny12345</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
