@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {}
+    "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\Application.csproj": {
+    "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\Application.csproj",
-        "projectName": "Application",
-        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
+        "projectName": "ManagerApartment",
+        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
         "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\obj\\",
+        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,72 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj",
-        "projectName": "Domain",
-        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -106,202 +42,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
-            "Microsoft.AspNetCore.Cors": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.22, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.22, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[6.0.22, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.22, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Infrastructures\\Infrastructures.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Infrastructures\\Infrastructures.csproj",
-        "projectName": "Infrastructures",
-        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Infrastructures\\Infrastructures.csproj",
-        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Infrastructures\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\Application.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
-            "Microsoft.AspNetCore.Cors": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.22, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.22, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[6.0.22, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.22, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
-        "projectName": "ManagerApartment",
-        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
-        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Application\\Application.csproj"
-              },
-              "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj"
-              },
-              "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Infrastructures\\Infrastructures.csproj": {
-                "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Infrastructures\\Infrastructures.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "EntityFramework": {
               "target": "Package",
@@ -309,27 +51,47 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[6.0.22, )"
+              "version": "[7.0.11, )"
             },
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.22, )"
+              "version": "[7.0.11, )"
             },
-            "Microsoft.IdentityModel.Tokens": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[6.32.3, )"
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.5.0, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[6.32.3, )"
+              "version": "[7.0.2, )"
             }
           },
           "imports": [

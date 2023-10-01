@@ -17,7 +17,7 @@ namespace ManagerApartment.Controllers
     public class OwnersController : ControllerBase
     {
 
-        private Manager_ApartmentContext _context = new Manager_ApartmentContext();
+        public ManagerApartmentContext _context = new ManagerApartmentContext();
 
 
         // GET: api/Owners
@@ -86,7 +86,7 @@ namespace ManagerApartment.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OwnerExists(owner.OwnerEmail))
+                if (!OwnerExists(owner.Email))
                 {
                     return NotFound("OwnerExists");
                 }
@@ -115,7 +115,7 @@ namespace ManagerApartment.Controllers
             }
             catch (DbUpdateException)
             {
-                if (OwnerExists(owner.OwnerEmail))
+                if (OwnerExists(owner.Email))
                 {
                     return Conflict();
                 }
@@ -125,7 +125,7 @@ namespace ManagerApartment.Controllers
                 }
             }
 
-            return CreatedAtAction("GetOwner", new { id = owner.OwnerEmail }, owner);
+            return CreatedAtAction("GetOwner", new { id = owner.Email }, owner);
         }
 
         // DELETE: api/Owner/:Id
@@ -150,7 +150,7 @@ namespace ManagerApartment.Controllers
 
         private bool OwnerExists(string id)
         {
-            return (_context.Owners?.Any(e => e.OwnerEmail == id)).GetValueOrDefault();
+            return (_context.Owners?.Any(e => e.Email == id)).GetValueOrDefault();
         }
 
         // xác thực bởi token, và sẽ lấy body token ra làm dữ diệu 
@@ -162,7 +162,7 @@ namespace ManagerApartment.Controllers
 
             if (extractedEmail == null) return NotFound("Token hết hạn");
 
-            var result = await _context.Tennants.FirstOrDefaultAsync(row => row.TennantEmail == extractedEmail);
+            var result = await _context.Tennants.FirstOrDefaultAsync(row => row.Email == extractedEmail);
 
             return Ok(result);
         }

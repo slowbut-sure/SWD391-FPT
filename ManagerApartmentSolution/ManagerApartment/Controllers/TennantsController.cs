@@ -21,7 +21,7 @@ namespace ManagerApartment.Controllers
             _config = config;
         }
 
-        private Manager_ApartmentContext _context = new Manager_ApartmentContext();
+        private ManagerApartmentContext _context = new ManagerApartmentContext();
 
 
         // GET: api/Tennants
@@ -87,7 +87,7 @@ namespace ManagerApartment.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TennantExists(tennant.TennantEmail))
+                if (!TennantExists(tennant.Email))
                 {
                     return NotFound("TennantExists");
                 }
@@ -116,7 +116,7 @@ namespace ManagerApartment.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TennantExists(tennant.TennantEmail))
+                if (TennantExists(tennant.Email))
                 {
                     return Conflict("TennantExists");
                 }
@@ -126,7 +126,7 @@ namespace ManagerApartment.Controllers
                 }
             }
 
-            return CreatedAtAction("GetTennant", new { id = tennant.TennantEmail }, tennant);
+            return CreatedAtAction("GetTennant", new { id = tennant.Email }, tennant);
         }
 
         // DELETE: api/Tennant/:Id
@@ -151,7 +151,7 @@ namespace ManagerApartment.Controllers
 
         private bool TennantExists(string id)
         {
-            return (_context.Tennants?.Any(e => e.TennantEmail == id)).GetValueOrDefault();
+            return (_context.Tennants?.Any(e => e.Email == id)).GetValueOrDefault();
         }
 
         // xác thực bởi token, và sẽ lấy body token ra làm dữ diệu 
@@ -163,7 +163,7 @@ namespace ManagerApartment.Controllers
 
             if (extractedEmail == null) return NotFound("Token hết hạn");
 
-            var result = await _context.Tennants.FirstOrDefaultAsync(row => row.TennantEmail == extractedEmail);
+            var result = await _context.Tennants.FirstOrDefaultAsync(row => row.Email == extractedEmail);
 
             return Ok(result);
         }
@@ -188,7 +188,7 @@ namespace ManagerApartment.Controllers
             // claim này dựa trên email trong tham số tennant
             var claims = new List<Claim>
             {
-                new Claim("email", tennant.TennantEmail)
+                new Claim("email", tennant.Email)
             };
 
             // tạo ra token
@@ -221,7 +221,7 @@ namespace ManagerApartment.Controllers
                 // nếu thuộc tính email của nó == thuộc tính email trong body + thuộc tính password của nó == thuộc tính password trong body
                 // thì sẽ trả về cái row đó => LINQ 
                 row =>
-                row.TennantEmail == body.Email && row.TennantPassword == body.Password
+                row.Email == body.Email && row.Password == body.Password
                 //
                 );
 
