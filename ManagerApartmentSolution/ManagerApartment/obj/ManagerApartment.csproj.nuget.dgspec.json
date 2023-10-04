@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {}
+    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {
+    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
+        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
         "projectName": "ManagerApartment",
-        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
+        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
         "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\PRN221\\Code\\ManagerApartmentSolution\\ManagerApartment\\obj\\",
+        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

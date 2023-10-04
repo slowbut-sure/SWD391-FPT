@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository.Interfaces.IUnitOfWork
+namespace Service.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IApartmentRepository
     {
     }
 }

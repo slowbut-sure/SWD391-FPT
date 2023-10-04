@@ -1,5 +1,5 @@
 ﻿using ManagerApartment.Models;
-using Repository.Interfaces.IGenericRepository;
+using Service.Interfaces.IGenericRepository;
 using System;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

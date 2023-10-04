@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Request\Response\" />
+    <Folder Include="Service\Implement\" />
     <Folder Include="Validations\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ManagerApartment\ManagerApartment.csproj" />
-    <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
 
 </Project>
