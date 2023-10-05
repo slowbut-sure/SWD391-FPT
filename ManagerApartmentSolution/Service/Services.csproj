@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Request\Response\" />
-    <Folder Include="Validations\" />
+    <Folder Include="Model\Request\" />
+    <Folder Include="Model\Response\" />
   </ItemGroup>
 
   <ItemGroup>

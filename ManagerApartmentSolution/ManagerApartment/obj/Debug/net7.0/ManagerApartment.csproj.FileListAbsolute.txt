@@ -1,0 +1,7 @@
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\ManagerApartment\obj\Debug\net7.0\ManagerApartment.csproj.AssemblyReference.cache
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\ManagerApartment\obj\Debug\net7.0\ManagerApartment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\ManagerApartment\obj\Debug\net7.0\ManagerApartment.AssemblyInfoInputs.cache
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\ManagerApartment\obj\Debug\net7.0\ManagerApartment.AssemblyInfo.cs
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\ManagerApartment\obj\Debug\net7.0\ManagerApartment.csproj.CoreCompileInputs.cache
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\ManagerApartment\obj\Debug\net7.0\ManagerApartment.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\ManagerApartment\obj\Debug\net7.0\ManagerApartment.MvcApplicationPartsAssemblyInfo.cache
