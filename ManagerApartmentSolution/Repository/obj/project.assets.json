@@ -1321,17 +1321,17 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Service/1.0.0": {
+      "Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "ManagerApartment": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Service.dll": {}
+          "bin/placeholder/Services.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Service.dll": {}
+          "bin/placeholder/Services.dll": {}
         }
       }
     }
@@ -3646,16 +3646,16 @@
       "path": "../ManagerApartment/ManagerApartment.csproj",
       "msbuildProject": "../ManagerApartment/ManagerApartment.csproj"
     },
-    "Service/1.0.0": {
+    "Services/1.0.0": {
       "type": "project",
-      "path": "../Service/Service.csproj",
-      "msbuildProject": "../Service/Service.csproj"
+      "path": "../Service/Services.csproj",
+      "msbuildProject": "../Service/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "ManagerApartment >= 1.0.0",
-      "Service >= 1.0.0"
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3694,8 +3694,8 @@
             "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {
               "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj"
             },
-            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Service\\Service.csproj": {
-              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Service\\Service.csproj"
+            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Service\\Services.csproj": {
+              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Service\\Services.csproj"
             }
           }
         }

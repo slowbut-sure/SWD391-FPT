@@ -1,12 +1,14 @@
-﻿using System;
+﻿using ManagerApartment.Models;
+using Services.Interfaces.IGenericRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Interfaces
+namespace Services.Interfaces
 {
-    public interface IStaffRepository
+    public interface IStaffRepository : IGenericRepository<Staff>
     {
     }
 }
