@@ -1,5 +1,6 @@
 ﻿using Services.Interfaces.IUnitOfWork;
 using Services.Models.Response.StaffResponse;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Services.Service.Implement
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public StaffImplement(IUnitOfWork unitOfWork)
+        public StaffImplement(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
