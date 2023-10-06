@@ -17,12 +17,12 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ResponseAccountStaff>>> GetAllInterviewers()
+        public async Task<ActionResult<List<ResponseAccountStaff>>> GetAllStaffs()
         {
             try
             {
-                var interviewer = await _staffService.GetAllStaffs();
-                return Ok(interviewer);
+                var staff = await _staffService.GetAllStaffs();
+                return Ok(staff);
             }
             catch (Exception ex)
             {
@@ -31,12 +31,12 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ResponseAccountStaff>> GetInterviewerById(int id)
+        public async Task<ActionResult<ResponseAccountStaff>> GetStaffById(int id)
         {
             try
             {
-                var interviewer = await _staffService.GetStaffById(id);
-                return Ok(interviewer);
+                var staff = await _staffService.GetStaffById(id);
+                return Ok(staff);
             }
             catch (Exception ex)
             {
