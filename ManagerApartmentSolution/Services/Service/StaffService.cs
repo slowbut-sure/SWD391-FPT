@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Models.Response.StaffResponse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Services.Service
 {
     public interface StaffService
     {
+        Task<List<ResponseAccountStaff>> GetAllStaffs();
+        Task<ResponseAccountStaff> GetStaffById(int id);
     }
 }

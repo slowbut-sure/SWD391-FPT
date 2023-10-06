@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "BqJx3euyCWPM72uv5TY09euYE1IliuJ5ph/Opz5HG+yYWjCc3DQDhFjVlYliBZozHRnPFxjrMByRR2uPnWDCgA==",
+  "dgSpecHash": "zilUD9vSTQM5579xM5+MYVMClRLWtpgBG4xjkmU9ZcdkBoiU8rFKbgHSzQ6wo2eSkatkCcKuqP5w4920e7eRpg==",
   "success": false,
   "projectFilePath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\asus\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",

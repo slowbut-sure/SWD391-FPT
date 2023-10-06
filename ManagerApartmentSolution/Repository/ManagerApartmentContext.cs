@@ -15,45 +15,45 @@ public partial class ManagerApartmentContext : DbContext
     {
     }
 
-    public virtual DbSet<AddOn> AddOns { get; set; }
+    public virtual DbSet<AddOn> AddOns { get; set; } = null!;
 
-    public virtual DbSet<Apartment> Apartments { get; set; }
+    public virtual DbSet<Apartment> Apartments { get; set; } = null!;
 
-    public virtual DbSet<ApartmentType> ApartmentTypes { get; set; }
+    public virtual DbSet<ApartmentType> ApartmentTypes { get; set; } = null!;
 
-    public virtual DbSet<Asset> Assets { get; set; }
+    public virtual DbSet<Asset> Assets { get; set; } = null!;
 
-    public virtual DbSet<AssetHistory> AssetHistories { get; set; }
+    public virtual DbSet<AssetHistory> AssetHistories { get; set; } = null!;
 
-    public virtual DbSet<Bill> Bills { get; set; }
+    public virtual DbSet<Bill> Bills { get; set; } = null!;
 
-    public virtual DbSet<Building> Buildings { get; set; }
+    public virtual DbSet<Building> Buildings { get; set; } = null!;
 
-    public virtual DbSet<Contract> Contracts { get; set; }
+    public virtual DbSet<Contract> Contracts { get; set; } = null!;
 
-    public virtual DbSet<ContractDetail> ContractDetails { get; set; }
+    public virtual DbSet<ContractDetail> ContractDetails { get; set; } = null!;
 
-    public virtual DbSet<Owner> Owners { get; set; }
+    public virtual DbSet<Owner> Owners { get; set; } = null!;
 
-    public virtual DbSet<Package> Packages { get; set; }
+    public virtual DbSet<Package> Packages { get; set; } = null!;
 
-    public virtual DbSet<PackageServiceDetail> PackageServiceDetails { get; set; }
+    public virtual DbSet<PackageServiceDetail> PackageServiceDetails { get; set; } = null!;
 
-    public virtual DbSet<Request> Requests { get; set; }
+    public virtual DbSet<Request> Requests { get; set; } = null!;
 
-    public virtual DbSet<RequestDetail> RequestDetails { get; set; }
+    public virtual DbSet<RequestDetail> RequestDetails { get; set; } = null!;
 
-    public virtual DbSet<RequestLog> RequestLogs { get; set; }
+    public virtual DbSet<RequestLog> RequestLogs { get; set; } = null!;
 
-    public virtual DbSet<Service> Services { get; set; }
+    public virtual DbSet<Service> Services { get; set; } = null!;
 
-    public virtual DbSet<Staff> Staff { get; set; }
+    public virtual DbSet<Staff> Staff { get; set; } = null!;
 
-    public virtual DbSet<StaffDetail> StaffDetails { get; set; }
+    public virtual DbSet<StaffDetail> StaffDetails { get; set; } = null!;
 
-    public virtual DbSet<StaffLog> StaffLogs { get; set; }
+    public virtual DbSet<StaffLog> StaffLogs { get; set; } = null!;
 
-    public virtual DbSet<Tennant> Tennants { get; set; }
+    public virtual DbSet<Tennant> Tennants { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
