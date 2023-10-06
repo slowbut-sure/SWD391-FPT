@@ -1,0 +1,5 @@
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.csproj.AssemblyReference.cache
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.AssemblyInfoInputs.cache
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.AssemblyInfo.cs
+C:\Users\asus\OneDrive\Documents\GitHub\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.csproj.CoreCompileInputs.cache
