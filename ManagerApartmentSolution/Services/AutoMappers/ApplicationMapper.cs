@@ -13,7 +13,9 @@ using Services.Models.Response.ContractResponse;
 using Services.Models.Response.OwnerResponse;
 using Services.Models.Response.PackageResponse;
 using Services.Models.Response.RequestRespponse;
+using Services.Models.Response.ServiceResponse;
 using Services.Models.Response.StaffResponse;
+using Services.Models.Response.TennantResponse;
 
 namespace Services.AutoMappers
 {
@@ -21,16 +23,7 @@ namespace Services.AutoMappers
     {
         public ApplicationMapper()
         {
-            CreateMap<Staff, ResponseAccountStaff>()
-                .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId))
-                .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
-                .ForMember(re => re.Name, act => act.MapFrom(src => src.Phone))
-                .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
-                .ForMember(re => re.StaffStatus, act => act.MapFrom(src => src.StaffStatus))
-                .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.AvatarLink))
-                .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
-                .ForMember(re => re.StaffLogId, act => act.Ignore())
-                .ForMember(re => re.StaffDetailId, act => act.Ignore());
+
 
             CreateMap<Apartment, ResponseOfApartment>()
                 .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
@@ -143,6 +136,77 @@ namespace Services.AutoMappers
                 .ForMember(re => re.RequestSequence, act => act.MapFrom(src => src.Sequence))
                 .ForMember(re => re.ReqStatus, act => act.MapFrom(src => src.ReqStatus));
 
+            CreateMap<RequestDetail, ResponseOfRequestDetail>()
+                .ForMember(re => re.RequestDetailId, act => act.MapFrom(src => src.RequestDetailId))
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
+                .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.Request.BookDateTime))
+                .ForMember(re => re.EndDate, act => act.MapFrom(src => src.Request.EndDate))
+                .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
+                .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
+                .ForMember(re => re.RequestDetailAmount, act => act.MapFrom(src => src.Amount))
+                .ForMember(re => re.RequestPrice, act => act.MapFrom(src => src.Price));
+
+            CreateMap<RequestLog, ResponseOfRequestLog>()
+                .ForMember(re => re.RequestLogId, act => act.MapFrom(src => src.RequestLogId))
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.MaintainItem))
+                .ForMember(re => re.ReqLogDescription, act => act.MapFrom(src => src.Description))
+                .ForMember(re => re.RqLogStatus, act => act.MapFrom(src => src.Status));
+
+            //CreateMap<Service, ResponseOfService>()
+            //    .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
+            //    .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
+            //    .ForMember(re => re.ServiceName, act => act.MapFrom(src => src.Name))
+            //    .ForMember(re => re.ServicePrice, act => act.MapFrom(src => src.Price))
+            //    .ForMember(re => re.Unit, act => act.MapFrom(src => src.Unit))
+            //    .ForMember(re => re.ServiceStatus, act => act.MapFrom(src => src.ServiceStatus));
+
+            CreateMap<Staff, ResponseAccountStaff>()
+                .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId))
+                .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
+                .ForMember(re => re.Name, act => act.MapFrom(src => src.Phone))
+                .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.StaffStatus, act => act.MapFrom(src => src.StaffStatus))
+                .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.AvatarLink))
+                .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
+                .ForMember(re => re.Role, act => act.MapFrom(src => src.Role))
+                .ForMember(re => re.StaffLogId, act => act.Ignore())
+                .ForMember(re => re.StaffDetailId, act => act.Ignore());
+
+            CreateMap<StaffDetail, ResponseOfStaffDetail>()
+                .ForMember(re => re.StaffDetailId, act => act.MapFrom(src => src.StaffDetailId))
+                .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId))
+                .ForMember(re => re.StaffName, act => act.MapFrom(src => src.Staff.Name))
+                .ForMember(re => re.StaffEmail, act => act.MapFrom(src => src.Staff.Email))
+                .ForMember(re => re.StaffPhone, act => act.MapFrom(src => src.Staff.Phone))
+                .ForMember(re => re.StaffAddress, act => act.MapFrom(src => src.Staff.Address))
+                .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.Staff.AvatarLink))
+                .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
+                .ForMember(re => re.ServiceName, act => act.MapFrom(src => src.Service.Name))
+                .ForMember(re => re.ServiceStatus, act => act.MapFrom(src => src.Service.ServiceStatus));
+
+            CreateMap<StaffLog, ResponseOfStaffLog>()
+                .ForMember(re => re.StaffLogId, act => act.MapFrom(src => src.StaffLogId))
+                .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId))
+                .ForMember(re => re.StaffName, act => act.MapFrom(src => src.Staff.Name))
+                .ForMember(re => re.StaffStatus, act => act.MapFrom(src => src.Staff.StaffStatus))
+                .ForMember(re => re.StaffRole, act => act.MapFrom(src => src.Staff.Role))
+                .ForMember(re => re.RequestLogId, act => act.MapFrom(src => src.RequestLogId))
+                .ForMember(re => re.ReqLogStatus, act => act.MapFrom(src => src.RequestLog.Status));
+
+            CreateMap<Tennant, ResponseOfTennant>()
+                .ForMember(re => re.TennantId, act => act.MapFrom(src => src.TennantId))
+                .ForMember(re => re.TennantCode, act => act.MapFrom(src => src.Code))
+                .ForMember(re => re.TennantName, act => act.MapFrom(src => src.Name))
+                .ForMember(re => re.TennantEmail, act => act.MapFrom(src => src.Email))
+                .ForMember(re => re.Password, act => act.MapFrom(src => src.Password))
+                .ForMember(re => re.TennantPhone, act => act.MapFrom(src => src.Phone))
+                .ForMember(re => re.TennantAddress, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.TennantStatus, act => act.MapFrom(src => src.Status))
+                .ForMember(re => re.ContractDetailId, act => act.MapFrom(src => src.ContractDetailId))
+                .ForMember(re => re.StartDate, act => act.MapFrom(src => src.ContractDetail.StartDate))
+                .ForMember(re => re.EndDate, act => act.MapFrom(src => src.ContractDetail.EndDate));
         }
     }
 }
