@@ -16,7 +16,7 @@ namespace Services.Models.Response.ApartmentResponse
 
         public string? ApartmentTypeName { get; set; }
 
-        public string? Description { get; set; }
+        public string? ApaermentTypeDescription { get; set; }
 
         public string? Status { get; set; }
     }
