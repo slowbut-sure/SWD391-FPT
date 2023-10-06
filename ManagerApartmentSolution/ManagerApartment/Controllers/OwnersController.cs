@@ -16,9 +16,7 @@ namespace ManagerApartment.Controllers
     [ApiController]
     public class OwnersController : ControllerBase
     {
-
         public ManagerApartmentContext _context = new ManagerApartmentContext();
-
 
         // GET: api/Owners
         [HttpGet("getListOwners")]

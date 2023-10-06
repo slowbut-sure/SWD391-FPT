@@ -1380,6 +1380,42 @@
             "rid": "win"
           }
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Services": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repository.dll": {}
+        }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
       }
     }
   },
@@ -3839,11 +3875,28 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Repository/1.0.0": {
+      "type": "project",
+      "path": "../Repository/Repository.csproj",
+      "msbuildProject": "../Repository/Repository.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Domain >= 1.0.0",
       "EntityFramework >= 6.4.4",
+      "ManagerApartment >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.11",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
@@ -3852,6 +3905,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.11",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.11",
+      "Repository >= 1.0.0",
+      "Services >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "System.IdentityModel.Tokens.Jwt >= 7.0.2"
     ]
@@ -3888,7 +3943,20 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj"
+            },
+            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {
+              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj"
+            },
+            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Repository\\Repository.csproj"
+            },
+            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -3972,5 +4040,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1108",
+      "level": "Error",
+      "message": "Cycle detected. \r\n  ManagerApartment -> ManagerApartment.",
+      "libraryId": "ManagerApartment",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

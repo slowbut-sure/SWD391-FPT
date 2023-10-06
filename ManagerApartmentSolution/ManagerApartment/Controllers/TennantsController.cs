@@ -21,7 +21,7 @@ namespace ManagerApartment.Controllers
             _config = config;
         }
 
-        private ManagerApartmentContext _context = new ManagerApartmentContext();
+        public ManagerApartmentContext _context = new ManagerApartmentContext();
 
 
         // GET: api/Tennants
