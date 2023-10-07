@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Service
+namespace Services.Servicesss
 {
     public interface TennantService
     {
-            {
+        
         Task<List<ResponseOfTennant>> GetAllTennants();
         Task<ResponseOfTennant> GetTennantById(int id);
     }

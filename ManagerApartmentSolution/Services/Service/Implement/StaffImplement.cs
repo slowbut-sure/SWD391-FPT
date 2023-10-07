@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Service.Implement
+namespace Services.Servicesss.Implement
 {
     public class StaffImplement : StaffService
     {

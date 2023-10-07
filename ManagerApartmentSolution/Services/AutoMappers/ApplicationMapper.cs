@@ -165,13 +165,13 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ReqLogDescription, act => act.MapFrom(src => src.Description))
                 .ForMember(re => re.RqLogStatus, act => act.MapFrom(src => src.Status));
 
-            //CreateMap<Service, ResponseOfService>()
-            //    .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
-            //    .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
-            //    .ForMember(re => re.ServiceName, act => act.MapFrom(src => src.Name))
-            //    .ForMember(re => re.ServicePrice, act => act.MapFrom(src => src.Price))
-            //    .ForMember(re => re.Unit, act => act.MapFrom(src => src.Unit))
-            //    .ForMember(re => re.ServiceStatus, act => act.MapFrom(src => src.ServiceStatus));
+            CreateMap<Service, ResponseOfService>()
+                .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
+                .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
+                .ForMember(re => re.ServiceName, act => act.MapFrom(src => src.Name))
+                .ForMember(re => re.ServicePrice, act => act.MapFrom(src => src.Price))
+                .ForMember(re => re.Unit, act => act.MapFrom(src => src.Unit))
+                .ForMember(re => re.ServiceStatus, act => act.MapFrom(src => src.ServiceStatus));
 
             CreateMap<Staff, ResponseAccountStaff>()
                 .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId))

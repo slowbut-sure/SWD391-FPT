@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;
-using Services.Service;
+using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {

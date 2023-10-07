@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Service
+namespace Services.Servicesss
 {
     public interface StaffService
     {
