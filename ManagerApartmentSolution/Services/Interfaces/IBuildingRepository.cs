@@ -10,7 +10,5 @@ namespace Services.Interfaces
 {
     public interface IBuildingRepository : IGenericRepository<Building>
     {
-        Task<List<Building>> GetAllBuildings();
-        Task<Building> GetBuildingById(int id);
     }
 }

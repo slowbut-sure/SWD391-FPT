@@ -10,7 +10,5 @@ namespace Services.Interfaces
 {
     public interface IPackageServiceDetailRepository : IGenericRepository<PackageServiceDetail>
     {
-        Task<List<PackageServiceDetail>> GetAllPackageServiceDetails();
-        Task<PackageServiceDetail> GetPackageServiceDetailById(int id);
     }
 }

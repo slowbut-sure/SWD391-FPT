@@ -10,7 +10,5 @@ namespace Services.Interfaces
 {
     public interface IOwnerRepository : IGenericRepository<Owner>
     {
-        Task<List<Owner>> GetAllOwners();
-        Task<Owner> GetOwnerById(int id);
     }
 }

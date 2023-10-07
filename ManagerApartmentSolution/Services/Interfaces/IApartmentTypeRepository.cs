@@ -10,7 +10,5 @@ namespace Services.Interfaces
 {
     public interface IApartmentTypeRepository : IGenericRepository<ApartmentType>
     {
-        Task<List<ApartmentType>> GetAllApartmentTypes();
-        Task<ApartmentType> GetApartmentTypeById(int id);
     }
 }
