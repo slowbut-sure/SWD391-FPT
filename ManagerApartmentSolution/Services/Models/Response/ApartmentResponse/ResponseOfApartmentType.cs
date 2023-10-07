@@ -10,14 +10,14 @@ namespace Services.Models.Response.ApartmentResponse
     {
         public int ApartmentTypeId { get; set; }
 
-        public int? BuildingId { get; set; }
+        public int BuildingId { get; set; }
         public string BuildingName { get; set; }
         public string BuildingAddress { get; set; }
 
-        public string? ApartmentTypeName { get; set; }
+        public string ApartmentTypeName { get; set; }
 
-        public string? ApaermentTypeDescription { get; set; }
+        public string ApaermentTypeDescription { get; set; }
 
-        public string? Status { get; set; }
+        public string Status { get; set; }
     }
 }

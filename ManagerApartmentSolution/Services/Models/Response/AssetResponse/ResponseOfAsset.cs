@@ -10,18 +10,18 @@ namespace Services.Models.Response.Asset
     {
         public int AssetId { get; set; }
 
-        public int? AssetHistoryId { get; set; }
+        public int AssetHistoryId { get; set; }
 
-        public int? ApartmentId { get; set; }
+        public int ApartmentId { get; set; }
 
-        public string? AssetName { get; set; }
+        public string AssetName { get; set; }
 
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
 
-        public string? AssetDescription { get; set; }
+        public string AssetDescription { get; set; }
 
-        public string? ItemImage { get; set; }
+        public string ItemImage { get; set; }
 
-        public string? AssetStatus { get; set; }
+        public string AssetStatus { get; set; }
     }
 }

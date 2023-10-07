@@ -10,16 +10,16 @@ namespace Services.Models.Response.Asset
     {
         public int AssetHistoryId { get; set; }
 
-        public string? Code { get; set; }
+        public string Code { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
 
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
 
-        public string? ItemImage { get; set; }
+        public string ItemImage { get; set; }
 
-        public string? Status { get; set; }
+        public string Status { get; set; }
     }
 }

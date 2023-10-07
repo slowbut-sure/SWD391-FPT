@@ -9,9 +9,9 @@ namespace Services.Models.Response.RequestRespponse
     public class ResponseOfRequestLog
     {
         public int RequestLogId { get; set; }
-        public int? RequestId { get; set; }
-        public string? MaintainItem { get; set; }
-        public string? ReqLogDescription { get; set; }
-        public string? RqLogStatus { get; set; }
+        public int RequestId { get; set; }
+        public string MaintainItem { get; set; }
+        public string ReqLogDescription { get; set; }
+        public string RqLogStatus { get; set; }
     }
 }
