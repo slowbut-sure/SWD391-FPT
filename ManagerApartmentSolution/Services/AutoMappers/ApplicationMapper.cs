@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using ManagerApartment.Models;
+using Services.Models.Response.AddOnResponse;
 using Services.Models.Response.ApartmentResponse;
 using Services.Models.Response.Asset;
 using Services.Models.Response.Bill;
@@ -23,7 +24,17 @@ namespace Services.AutoMappers
     {
         public ApplicationMapper()
         {
-
+            CreateMap<AddOn, ResponseOfAddOn>()
+                .ForMember(re => re.AddOnId, act => act.MapFrom(src => src.AddOnId))
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
+                .ForMember(re => re.RequestBookDate, act => act.MapFrom(src => src.Request.BookDateTime))
+                .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
+                .ForMember(re => re.ServiceName, act => act.MapFrom(src => src.Service.Name))
+                .ForMember(re => re.ServicePrice, act => act.MapFrom(src => src.Service.Price))
+                .ForMember(re => re.AddonAmount, act => act.MapFrom(src => src.Amount))
+                .ForMember(re => re.AddOnPrice, act => act.MapFrom(src => src.Price))
+                .ForMember(re => re.AddOnStatus, act => act.MapFrom(src => src.Status));
 
             CreateMap<Apartment, ResponseOfApartment>()
                 .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))

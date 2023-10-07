@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface ITennantRepository : IGenericRepository<Tennant>
     {
+        Task<List<Tennant>> GetAllTennants();
+        Task<Tennant> GetTennantById(int id);
     }
 }
