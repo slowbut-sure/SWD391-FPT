@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface IRequestLogRepository : IGenericRepository<RequestLog>
     {
+        Task<List<RequestLog>> GetAllRequestLogs();
+        Task<RequestLog> GetRequestLogById(int id);
     }
 }

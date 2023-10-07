@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface IAddOnRepository : IGenericRepository<AddOn>
     {
+        Task<List<AddOn>> GetAllAddOns();
+        Task<AddOn> GetAddOnById(int id);
     }
 }

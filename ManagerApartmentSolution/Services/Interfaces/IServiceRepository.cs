@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface IServiceRepository : IGenericRepository<Service>
     {
+        Task<List<Service>> GetAllServices();
+        Task<Service> GetServiceById(int id);
     }
 }

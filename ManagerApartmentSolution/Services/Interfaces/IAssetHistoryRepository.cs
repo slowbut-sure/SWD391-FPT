@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface IAssetHistoryRepository : IGenericRepository<AssetHistory>
     {
+        Task<List<AssetHistory>> GetAllAssetHistorys();
+        Task<AssetHistory> GetAssetHistoryById(int id);
     }
 }

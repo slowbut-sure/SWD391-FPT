@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface IPackageRepository : IGenericRepository<Package>
     {
+        Task<List<Package>> GetAllPackages();
+        Task<Package> GetPackageById(int id);
     }
 }
