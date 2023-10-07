@@ -10,7 +10,5 @@ namespace Services.Interfaces
 {
     public interface IContractDetailRepository : IGenericRepository<ContractDetail>
     {
-        Task<List<ContractDetail>> GetAllContractDetails();
-        Task<ContractDetail> GetContractDetailById(int id);
     }
 }

@@ -10,7 +10,5 @@ namespace Services.Interfaces
 {
     public interface IRequestDetailRepository : IGenericRepository<RequestDetail>
     {
-        Task<List<RequestDetail>> GetAllRequestDetails();
-        Task<RequestDetail> GetRequestDetailById(int id);
     }
 }

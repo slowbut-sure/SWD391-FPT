@@ -10,7 +10,5 @@ namespace Services.Interfaces
 {
     public interface IAssetRepository : IGenericRepository<Asset>
     {
-        Task<List<Asset>> GetAllAssets();
-        Task<Asset> GetAssetById(int id);
     }
 }
