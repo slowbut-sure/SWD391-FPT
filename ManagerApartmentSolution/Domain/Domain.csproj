@@ -27,7 +27,6 @@
 	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.2" />
 	  
     <Folder Include="Enums\Status\" />
-    <Folder Include="Enums\Role\" />
   </ItemGroup>
 
 </Project>

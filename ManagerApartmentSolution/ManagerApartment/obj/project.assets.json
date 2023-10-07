@@ -3967,7 +3967,6 @@
     "net7.0": [
       "Domain >= 1.0.0",
       "EntityFramework >= 6.4.4",
-      "ManagerApartment >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.11",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
@@ -3983,23 +3982,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asus\\.nuget\\packages\\": {},
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
+      "projectUniqueName": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
       "projectName": "ManagerApartment",
-      "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
-      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\obj\\",
+      "projectPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4015,17 +4014,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj"
+            "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj": {
-              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\ManagerApartment\\ManagerApartment.csproj"
+            "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Repository\\Repository.csproj": {
+              "projectPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Repository\\Repository.csproj"
             },
-            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Repository\\Repository.csproj"
-            },
-            "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj"
+            "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj": {
+              "projectPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj"
             }
           }
         }
@@ -4111,16 +4107,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1108",
-      "level": "Error",
-      "message": "Cycle detected. \r\n  ManagerApartment -> ManagerApartment.",
-      "libraryId": "ManagerApartment",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  }
 }
