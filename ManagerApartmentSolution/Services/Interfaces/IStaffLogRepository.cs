@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface IStaffLogRepository : IGenericRepository<StaffLog>
     {
+        Task<List<StaffLog>> GetAllStaffLogs();
+        Task<StaffLog> GetStaffLogById(int id);
     }
 }

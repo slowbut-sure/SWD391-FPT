@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ManagerApartment.Models;
+using Services.Models.Response.RequestRespponse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,7 @@ namespace Services.Servicesss
 {
     internal interface RequestDetailService
     {
+        Task<List<ResponseOfRequestDetail>> GetAllRequestDetails();
+        Task<ResponseOfRequestDetail> GetRequestDetailById(int id);
     }
 }

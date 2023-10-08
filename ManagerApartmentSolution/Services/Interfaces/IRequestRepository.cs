@@ -10,5 +10,7 @@ namespace Services.Interfaces
 {
     public interface IRequestRepository : IGenericRepository<Request>
     {
+        Task<List<Request>> GetAllRequests();
+        Task<Request> GetRequestById(int id);
     }
 }

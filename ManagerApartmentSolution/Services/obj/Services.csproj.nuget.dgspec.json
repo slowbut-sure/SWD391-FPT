@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj": {}
+    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj": {}
   },
   "projects": {
-    "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
+    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -118,20 +118,20 @@
         }
       }
     },
-    "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj": {
+    "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Services\\obj\\",
+        "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -147,8 +147,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\hoc_tap\\Chuyên ngành 5\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj"
+              "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\asus\\OneDrive\\Documents\\GitHub\\SWD391-FPT\\ManagerApartmentSolution\\Domain\\Domain.csproj"
               }
             }
           }

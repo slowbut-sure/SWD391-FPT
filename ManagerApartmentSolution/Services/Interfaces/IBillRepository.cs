@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
-    public interface IBillRepository : IGenericRepository<Bill> 
-    { 
+    public interface IBillRepository : IGenericRepository<Bill>
+    {
+        Task<List<Bill>> GetAllBills();
+        Task<Bill> GetBillById(int id);
     }
 }

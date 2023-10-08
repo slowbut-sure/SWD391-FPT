@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Models.Response.AddOnResponse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Services.Servicesss
 {
     public interface AddOnService
     {
+        Task<List<ResponseOfAddOn>> GetAllAddOnss();
+        Task<ResponseOfAddOn> GetAddOnById(int id);
     }
 }

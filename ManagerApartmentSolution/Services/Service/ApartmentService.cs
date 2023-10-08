@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ManagerApartment.Models;
+using Services.Models.Response.ApartmentResponse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,7 @@ namespace Services.Servicesss
 {
     public interface ApartmentService
     {
+        Task<List<ResponseOfApartment>> GetAllApartments();
+        Task<ResponseOfApartment> GetApartmentById(int id);
     }
 }

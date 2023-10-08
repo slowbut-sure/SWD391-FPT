@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Models.Response.RequestRespponse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Services.Servicesss
 {
     public interface RequestService
     {
+        Task<List<ResponseOfRequest>> GetAllRequests();
+        Task<ResponseOfRequest> GetRequestById(int id);
     }
 }
