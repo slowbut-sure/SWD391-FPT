@@ -1,4 +1,5 @@
-﻿using ManagerApartment.Models;
+﻿
+using Services.Models.Request.ServiceRequest;
 using Services.Models.Response.ServiceResponse;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace Services.Servicesss
     {
         Task<List<ResponseOfService>> GetAllServices();
         Task<ResponseOfService> GetServiceById(int id);
+        Task<ResponseOfService> CreateService(RequestCreateService service);
+        Task DeleteService(int serviceId);
+        Task<ResponseOfService> UpdateService(int serviceId, UpdateService updateService);
     }
 }

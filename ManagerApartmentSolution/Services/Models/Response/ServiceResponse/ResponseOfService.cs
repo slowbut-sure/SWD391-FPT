@@ -18,6 +18,6 @@ namespace Services.Models.Response.ServiceResponse
 
         public string Unit { get; set; }
 
-        public string ServiceStatus { get; set; }
+        public string ServiceStatus { get; set; } 
     }
 }

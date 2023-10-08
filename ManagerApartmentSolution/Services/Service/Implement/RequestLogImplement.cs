@@ -38,6 +38,6 @@ namespace Services.Servicesss.Implement
             }
             return _mapper.Map<ResponseOfRequestLog>(rqLog);
         }
-    }
+
     }
 }

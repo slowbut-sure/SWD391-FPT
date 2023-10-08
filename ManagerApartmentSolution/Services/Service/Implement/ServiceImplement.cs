@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
+using Domain.Enums.Status;
+using ManagerApartment.Models;
+using Microsoft.Extensions.Hosting;
 using Services.Interfaces.IUnitOfWork;
+using Services.Models.Request.ServiceRequest;
 using Services.Models.Response.ServiceResponse;
 using Services.Models.Response.TennantResponse;
 using System;
@@ -20,6 +24,28 @@ namespace Services.Servicesss.Implement
             _mapper = mapper;
         }
 
+        public async Task<ResponseOfService> CreateService(RequestCreateService service)
+        {
+            var createService = _mapper.Map<Service>(service);
+            createService.ServiceStatus = ServiceEnum.ACCEPT.ToString();
+
+            _unitOfWork.Service.Add(createService);
+            _unitOfWork.Save();
+            return _mapper.Map<ResponseOfService>(createService);  
+        }
+
+        public async Task DeleteService(int serviceId)
+        {
+            var service = _unitOfWork.Service.GetById(serviceId);
+            if (service is null)
+            {
+                throw new Exception("Can not found by" + serviceId);
+            }
+            service.ServiceStatus = ServiceEnum.INACTIVE.ToString();
+            _unitOfWork.Service.Update(service);
+            _unitOfWork.Save();
+        }
+
         public async Task<List<ResponseOfService>> GetAllServices()
         {
             var services = await _unitOfWork.Service.GetAllServices();
@@ -37,6 +63,22 @@ namespace Services.Servicesss.Implement
             {
                 throw new Exception("The service does not exist");
             }
+            return _mapper.Map<ResponseOfService>(service);
+        }
+
+        public async Task<ResponseOfService> UpdateService(int serviceId, UpdateService updateService)
+        {
+            var service = _unitOfWork.Service.GetById(serviceId);
+            if (service is null)
+            {
+                throw new Exception("Can not found ");
+            }
+            service.Code = updateService.ServiceCode;
+            service.Price = updateService.ServicePrice;
+            service.Unit = updateService.ServiceUnit;
+            service.ServiceStatus = updateService.ServiceStatus;
+            _unitOfWork.Service.Update(service);
+            _unitOfWork.Save();
             return _mapper.Map<ResponseOfService>(service);
         }
     }

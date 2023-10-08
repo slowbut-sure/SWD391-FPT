@@ -22,7 +22,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseOfAssetHistory>> GetAllAssetHistoris()
         {
-            var assHistorys = await _unitOfWork.AssetHistory.GetAllAssetHistorys();
+            var assHistorys = await _unitOfWork.AssetHistory.GetAllAssetHistoris();
             if (assHistorys is null)
             {
                 throw new Exception("The asset history list is empty");

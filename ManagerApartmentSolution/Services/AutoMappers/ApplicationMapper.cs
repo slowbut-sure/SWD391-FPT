@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using ManagerApartment.Models;
+using Services.Models.Request.ServiceRequest;
 using Services.Models.Response.AddOnResponse;
 using Services.Models.Response.ApartmentResponse;
 using Services.Models.Response.Asset;
@@ -165,6 +166,8 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ReqLogDescription, act => act.MapFrom(src => src.Description))
                 .ForMember(re => re.RqLogStatus, act => act.MapFrom(src => src.Status));
 
+            //==============================================================================================================
+
             CreateMap<Service, ResponseOfService>()
                 .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
@@ -172,6 +175,22 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ServicePrice, act => act.MapFrom(src => src.Price))
                 .ForMember(re => re.Unit, act => act.MapFrom(src => src.Unit))
                 .ForMember(re => re.ServiceStatus, act => act.MapFrom(src => src.ServiceStatus));
+
+            CreateMap<RequestCreateService, Service>()
+                .ForMember(s => s.ServiceId, act => act.MapFrom(src => src.ServiceId))
+                .ForMember(s => s.Code, act => act.MapFrom(src => src.ServiceCode))
+                .ForMember(s => s.Price, act => act.MapFrom(src => src.ServicePrice))
+                .ForMember(s => s.Unit, act => act.MapFrom(src => src.ServiceUnit))
+                .ForMember(s => s.ServiceStatus, act => act.MapFrom(src => src.ServiceStatus));
+
+            CreateMap<UpdateService, Service>()
+                .ForMember(s => s.Code, act => act.MapFrom(src => src.ServiceCode))
+                .ForMember(s => s.Price, act => act.MapFrom(src => src.ServicePrice))
+                .ForMember(s => s.Unit, act => act.MapFrom(src => src.ServiceUnit))
+                .ForMember(s => s.ServiceStatus, act => act.MapFrom(src => src.ServiceStatus));
+
+
+            //==============================================================================================================
 
             CreateMap<Staff, ResponseAccountStaff>()
                 .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId))
