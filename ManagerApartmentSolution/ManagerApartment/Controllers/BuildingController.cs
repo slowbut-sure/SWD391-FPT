@@ -1,0 +1,47 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Services.Models.Response.BuildingResponse;
+using Services.Models.Response.TennantResponse;
+using Services.Servicesss;
+
+namespace ManagerApartment.Controllers
+{
+    [Authorize]
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class BuildingController : ControllerBase
+    {
+        private BuildingService _buildingService;
+        public BuildingController(BuildingService buildingService)
+        {
+            _buildingService = buildingService;
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<ResponseOfBuilding>>> GetAllBuildings()
+        {
+            try
+            {
+                var buildings = await _buildingService.GetAllBuildings();
+                return Ok(buildings);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ResponseOfBuilding>> GetBuildingById(int id)
+        {
+            try
+            {
+                var building = await _buildingService.GetBuildingById(id);
+                return Ok(building);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+    }
+}

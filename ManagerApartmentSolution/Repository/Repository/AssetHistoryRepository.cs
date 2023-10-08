@@ -13,7 +13,7 @@ namespace Repository.Repository
     public class AssetHistoryRepository : GenericRepository<AssetHistory>, IAssetHistoryRepository
     {
         public AssetHistoryRepository(ManagerApartmentContext context) : base(context) { }
-        public async Task<List<AssetHistory>> GetAllAssetHistorys()
+        public async Task<List<AssetHistory>> GetAllAssetHistoris()
         {
             var assetHistorys = await _context.AssetHistories
                 .ToListAsync();

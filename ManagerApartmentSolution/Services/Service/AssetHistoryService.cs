@@ -10,7 +10,7 @@ namespace Services.Servicesss
 {
     public interface AssetHistoryService
     {
-        Task<List<ResponseOfAssetHistory>> GetAllAssetHistorys();
+        Task<List<ResponseOfAssetHistory>> GetAllAssetHistoris();
         Task<ResponseOfAssetHistory> GetAssetHistoryById(int id);
     }
 }

@@ -20,7 +20,7 @@ namespace Services.Servicesss.Implement
             _mapper = mapper;
         }
 
-        public async Task<List<ResponseOfAssetHistory>> GetAllAssetHistorys()
+        public async Task<List<ResponseOfAssetHistory>> GetAllAssetHistoris()
         {
             var assHistorys = await _unitOfWork.AssetHistory.GetAllAssetHistorys();
             if (assHistorys is null)
