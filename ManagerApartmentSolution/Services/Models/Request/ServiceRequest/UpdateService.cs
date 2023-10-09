@@ -12,6 +12,9 @@ namespace Services.Models.Request.ServiceRequest
         [Required(ErrorMessage = "The Service Code field is required.")]
         public string ServiceCode { get; set; } = null!;
 
+        [Required(ErrorMessage = "The Service name field is required.")]
+        public string ServiceName { get; set; }
+
         [Required(ErrorMessage = "The Service Price field is required.")]
         public decimal ServicePrice { get; set; }
 

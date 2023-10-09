@@ -14,13 +14,15 @@ namespace Services.Models.Request.ServiceRequest
         [Required(ErrorMessage = "The Service Code field is required.")]
         public string ServiceCode { get; set; }
 
+        [Required(ErrorMessage = "The Service name field is required.")]
+        public string ServiceName { get; set; }
+
         [Required(ErrorMessage = "The Service Price field is required.")]
         public decimal ServicePrice { get; set; }
 
         [Required(ErrorMessage = "The Service Unit field is required.")]
-        public string ServiceUnit { get; set; } 
+        public string ServiceUnit { get; set; }
 
-        [Required(ErrorMessage = "The Service status field is required.")]
-        public string ServiceStatus { get; set; } 
+
     }
 }
