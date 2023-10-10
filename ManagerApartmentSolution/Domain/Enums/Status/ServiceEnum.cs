@@ -9,9 +9,8 @@ namespace Domain.Enums.Status
     public enum ServiceEnum
     {
         REQUESTSTAFF,
-        ACCEPT,
-        REJECT,
+        ACTIVE,
         INACTIVE,
-        EXPIRE
+
     }
 }

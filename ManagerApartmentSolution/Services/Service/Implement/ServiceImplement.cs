@@ -27,7 +27,7 @@ namespace Services.Servicesss.Implement
         public async Task<ResponseOfService> CreateService(RequestCreateService service)
         {
             var createService = _mapper.Map<Service>(service);
-            createService.ServiceStatus = ServiceEnum.ACCEPT.ToString();
+            createService.ServiceStatus = ServiceEnum.ACTIVE.ToString();
 
             _unitOfWork.Service.Add(createService);
             _unitOfWork.Save();
