@@ -205,9 +205,7 @@ namespace Services.AutoMappers
                 .ForMember(re => re.StaffStatus, act => act.MapFrom(src => src.StaffStatus))
                 .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.AvatarLink))
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
-                .ForMember(re => re.Role, act => act.MapFrom(src => src.Role))
-                .ForMember(re => re.StaffLogId, act => act.Ignore())
-                .ForMember(re => re.StaffDetailId, act => act.Ignore());
+                .ForMember(re => re.Role, act => act.MapFrom(src => src.Role));
 
             CreateMap<StaffDetail, ResponseOfStaffDetail>()
                 .ForMember(re => re.StaffDetailId, act => act.MapFrom(src => src.StaffDetailId))
