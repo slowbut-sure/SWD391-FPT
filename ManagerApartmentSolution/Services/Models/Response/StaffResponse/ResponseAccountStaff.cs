@@ -13,8 +13,8 @@ namespace Services.Models.Response.StaffResponse
         {
             StaffId = staffId;
             Email = email;
-            Name = name;
-            Phone = phone;
+            StaffName = name;
+            StaffPhone = phone;
             Address = address;
             StaffStatus = staffStatus;
             AvatarLink = avatarLink;
@@ -24,8 +24,8 @@ namespace Services.Models.Response.StaffResponse
         }
         public int StaffId { get; set; }    
         public string Email { get; set; }
-        public string Name { get; set; }
-        public string Phone { get; set; }
+        public string StaffName { get; set; }
+        public string StaffPhone { get; set; }
         public string Address { get; set; }
         public string StaffStatus { get; set; }
         public string AvatarLink { get; set; }

@@ -9,7 +9,7 @@ namespace Services.Models.Request.ServiceRequest
 {
     public class RequestCreateService
     {
-        public int ServiceId { get; set; }
+
 
         [Required(ErrorMessage = "The Service Code field is required.")]
         public string ServiceCode { get; set; }

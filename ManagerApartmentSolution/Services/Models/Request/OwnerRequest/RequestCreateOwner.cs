@@ -8,5 +8,11 @@ namespace Services.Models.Request.OwnerRequest
 {
     public class RequestCreateOwner
     {
+        public string OwnerCode { get; set; }
+        public string OwnerName { get; set; }
+        public string OwnerEmail { get; set; }
+        public string OwnerPassword { get; set; }
+        public string OwnerPhone { get; set; }
+        public string OwnerAddress { get; set; }
     }
 }

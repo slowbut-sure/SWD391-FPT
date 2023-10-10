@@ -9,7 +9,7 @@ namespace Services.Models.Request.TennantRequest
 {
     public class RequestCreateTennant
     {
-        public RequestCreateTennant(string tennantName, string tennantCode,  string tennantEmail, string password, string tennantPhone, string tennantAddress, string tennantStatus)
+        public RequestCreateTennant(string tennantName, string tennantCode,  string tennantEmail, string password, string tennantPhone, string tennantAddress)
         {
             TennantName = tennantName;
             TennantCode = tennantCode;
@@ -17,7 +17,7 @@ namespace Services.Models.Request.TennantRequest
             Password = password;
             TennantPhone = tennantPhone;
             TennantAddress = tennantAddress;
-            TennantStatus = tennantStatus;
+
         }
 
         [Required(ErrorMessage = "The name field is required.")]
@@ -35,6 +35,6 @@ namespace Services.Models.Request.TennantRequest
         [Required(ErrorMessage = "Phone field is required.")]
         public string TennantPhone { get; set; }
         public string TennantAddress { get; set; } = null!;
-        public string TennantStatus { get; set; }
+
     }
 }
