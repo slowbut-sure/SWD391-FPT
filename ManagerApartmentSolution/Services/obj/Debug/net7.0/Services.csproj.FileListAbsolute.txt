@@ -1,0 +1,17 @@
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\bin\Debug\net7.0\Services.deps.json
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\bin\Debug\net7.0\Services.runtimeconfig.json
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\bin\Debug\net7.0\Services.dll
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\bin\Debug\net7.0\Services.pdb
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\bin\Debug\net7.0\Domain.dll
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\bin\Debug\net7.0\Domain.pdb
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.csproj.AssemblyReference.cache
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.AssemblyInfoInputs.cache
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.AssemblyInfo.cs
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.csproj.CoreCompileInputs.cache
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.csproj.CopyComplete
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.dll
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\refint\Services.dll
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.pdb
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\Services.genruntimeconfig.cache
+D:\hoc_tap\Chuyên ngành 5\SWD391-FPT\ManagerApartmentSolution\Services\obj\Debug\net7.0\ref\Services.dll
