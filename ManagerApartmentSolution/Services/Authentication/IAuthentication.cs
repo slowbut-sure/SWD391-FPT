@@ -9,8 +9,8 @@ namespace Services.Authentication
 {
     public interface IAuthentication
     {
-        //public bool Verify(string HashPassword, string InputPassword);
-        //public string Hash(string password);
-        //public string GenerateToken(Staff staff, Owner owner, Tennant tennant, string secretKey, string role);
+        public bool Verify(string HashPassword, string InputPassword);
+        public string Hash(string password);
+        public string GenerateToken(Staff staff, string secretKey, string role);
     }
 }
