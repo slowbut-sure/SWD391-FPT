@@ -41,8 +41,7 @@ public static class DependencyInjection
         services.AddTransient<IAssetRepository, AssetRepository>();
         services.AddTransient<AssetService, AssetImplement>();
 
-        services.AddTransient<IAssetRepository, AssetRepository>();
-        services.AddTransient<AssetService, AssetImplement>();
+
 
         services.AddTransient<IBillRepository, BillRepository>();
         services.AddTransient<BillService, BillImplement>();
