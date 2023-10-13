@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services.Servicesss
 {
-    internal interface RequestDetailService
+    public interface RequestDetailService
     {
         Task<List<ResponseOfRequestDetail>> GetAllRequestDetails();
         Task<ResponseOfRequestDetail> GetRequestDetailById(int id);
