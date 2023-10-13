@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Response.ApartmentResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.ContractResponse;
 using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
@@ -9,34 +9,34 @@ namespace ManagerApartment.Controllers
     [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ApartmentTypeController : ControllerBase
+    public class ContractController : ControllerBase
     {
-        private readonly ApartmentTypeService _service;
-        public ApartmentTypeController(ApartmentTypeService service)
+        private ContractService _contractService;
+        public ContractController(ContractService contractService)
         {
-            _service = service;
+            _contractService = contractService;
         }
-
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfApartmentType>>> GetApartmentTypes()
+        public async Task<ActionResult<List<ResponseOfContract>>> GetContracts()
         {
             try
             {
-                var apTypes = await _service.GetAllApartmentTypes();
-                return Ok(apTypes);
+                var contracts = await _contractService.GetAllContracts();
+                return Ok(contracts);
             }
             catch (Exception ex)
             {
                 return NotFound(ex.Message);
             }
         }
+
         [HttpGet]
-        public async Task<ActionResult<ResponseOfApartmentType>> GetApartmentTypeById(int id)
+        public async Task<ActionResult<ResponseOfContract>> GetContractById(int id)
         {
             try
             {
-                var apType = await _service.GetApartmentTypeById(id);
-                return Ok(apType);
+                var contract = await _contractService.GetContractById(id);
+                return Ok(contract);
             }
             catch (Exception ex)
             {

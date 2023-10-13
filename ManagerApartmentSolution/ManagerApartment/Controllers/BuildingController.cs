@@ -17,7 +17,7 @@ namespace ManagerApartment.Controllers
             _buildingService = buildingService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfBuilding>>> GetAllBuildings()
+        public async Task<ActionResult<List<ResponseOfBuilding>>> GetBuildings()
         {
             try
             {
