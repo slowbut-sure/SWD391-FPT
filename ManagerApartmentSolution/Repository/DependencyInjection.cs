@@ -10,6 +10,12 @@ using Services.Interfaces;
 using Services.AutoMappers;
 using Services.Servicesss.Implement;
 using Services.Servicesss;
+using Services.Authentication;
+using Services.Authentication.Implement;
+using Services.Servicess.Implement;
+using Services.Servicess;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructures;
 
@@ -91,10 +97,29 @@ public static class DependencyInjection
 
         services.AddMvc().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+        services.AddTransient<IServiceCollection, ServiceCollection>();
 
-        //services.AddScoped(_ => {
-        //    return new BlobServiceClient(azure);
-        //});
+        services.AddTransient<IAuthentication, Authentication>();
+        services.AddTransient<AuthenticationService, AuthenticationImplement>();
+
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+        {
+            opt.TokenValidationParameters = new TokenValidationParameters
+            {
+                //auto generate token
+                ValidateIssuer = false,
+                ValidateAudience = false,
+
+                //sign in token
+                ValidateIssuerSigningKey = true,
+                //IssuerSigningKey = new SymmetricSecurityKey(secretKeyBytes),
+
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+
+        services.AddAuthorization();
+
 
         //AUTOMAPPER
         services.AddAutoMapper(typeof(ApplicationMapper).Assembly);

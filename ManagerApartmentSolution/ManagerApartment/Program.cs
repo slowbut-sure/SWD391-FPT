@@ -1,5 +1,6 @@
-using Infrastructures;
+﻿using Infrastructures;
 using ManagerApartment.DependencyInjection;
+using ManagerApartment.Models;
 using Services;
 using System.Configuration;
 
@@ -25,6 +26,8 @@ var appConfiguration = configuration.Get<AppConfiguration>();
 
 builder.Services.RepositoryConfiguration(appConfiguration.DatabaseConnection, configuration, appConfiguration.AzureBlobStorage);
 builder.Services.ManagerApartmentConfiguration(appConfiguration.JWTSecretKey);
+builder.Services.AddAuthentication(appConfiguration.JWTSecretKey);
+builder.Services.AddAuthorization();
 
 builder.Services.AddSingleton(appConfiguration);
 
@@ -39,8 +42,8 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 app.UseAuthentication();
-
 app.UseAuthorization();
+
 
 app.MapControllers();
 
