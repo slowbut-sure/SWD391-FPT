@@ -21,7 +21,7 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfTennant>>> GetAllTennants()
+        public async Task<ActionResult<List<ResponseOfTennant>>> GetTennants()
         {
             try
             {

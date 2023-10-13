@@ -17,7 +17,7 @@ namespace ManagerApartment.Controllers
             _assetService = assetService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfAsset>>> GetAllAssets()
+        public async Task<ActionResult<List<ResponseOfAsset>>> GetAssets()
         {
             try
             {

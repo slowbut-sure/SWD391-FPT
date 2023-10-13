@@ -17,7 +17,7 @@ namespace ManagerApartment.Controllers
             _billService = billService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfBill>>> GetAllBills()
+        public async Task<ActionResult<List<ResponseOfBill>>> GetBills()
         {
             try
             {

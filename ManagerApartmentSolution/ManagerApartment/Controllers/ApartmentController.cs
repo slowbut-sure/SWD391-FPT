@@ -16,7 +16,7 @@ namespace ManagerApartment.Controllers
             _apartmentService = apartmentService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfApartment>>> GetAllApartments()
+        public async Task<ActionResult<List<ResponseOfApartment>>> GetApartments()
         {
             try
             {
@@ -34,8 +34,8 @@ namespace ManagerApartment.Controllers
         {
             try
             {
-                var staff = await _apartmentService.GetApartmentById(id);
-                return Ok(staff);
+                var apartment = await _apartmentService.GetApartmentById(id);
+                return Ok(apartment);
             }
             catch (Exception ex)
             {

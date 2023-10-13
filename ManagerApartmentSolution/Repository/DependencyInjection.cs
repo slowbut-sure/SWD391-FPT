@@ -15,7 +15,8 @@ namespace Infrastructures;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection RepositoryConfiguration(this IServiceCollection services, string connectionString, IConfiguration configuration, string azure)
+    public static IServiceCollection RepositoryConfiguration(this IServiceCollection services, 
+        string connectionString, IConfiguration configuration, string azure)
     {
         //Add Database
         services.AddDbContext<ManagerApartmentContext>(options => {

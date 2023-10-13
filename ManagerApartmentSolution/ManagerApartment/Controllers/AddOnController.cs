@@ -17,7 +17,7 @@ namespace ManagerApartment.Controllers
             _addOnService = addOnService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfAddOn>>> GetAllAddOns()
+        public async Task<ActionResult<List<ResponseOfAddOn>>> GetAddOns()
         {
             try
             {

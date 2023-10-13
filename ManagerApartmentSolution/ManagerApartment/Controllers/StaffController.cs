@@ -17,7 +17,7 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ResponseAccountStaff>>> GetAllStaffs()
+        public async Task<ActionResult<List<ResponseAccountStaff>>> GetStaffs()
         {
             try
             {

@@ -17,7 +17,7 @@ namespace ManagerApartment.Controllers
             _assetHisService = assetHisService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfAssetHistory>>> GetAllAssetHistoris()
+        public async Task<ActionResult<List<ResponseOfAssetHistory>>> GetAssetHistoris()
         {
             try
             {

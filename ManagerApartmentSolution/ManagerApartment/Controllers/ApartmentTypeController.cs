@@ -18,7 +18,7 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfApartmentType>>> GetAllApartmentTypes()
+        public async Task<ActionResult<List<ResponseOfApartmentType>>> GetApartmentTypes()
         {
             try
             {
