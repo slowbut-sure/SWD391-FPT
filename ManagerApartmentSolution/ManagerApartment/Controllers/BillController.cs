@@ -7,7 +7,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class BillController : ControllerBase
     {
@@ -30,7 +30,7 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{billId}")]
         public async Task<ActionResult<ResponseOfBill>> GetBillById(int id)
         {
             try

@@ -7,7 +7,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ServiceController : ControllerBase
     {
@@ -30,7 +30,7 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{serviceId}")]
         public async Task<ActionResult<ResponseOfService>> GetServiceById(int id)
         {
             try
@@ -49,14 +49,14 @@ namespace ManagerApartment.Controllers
             var createdService = await _serviceService.CreateService(service);
             return createdService == null ? NotFound() : Ok(createdService);
         }
-        [HttpPut]
+        [HttpPut("{serviceId}")]
         public async Task<ActionResult<ResponseOfService>> UpdateService(int serviceId, UpdateService updateService)
         {
             var updatedService = await _serviceService.UpdateService(serviceId, updateService);
             return updatedService == null ? NotFound() : Ok(updateService);
         }
 
-        [HttpDelete]
+        [HttpDelete("{serviceId}")]
         public async Task<ActionResult> DeleteService(int serviceId)
         {
             var deletedService = _serviceService.DeleteService(serviceId);

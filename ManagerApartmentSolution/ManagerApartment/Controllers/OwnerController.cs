@@ -7,7 +7,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class OwnerController : Controller
     {
@@ -30,7 +30,7 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{ownerId}")]
         public async Task<ActionResult<ResponseOfOwner>> GetOwnerById(int id)
         {
             try

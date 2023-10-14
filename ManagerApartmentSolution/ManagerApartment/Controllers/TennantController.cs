@@ -10,7 +10,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TennantController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{tennantId}")]
         public async Task<ActionResult<ResponseOfTennant>> GetTennantById(int id)
         {
             try
@@ -54,14 +54,14 @@ namespace ManagerApartment.Controllers
             var createdTennant = await _tennantService.CreateTennant(tennant);
             return createdTennant == null ? NotFound() : Ok(createdTennant);
         }
-        [HttpPut]
+        [HttpPut("{tennantId}")]
         public async Task<ActionResult<ResponseOfTennant>> UpdateTennant(int tennantId, UpdateTennant updateTennant)
         {
             var updatedTennant = await _tennantService.UpdateTennant(tennantId, updateTennant);
             return updateTennant == null ? NotFound() : Ok(updateTennant);
         }
 
-        [HttpDelete]
+        [HttpDelete("{tennantId}")]
         public async Task<ActionResult> DeleteTennant(int tennantId)
         {
             var deletedTennant = _tennantService.DeleteTennant(tennantId);

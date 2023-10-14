@@ -6,7 +6,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ApartmentController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{apartmentId}")]
         public async Task<ActionResult<ResponseOfApartment>> GetApartmentById(int id)
         {
             try
