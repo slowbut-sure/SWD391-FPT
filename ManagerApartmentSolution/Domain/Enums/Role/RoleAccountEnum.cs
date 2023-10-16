@@ -5,6 +5,5 @@ public enum ROLEACCOUNT
     OWNER,
     ADMIN,
     TENANT,
-    STAFFMANAGER,
-    STAFF
+
 }
