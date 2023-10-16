@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfBill>> GetAllBills()
         {
-            var bills = await _unitOfWork.Bill.GetAllBills();
+            var bills =  _unitOfWork.Bill.GetAll().ToList();
             if (bills is null)
             {
                 throw new Exception("The bill list is empty");

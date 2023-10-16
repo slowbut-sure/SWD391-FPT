@@ -22,7 +22,7 @@ namespace Repository.Repository
 
         public async Task<StaffDetail> GetStaffDetailById(int id)
         {
-            return await _context.StaffDetails.FirstOrDefaultAsync(s => s.StaffDetailId == id);
+            return  _context.StaffDetails.FirstOrDefault(s => s.StaffDetailId == id);
         }
     }
 }

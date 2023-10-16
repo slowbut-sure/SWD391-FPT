@@ -22,7 +22,7 @@ namespace Repository.Repository
 
         public async Task<AssetHistory> GetAssetHistoryById(int id)
         {
-            return await _context.AssetHistories.FirstOrDefaultAsync(r => r.AssetHistoryId == id);
+            return  _context.AssetHistories.FirstOrDefault(r => r.AssetHistoryId == id);
         }
     }
 }

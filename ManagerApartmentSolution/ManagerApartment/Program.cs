@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddSwaggerGen();
 
 builder.Services.AddMemoryCache();
+builder.Services.AddDbContext<ManagerApartmentContext>();
 
 // Configuration
 var configuration = new ConfigurationBuilder()

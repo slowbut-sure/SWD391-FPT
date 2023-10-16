@@ -48,7 +48,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseOfTennant>> GetAllTennants()
         {
-            var tennants = await _unitOfWork.Tennant.GetAllTennants();
+            var tennants =  _unitOfWork.Tennant.GetAll().ToList();
             if (tennants is null)
             {
                 throw new Exception("The tennant list is empty");

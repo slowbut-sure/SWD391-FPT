@@ -6,7 +6,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ServiceController : ControllerBase
@@ -31,11 +31,11 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{serviceId}")]
-        public async Task<ActionResult<ResponseOfService>> GetServiceById(int id)
+        public async Task<ActionResult<ResponseOfService>> GetServiceById(int serviceId)
         {
             try
             {
-                var service = await _serviceService.GetServiceById(id);
+                var service = await _serviceService.GetServiceById(serviceId);
                 return Ok(service);
             }
             catch (Exception ex)
@@ -43,6 +43,7 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
+
         [HttpPost]
         public async Task<ActionResult<ResponseOfService>> CreateService(RequestCreateService service)
         {

@@ -17,7 +17,7 @@ namespace Repository.Repository
         }
         public async Task<AddOn> GetAddOnById(int id)
         {
-            return await _context.AddOns.FirstOrDefaultAsync(r => r.AddOnId == id);
+            return  _context.AddOns.FirstOrDefault(r => r.AddOnId == id);
         }
 
         public async Task<List<AddOn>> GetAllAddOns()

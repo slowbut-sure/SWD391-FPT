@@ -85,15 +85,17 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ItemImage, act => act.MapFrom(src => src.ItemImage))
                 .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));
 
+            //=================================================================================================
+
             CreateMap<Bill, ResponseOfBill>()
                 .ForMember(re => re.BillId, act => act.MapFrom(src => src.BillId))
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
-                .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.Request.ApartmentId))
+
                 .ForMember(re => re.BillDescription, act => act.MapFrom(src => src.Request.Description))
                 .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.Request.BookDateTime))
                 .ForMember(re => re.EndDate, act => act.MapFrom(src => src.Request.EndDate))
-                .ForMember(re => re.EndDate, act => act.MapFrom(src => src.TotalPrice))
-                .ForMember(re => re.EndDate, act => act.MapFrom(src => src.Status));
+                .ForMember(re => re.TotalPrice, act => act.MapFrom(src => src.TotalPrice))
+                .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));
 
             //===================================================================================================================
 
@@ -124,6 +126,8 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ToDate, act => act.MapFrom(src => src.ToDate))
                 .ForMember(re => re.ContractImage, act => act.MapFrom(src => src.ContractImage))
                 .ForMember(re => re.ContractStatus, act => act.MapFrom(src => src.ContractStatus));
+
+            //=================================================================================================================
 
             CreateMap<ContractDetail, ResponseOfContractDetail>()
                 .ForMember(re => re.ContractDetailId, act => act.MapFrom(src => src.ContractDetailId))
@@ -211,10 +215,10 @@ namespace Services.AutoMappers
 
             CreateMap<Service, ResponseOfService>()
                 .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
-                .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
+                .ForMember(re => re.ServiceCode, act => act.MapFrom(src => src.Code))
                 .ForMember(re => re.ServiceName, act => act.MapFrom(src => src.Name))
                 .ForMember(re => re.ServicePrice, act => act.MapFrom(src => src.Price))
-                .ForMember(re => re.Unit, act => act.MapFrom(src => src.Unit))
+                .ForMember(re => re.ServiceUnit, act => act.MapFrom(src => src.Unit))
                 .ForMember(re => re.ServiceStatus, act => act.MapFrom(src => src.ServiceStatus));
 
             CreateMap<RequestCreateService, Service>()

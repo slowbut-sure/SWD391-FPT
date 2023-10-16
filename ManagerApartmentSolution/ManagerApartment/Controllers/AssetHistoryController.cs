@@ -6,7 +6,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AssetHistoryController : ControllerBase
@@ -31,11 +31,11 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{assetHistoryId}")]
-        public async Task<ActionResult<ResponseOfAssetHistory>> GetAssetHistoryById(int id)
+        public async Task<ActionResult<ResponseOfAssetHistory>> GetAssetHistoryById(int assetHistoryId)
         {
             try
             {
-                var assHistory = await _assetHisService.GetAssetHistoryById(id);
+                var assHistory = await _assetHisService.GetAssetHistoryById(assetHistoryId);
                 return Ok(assHistory);
             }
             catch (Exception ex)

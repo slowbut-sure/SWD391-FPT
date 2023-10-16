@@ -23,7 +23,7 @@ namespace Repository.Repository
 
         public async Task<Owner> GetOwnerById(int id)
         {
-            return await _context.Owners.FirstOrDefaultAsync(r => r.OwnerId == id);
+            return  _context.Owners.FirstOrDefault(r => r.OwnerId == id);
         }
     }
 }

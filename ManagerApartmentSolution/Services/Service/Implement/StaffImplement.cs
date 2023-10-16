@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseAccountStaff>> GetAllStaffs()
         {
-            var staffs = await _unitOfWork.Staff.GetAllStaffs();
+            var staffs =  _unitOfWork.Staff.GetAll().ToList();
             if(staffs is null)
             {
                 throw new Exception("The staff list is empty");

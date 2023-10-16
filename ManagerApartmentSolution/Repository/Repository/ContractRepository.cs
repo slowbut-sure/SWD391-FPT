@@ -16,13 +16,15 @@ namespace Repository.Repository
         public async Task<List<Contract>> GetAllContracts()
         {
             var contracts = await _context.Contracts
+                .Include(a => a.ApartmentId)
+                .Include(a => a.ContractDetailId)
                 .ToListAsync();
             return contracts;
         }
 
         public async Task<Contract> GetContractById(int id)
         {
-            return await _context.Contracts.FirstOrDefaultAsync(r => r.ContractId == id);
+            return  _context.Contracts.FirstOrDefault(r => r.ContractId == id);
         }
     }
 }

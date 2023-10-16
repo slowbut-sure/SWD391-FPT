@@ -48,7 +48,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseOfService>> GetAllServices()
         {
-            var services = await _unitOfWork.Service.GetAllServices();
+            var services =  _unitOfWork.Service.GetAll().ToList();
             if (services is null)
             {
                 throw new Exception("The service list is empty");

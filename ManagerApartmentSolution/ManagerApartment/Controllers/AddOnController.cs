@@ -6,7 +6,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AddOnController : ControllerBase
@@ -31,11 +31,11 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{addOnId}")]
-        public async Task<ActionResult<ResponseOfAddOn>> GetAddOnById(int id)
+        public async Task<ActionResult<ResponseOfAddOn>> GetAddOnById(int addOnId)
         {
             try
             {
-                var addOn = await _addOnService.GetAddOnById(id);
+                var addOn = await _addOnService.GetAddOnById(addOnId);
                 return Ok(addOn);
             }
             catch (Exception ex)

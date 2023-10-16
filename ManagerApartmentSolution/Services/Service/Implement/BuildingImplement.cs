@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfBuilding>> GetAllBuildings()
         {
-            var buildings = await _unitOfWork.Building.GetAllBuildings();
+            var buildings =  _unitOfWork.Building.GetAll().ToList();
             if (buildings is null)
             {
                 throw new Exception("The building list is empty");

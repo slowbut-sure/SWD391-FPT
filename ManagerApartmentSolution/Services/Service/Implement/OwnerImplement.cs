@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfOwner>> GetAllOwners()
         {
-            var owners = await _unitOfWork.Owner.GetAllOwners();
+            var owners =  _unitOfWork.Owner.GetAll().ToList();
             if (owners is null)
             {
                 throw new Exception("The owner list is empty");

@@ -22,7 +22,7 @@ namespace Repository.Repository
 
         public async Task<StaffLog> GetStaffLogById(int id)
         {
-            return await _context.StaffLogs.FirstOrDefaultAsync(s => s.StaffLogId == id);
+            return  _context.StaffLogs.FirstOrDefault(s => s.StaffLogId == id);
         }
     }
 }

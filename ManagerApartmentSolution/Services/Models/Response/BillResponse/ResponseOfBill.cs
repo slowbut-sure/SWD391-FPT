@@ -10,8 +10,7 @@ namespace Services.Models.Response.Bill
     {
         public int BillId { get; set; }
         public int RequestId { get; set; }
-        public int ApartmentId { get; set; }
-        //public string ApartmentName {  get; set; }
+
         public string BillDescription { get; set; }
         public DateTime BookDateTime { get; set; }
         public DateTime EndDate {  get; set; }

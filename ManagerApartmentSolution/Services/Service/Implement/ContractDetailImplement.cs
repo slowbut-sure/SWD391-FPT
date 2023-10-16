@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfContractDetail>> GetAllContractDetails()
         {
-            var ctDetails = await _unitOfWork.ContractDetail.GetAllContractDetails();
+            var ctDetails =  _unitOfWork.ContractDetail.GetAll().ToList();
             if (ctDetails is null)
             {
                 throw new Exception("The contract detail list is empty");

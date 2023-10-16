@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfRequestDetail>> GetAllRequestDetails()
         {
-            var rqDetails = await _unitOfWork.RequestDetail.GetAllRequestDetails();
+            var rqDetails =  _unitOfWork.RequestDetail.GetAll().ToList();
             if (rqDetails is null)
             {
                 throw new Exception("The request detail list is empty");

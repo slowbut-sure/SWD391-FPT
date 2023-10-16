@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfApartmentType>> GetAllApartmentTypes()
         {
-            var apTypes = await _unitOfWork.ApartmentType.GetAllApartmentTypes();
+            var apTypes = _unitOfWork.ApartmentType.GetAll().ToList();
             if (apTypes is null)
             {
                 throw new Exception("The tennant list is empty");

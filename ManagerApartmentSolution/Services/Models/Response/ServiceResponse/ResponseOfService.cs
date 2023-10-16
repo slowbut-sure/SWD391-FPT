@@ -10,13 +10,13 @@ namespace Services.Models.Response.ServiceResponse
     {
         public int ServiceId { get; set; }
 
-        public string Code { get; set; }
+        public string ServiceCode { get; set; }
 
         public string ServiceName { get; set; }
 
         public decimal ServicePrice { get; set; }
 
-        public string Unit { get; set; }
+        public string ServiceUnit { get; set; }
 
         public string ServiceStatus { get; set; } 
     }

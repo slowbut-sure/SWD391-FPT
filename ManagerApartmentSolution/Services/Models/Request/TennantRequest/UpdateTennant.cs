@@ -28,7 +28,7 @@ namespace Services.Models.Request.TennantRequest
         [Required(ErrorMessage = "The Password field is required.")]
         public string Password { get; set; } = null!;
 
-        [RegularExpression(@"^[0-9]{8,9}$", ErrorMessage = "The phone number must be an 8 or 9 digit integer.")]
+        [RegularExpression(@"^[0-10]{9,10}$", ErrorMessage = "The phone number must be an 9 or 10 digit integer.")]
         [Required(ErrorMessage = "Phone field is required.")]
         public string TennantPhone { get; set; }
         public string TennantAddress { get; set; } = null!;

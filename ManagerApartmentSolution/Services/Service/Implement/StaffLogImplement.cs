@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfStaffLog>> GetAllStaffLogs()
         {
-            var staffLogs = await _unitOfWork.StaffLog.GetAllStaffLogs();
+            var staffLogs =  _unitOfWork.StaffLog.GetAll().ToList();
             if (staffLogs is null)
             {
                 throw new Exception("The staff log list is empty");

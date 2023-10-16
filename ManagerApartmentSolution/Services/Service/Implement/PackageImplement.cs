@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfPackage>> GetAllPackages()
         {
-            var packages = await _unitOfWork.Package.GetAllPackages();
+            var packages =  _unitOfWork.Package.GetAll().ToList();
             if (packages is null)
             {
                 throw new Exception("The package list is empty");

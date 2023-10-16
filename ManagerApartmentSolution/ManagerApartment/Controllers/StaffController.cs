@@ -5,7 +5,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StaffController : ControllerBase
@@ -31,11 +31,11 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{staffId}")]
-        public async Task<ActionResult<ResponseAccountStaff>> GetStaffById(int id)
+        public async Task<ActionResult<ResponseAccountStaff>> GetStaffById(int staffId)
         {
             try
             {
-                var staff = await _staffService.GetStaffById(id);
+                var staff = await _staffService.GetStaffById(staffId);
                 return Ok(staff);
             }
             catch (Exception ex)

@@ -16,13 +16,14 @@ namespace Repository.Repository
         public async Task<List<Bill>> GetAllBills()
         {
             var bills = await _context.Bills
+                .Include(r => r.RequestId)
                 .ToListAsync();
             return bills;
         }
 
         public async Task<Bill> GetBillById(int id)
         {
-            return await _context.Bills.FirstOrDefaultAsync(r => r.BillId == id);
+            return  _context.Bills.FirstOrDefault(r => r.BillId == id);
         }
     }
 }

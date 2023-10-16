@@ -22,7 +22,7 @@ namespace Repository.Repository
 
         public async Task<Apartment> GetApartmentById(int id)
         {
-            return await _context.Apartments.FirstOrDefaultAsync(r => r.ApartmentId == id);
+            return  _context.Apartments.FirstOrDefault(r => r.ApartmentId == id);
         }
     }
 }

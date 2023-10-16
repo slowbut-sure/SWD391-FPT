@@ -6,7 +6,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ApartmentTypeController : ControllerBase
@@ -31,11 +31,11 @@ namespace ManagerApartment.Controllers
             }
         }
         [HttpGet("{apartmentTypeId}")]
-        public async Task<ActionResult<ResponseOfApartmentType>> GetApartmentTypeById(int id)
+        public async Task<ActionResult<ResponseOfApartmentType>> GetApartmentTypeById(int apartmentTypeId)
         {
             try
             {
-                var apType = await _service.GetApartmentTypeById(id);
+                var apType = await _service.GetApartmentTypeById(apartmentTypeId);
                 return Ok(apType);
             }
             catch (Exception ex)

@@ -9,7 +9,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TennantController : ControllerBase
@@ -35,11 +35,11 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{tennantId}")]
-        public async Task<ActionResult<ResponseOfTennant>> GetTennantById(int id)
+        public async Task<ActionResult<ResponseOfTennant>> GetTennantById(int tennantId)
         {
             try
             {
-                var staff = await _tennantService.GetTennantById(id);
+                var staff = await _tennantService.GetTennantById(tennantId);
                 return Ok(staff);
             }
             catch (Exception ex)

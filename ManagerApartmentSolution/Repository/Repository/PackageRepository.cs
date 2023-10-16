@@ -22,7 +22,7 @@ namespace Repository.Repository
 
         public async Task<Package> GetPackageById(int id)
         {
-            return await _context.Packages.FirstOrDefaultAsync(r => r.PackageId == id);
+            return  _context.Packages.FirstOrDefault(r => r.PackageId == id);
         }
     }
 }

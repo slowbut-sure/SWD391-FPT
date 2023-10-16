@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfApartment>> GetAllApartments()
         {
-            var apartments = await _unitOfWork.Apartment.GetAllApartments();
+            var apartments =  _unitOfWork.Apartment.GetAll().ToList();
             if (apartments is null)
             {
                 throw new Exception("The apartment list is empty");

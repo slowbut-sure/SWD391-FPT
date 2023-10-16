@@ -5,7 +5,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StaffLogController : Controller
@@ -30,11 +30,11 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{staffLogId}")]
-        public async Task<ActionResult<ResponseOfStaffLog>> GetStaffLogById(int id)
+        public async Task<ActionResult<ResponseOfStaffLog>> GetStaffLogById(int staffLogId)
         {
             try
             {
-                var staff = await _staffLogService.GetStaffLogById(id);
+                var staff = await _staffLogService.GetStaffLogById(staffLogId);
                 return Ok(staff);
             }
             catch (Exception ex)

@@ -24,9 +24,9 @@ namespace Repository.Repository
 
         public async Task<Tennant> GetTennantById(int id)
         {
-            return await _context.Tennants
+            return  _context.Tennants
                 .Include(c => c.ContractDetail)
-                .FirstOrDefaultAsync(s => s.TennantId == id);
+                .FirstOrDefault(s => s.TennantId == id);
         }
     }
 }

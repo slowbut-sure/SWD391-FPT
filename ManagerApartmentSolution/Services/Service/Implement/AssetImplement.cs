@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfAsset>> GetAllAssets()
         {
-            var assets = await _unitOfWork.Asset.GetAllAssets();
+            var assets =  _unitOfWork.Asset.GetAll().ToList();
             if (assets is null)
             {
                 throw new Exception("The asset list is empty");
