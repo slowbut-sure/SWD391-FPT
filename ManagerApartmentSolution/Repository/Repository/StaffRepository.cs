@@ -14,6 +14,16 @@ namespace Repository.Repository
     {
         public StaffRepository(ManagerApartmentContext context) : base(context) { }
 
+        public async Task<Staff> GetAccount(string staffAccount)
+        {
+            return _context.Staff.FirstOrDefault(ac => ac.Name.Equals(staffAccount));
+        }
+
+        public async Task<Staff> GetAccountByEmail(string email)
+        {
+            return _context.Staff.FirstOrDefault(ac => ac.Email.Equals(email));
+        }
+
         public async Task<List<Staff>> GetAllStaffs()
         {
             var staffs = await _context.Staff
@@ -23,7 +33,7 @@ namespace Repository.Repository
 
         public async Task<Staff> GetStaffById(int id)
         {
-            return await _context.Staff.FirstOrDefaultAsync(s => s.StaffId == id);
+            return  _context.Staff.FirstOrDefault(s => s.StaffId == id);
         }
     }
 }
