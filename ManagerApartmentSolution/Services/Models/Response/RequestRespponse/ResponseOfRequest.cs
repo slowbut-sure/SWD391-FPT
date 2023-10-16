@@ -11,6 +11,7 @@ namespace Services.Models.Response.RequestRespponse
         public int RequestId { get; set; }
 
         public int ApartmentId { get; set; }
+        public int OwnerId { get; set; }
 
         public string RequestDescription { get; set; }
 
