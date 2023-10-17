@@ -15,5 +15,6 @@ namespace Services.Servicesss
         Task<ResponseAccountStaff> CreateStaff(RequestCreateStaff staff);
         Task<ResponseAccountStaff> UpdateStaff(int staffId ,UpdateStaff updateStaff); 
         Task DeleteStaff(int staffId);
+        Task<List<ResponseAccountStaff>> GetStaffByName(string name);
     }
 }
