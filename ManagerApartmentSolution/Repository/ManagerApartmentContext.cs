@@ -60,10 +60,10 @@ public partial class ManagerApartmentContext : DbContext
         //var conn =
         //"";
         //optionsBuilder.UseSqlServer(conn);
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Server=(local);uid=sa;pwd=12345;database= Manager_Apartment;TrustServerCertificate=True");
-        }
+        //if (!optionsBuilder.IsConfigured)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=(local);uid=sa;pwd=12345;database= Manager_Apartment;TrustServerCertificate=True");
+        //}
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

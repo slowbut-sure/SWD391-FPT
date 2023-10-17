@@ -9,7 +9,7 @@ public static class SecuritySetting
 {
     public static IServiceCollection SecurityConfiguration(this IServiceCollection services, string secretKey)
     {
-       // var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
+        var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
         {
             opt.TokenValidationParameters = new TokenValidationParameters
@@ -20,7 +20,7 @@ public static class SecuritySetting
 
                 //sign in token
                 ValidateIssuerSigningKey = true,
-                //IssuerSigningKey = new SymmetricSecurityKey(secretKeyBytes),
+                IssuerSigningKey = new SymmetricSecurityKey(secretKeyBytes),
 
                 ClockSkew = TimeSpan.Zero
             };

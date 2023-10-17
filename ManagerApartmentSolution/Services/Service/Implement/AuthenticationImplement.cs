@@ -27,13 +27,14 @@ namespace Services.Servicess.Implement
         private IStaffRepository _staffRepository;
 
         public AuthenticationImplement(IAuthentication authentication,
-        IUnitOfWork unitOfWork, IMapper mapper, AppConfiguration appConfiguration, IStaffRepository staffRepository)
+        IUnitOfWork unitOfWork, IMapper mapper, AppConfiguration appConfiguration, IStaffRepository staffRepository, ICacheManager cacheManager)
         {
             _authentication = authentication;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _appConfiguration = appConfiguration;
             _staffRepository = staffRepository;
+            _cacheManager = cacheManager;
         }
 
 
@@ -78,17 +79,13 @@ namespace Services.Servicess.Implement
             }
 
             string role = Staff.Role;
-            if (role.Equals(ROLEACCOUNT.ADMIN.ToString()))
+            if (Int32.Parse(role) == (int)RolePositionStaff.STAFFMANAGER)
             {
-                var staffById = await _staffRepository.GetStaffById(Staff.StaffId);
-                if (staffById != null)
-                {
-                    role = RolePositionStaff.STAFFMANAGER.ToString();
-                }
-                else
-                {
-                    role = RolePositionStaff.STAFF.ToString();
-                }
+                role = RolePositionStaff.STAFFMANAGER.ToString();
+            }
+            else
+            {
+                role = RolePositionStaff.STAFF.ToString();
             }
 
             _cacheManager.Set(Staff.StaffId.ToString(), true, 60);

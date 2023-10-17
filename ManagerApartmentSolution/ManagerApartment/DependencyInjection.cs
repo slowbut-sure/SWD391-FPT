@@ -25,6 +25,7 @@ public static class DependencyInjection
                 .AllowAnyHeader();
         }));
 
+        services.SecurityConfiguration(secretKey);
         services.ConfigureSwagger();
 
 
