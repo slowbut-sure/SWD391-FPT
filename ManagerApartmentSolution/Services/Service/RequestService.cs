@@ -9,7 +9,7 @@ namespace Services.Servicesss
 {
     public interface RequestService
     {
-        Task<List<ResponseOfRequest>> GetAllRequests();
+        Task<List<ResponseOfRequest>> GetAllRequests(int page, int pageSize);
         Task<ResponseOfRequest> GetRequestById(int id);
     }
 }
