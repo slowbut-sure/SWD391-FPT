@@ -6,6 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Services.Models.Request.StaffRequest;
+using ManagerApartment.Models;
+using Domain.Enums.Status;
+using Services.Models.Request.ServiceRequest;
+using Services.Models.Response.ServiceResponse;
 
 namespace Services.Servicesss.Implement
 {
@@ -17,6 +22,27 @@ namespace Services.Servicesss.Implement
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+        }
+
+        public async Task<ResponseAccountStaff> CreateStaff(RequestCreateStaff staff)
+        {
+            var createStaff = _mapper.Map<Staff>(staff);
+            createStaff.StaffStatus = StaffEnum.ACTIVE.ToString();
+            _unitOfWork.Staff.Add(createStaff);
+            _unitOfWork.Save();
+            return _mapper.Map<ResponseAccountStaff>(createStaff);
+        }
+
+        public async Task DeleteStaff(int staffId)
+        {
+            var staff = _unitOfWork.Staff.GetById(staffId);
+            if (staff is null)
+            {
+                throw new Exception("Can not found by" + staffId);
+            }
+            staff.StaffStatus = StaffEnum.INACTIVE.ToString();
+            _unitOfWork.Staff.Update(staff);
+            _unitOfWork.Save();
         }
 
         public async Task<List<ResponseAccountStaff>> GetAllStaffs()
@@ -37,6 +63,26 @@ namespace Services.Servicesss.Implement
                 throw new Exception("The staff does not exist");
             }
             return _mapper.Map<ResponseAccountStaff>(staff);
+        }
+
+        public async Task<ResponseAccountStaff> UpdateStaff(int staffId, UpdateStaff updateStaff)
+        {
+            var staff = _unitOfWork.Staff.GetById(staffId);
+            if (staff is null)
+            {
+                throw new Exception("Can not found ");
+            }
+            staff.Name = updateStaff.StaffName;
+            staff.Phone = updateStaff.StaffPhone;
+            staff.Password = updateStaff.StaffPassword;
+            staff.Address = updateStaff.StaffAddress;
+            staff.AvatarLink = updateStaff.AvatarLink;
+            staff.StaffStatus = updateStaff.StaffStatus;
+            staff.Code = updateStaff.StaffCode;
+            _unitOfWork.Staff.Update(staff);
+            _unitOfWork.Save();
+            return _mapper.Map<ResponseAccountStaff>(staff);
+
         }
     }
 }

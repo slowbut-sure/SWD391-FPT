@@ -1,4 +1,5 @@
-﻿using Services.Models.Response.StaffResponse;
+﻿using Services.Models.Request.StaffRequest;
+using Services.Models.Response.StaffResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,8 @@ namespace Services.Servicesss
     {
         Task<List<ResponseAccountStaff>> GetAllStaffs();
         Task<ResponseAccountStaff> GetStaffById(int id);
+        Task<ResponseAccountStaff> CreateStaff(RequestCreateStaff staff);
+        Task<ResponseAccountStaff> UpdateStaff(int staffId ,UpdateStaff updateStaff); 
+        Task DeleteStaff(int staffId);
     }
 }

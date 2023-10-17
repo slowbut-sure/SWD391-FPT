@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Models.Request.StaffRequest;
+using Services.Models.Request.TennantRequest;
 using Services.Models.Response.StaffResponse;
+using Services.Models.Response.TennantResponse;
 using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
@@ -42,6 +45,26 @@ namespace ManagerApartment.Controllers
             {
                 return NotFound(ex.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ResponseAccountStaff>> CreateStaff(RequestCreateStaff staff)
+        {
+            var createdStaff = await _staffService.CreateStaff(staff);
+            return createdStaff == null ? NotFound() : Ok(createdStaff);
+        }
+        [HttpPut("{staffId}")]
+        public async Task<ActionResult<ResponseAccountStaff>> UpdateStaff(int staffId, UpdateStaff updateStaff)
+        {
+            var updatedStaff = await _staffService.UpdateStaff(staffId, updateStaff);
+            return updateStaff == null ? NotFound() : Ok(updateStaff);
+        }
+
+        [HttpDelete("{staffId}")]
+        public async Task<ActionResult> DeleteStaff(int staffId)
+        {
+            var deletedStaff = _staffService.DeleteStaff(staffId);
+            return deletedStaff == null ? NoContent() : Ok(deletedStaff);
         }
     }
 

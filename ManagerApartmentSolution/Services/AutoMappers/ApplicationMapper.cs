@@ -248,6 +248,16 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ReqLogDescription, act => act.MapFrom(src => src.Description))
                 .ForMember(re => re.RqLogStatus, act => act.MapFrom(src => src.Status));
 
+            CreateMap<RqLogCreateRequest, RequestLog>()
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.rqLogMaintainItem))
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription));
+
+            CreateMap<UpdateRequestLog, RequestLog>()
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.rqLogMaintainItem))
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription));
+
             //==============================================================================================================
 
             CreateMap<Service, ResponseOfService>()
