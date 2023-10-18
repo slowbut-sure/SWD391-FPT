@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.RequestRespponse
+namespace Services.Models.Request.RequestDetailRequest
 {
     public class UpdateRequestLog
     {

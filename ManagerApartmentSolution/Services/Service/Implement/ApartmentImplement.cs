@@ -19,14 +19,28 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ResponseOfApartment>> GetAllApartments()
+        public async Task<List<ResponseOfApartment>> GetAllApartments(int page, int pageSize, string sortOrder)
         {
             var apartments =  _unitOfWork.Apartment.GetAll().ToList();
             if (apartments is null)
             {
                 throw new Exception("The apartment list is empty");
             }
-            return _mapper.Map<List<ResponseOfApartment>>(apartments);
+            var apartmentDTO = _mapper.Map<List<ResponseOfApartment>>(apartments);
+            // Sắp xếp danh sách yêu cầu theo FromDate gần nhất
+            if (sortOrder == "desc")
+            {
+                apartmentDTO = apartmentDTO.OrderByDescending(r => r.FromDate).ToList();
+            }
+            else
+            {
+                apartmentDTO = apartmentDTO.OrderBy(r => r.FromDate).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedApartments = apartmentDTO.Skip(startIndex).Take(pageSize).ToList();
+
+            return pagedApartments;
         }
 
         public async Task<ResponseOfApartment> GetApartmentById(int id)

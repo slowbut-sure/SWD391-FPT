@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Services.Interfaces;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;

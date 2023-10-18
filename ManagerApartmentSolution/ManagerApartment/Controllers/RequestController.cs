@@ -17,11 +17,11 @@ namespace ManagerApartment.Controllers
             _requestService = requestService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfRequest>>> GetRequests(int page = 1, int pageSize = 10)
+        public async Task<ActionResult<List<ResponseOfRequest>>> GetRequests(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
-                var requests = await _requestService.GetAllRequests(page, pageSize);
+                var requests = await _requestService.GetAllRequests(page, pageSize, sortOrder);
                 return Ok(requests);
             }
             catch (Exception ex)

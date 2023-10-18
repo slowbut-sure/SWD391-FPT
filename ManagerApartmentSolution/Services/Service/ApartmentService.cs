@@ -10,7 +10,7 @@ namespace Services.Servicesss
 {
     public interface ApartmentService
     {
-        Task<List<ResponseOfApartment>> GetAllApartments();
+        Task<List<ResponseOfApartment>> GetAllApartments(int page, int pageSize, string sortOrder);
         Task<ResponseOfApartment> GetApartmentById(int id);
     }
 }

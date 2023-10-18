@@ -10,7 +10,7 @@ namespace Services.Servicesss
 {
     public interface PackageService
     {
-        Task<List<ResponseOfPackage>> GetAllPackages();
+        Task<List<ResponseOfPackage>> GetAllPackages(int page, int pageSize, string sortOrder);
         Task<ResponseOfPackage> GetPackageById(int id);
     }
 }

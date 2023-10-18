@@ -12,5 +12,6 @@ namespace Services.Servicesss
     {
         Task<List<ResponseOfStaffLog>> GetAllStaffLogs();
         Task<ResponseOfStaffLog> GetStaffLogById(int id);
+
     }
 }

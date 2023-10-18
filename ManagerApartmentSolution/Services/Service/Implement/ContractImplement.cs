@@ -19,14 +19,29 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ResponseOfContract>> GetAllContracts()
+        public async Task<List<ResponseOfContract>> GetAllContracts(int page, int pageSize, string sortOrder)
         {
             var contracts =  _unitOfWork.Contract.GetAll().ToList();
             if (contracts is null)
             {
                 throw new Exception("The contract list is empty");
             }
-            return _mapper.Map<List<ResponseOfContract>>(contracts);
+            var contractDTO = _mapper.Map<List<ResponseOfContract>>(contracts);
+
+            // Sắp xếp danh sách yêu cầu theo FromDate gần nhất
+            if (sortOrder == "desc")
+            {
+                contractDTO = contractDTO.OrderByDescending(r => r.FromDate).ToList();
+            }
+            else
+            {
+                contractDTO = contractDTO.OrderBy(r => r.FromDate).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedContracts = contractDTO.Skip(startIndex).Take(pageSize).ToList();
+
+            return pagedContracts;
         }
 
         public async Task<ResponseOfContract> GetContractById(int id)

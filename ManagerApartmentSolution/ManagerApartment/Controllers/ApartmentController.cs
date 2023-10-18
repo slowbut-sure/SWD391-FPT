@@ -16,11 +16,11 @@ namespace ManagerApartment.Controllers
             _apartmentService = apartmentService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfApartment>>> GetApartments()
+        public async Task<ActionResult<List<ResponseOfApartment>>> GetApartments(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
-                var apartments = await _apartmentService.GetAllApartments();
+                var apartments = await _apartmentService.GetAllApartments(page, pageSize, sortOrder);
                 return Ok(apartments);
             }
             catch (Exception ex)

@@ -334,6 +334,9 @@ namespace Services.AutoMappers
                 .ForMember(re => re.StaffStatus, act => act.MapFrom(src => src.Staff.StaffStatus))
                 .ForMember(re => re.StaffRole, act => act.MapFrom(src => src.Staff.Role))
                 .ForMember(re => re.RequestLogId, act => act.MapFrom(src => src.RequestLogId))
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestLog.RequestId))
+                .ForMember(re => re.rqLogMaintainItem, act => act.MapFrom(src => src.RequestLog.MaintainItem))
+                .ForMember(re => re.ReqLogDescription, act => act.MapFrom(src => src.RequestLog.Description))
                 .ForMember(re => re.ReqLogStatus, act => act.MapFrom(src => src.RequestLog.Status));
 
             //===========================================================================================================

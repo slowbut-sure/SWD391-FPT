@@ -16,11 +16,11 @@ namespace ManagerApartment.Controllers
             _packageService = packageService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfPackage>>> GetPackages()
+        public async Task<ActionResult<List<ResponseOfPackage>>> GetPackages(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
-                var packages = await _packageService.GetAllPackages();
+                var packages = await _packageService.GetAllPackages(page, pageSize, sortOrder);
                 return Ok(packages);
             }
             catch (Exception ex)

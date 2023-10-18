@@ -19,14 +19,28 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ResponseOfPackage>> GetAllPackages()
+        public async Task<List<ResponseOfPackage>> GetAllPackages(int page, int pageSize, string sortOrder)
         {
             var packages =  _unitOfWork.Package.GetAll().ToList();
             if (packages is null)
             {
                 throw new Exception("The package list is empty");
             }
-            return _mapper.Map<List<ResponseOfPackage>>(packages);
+            var packageDTO = _mapper.Map<List<ResponseOfPackage>>(packages);
+            // Sắp xếp danh sách yêu cầu theo package tang dan
+            if (sortOrder == "desc")
+            {
+                packageDTO = packageDTO.OrderByDescending(r => r.PackageId).ToList();
+            }
+            else
+            {
+                packageDTO = packageDTO.OrderBy(r => r.PackageId).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedRequests = packageDTO.Skip(startIndex).Take(pageSize).ToList();
+
+            return pagedRequests;
         }
 
         public async Task<ResponseOfPackage> GetPackageById(int id)

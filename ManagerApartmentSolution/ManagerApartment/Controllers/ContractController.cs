@@ -17,11 +17,11 @@ namespace ManagerApartment.Controllers
             _contractService = contractService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfContract>>> GetContracts()
+        public async Task<ActionResult<List<ResponseOfContract>>> GetContracts(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
-                var contracts = await _contractService.GetAllContracts();
+                var contracts = await _contractService.GetAllContracts(page, pageSize, sortOrder);
                 return Ok(contracts);
             }
             catch (Exception ex)
