@@ -11,6 +11,7 @@ using ManagerApartment.Models;
 using Domain.Enums.Status;
 using Services.Models.Request.ServiceRequest;
 using Services.Models.Response.ServiceResponse;
+using Services.Interfaces;
 
 namespace Services.Servicesss.Implement
 {
@@ -18,10 +19,12 @@ namespace Services.Servicesss.Implement
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public StaffImplement(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IStaffRepository _staffRepository;
+        public StaffImplement(IUnitOfWork unitOfWork, IMapper mapper, IStaffRepository staffRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _staffRepository = staffRepository;
         }
 
         public async Task<ResponseAccountStaff> CreateStaff(RequestCreateStaff staff)
@@ -63,6 +66,12 @@ namespace Services.Servicesss.Implement
                 throw new Exception("The staff does not exist");
             }
             return _mapper.Map<ResponseAccountStaff>(staff);
+        }
+
+        public async Task<List<ResponseAccountStaff>> GetStaffByName(string name)
+        {
+            var names = await _staffRepository.GetStaffByName(name);
+            return _mapper.Map<List<ResponseAccountStaff>>(names);
         }
 
         public async Task<ResponseAccountStaff> UpdateStaff(int staffId, UpdateStaff updateStaff)

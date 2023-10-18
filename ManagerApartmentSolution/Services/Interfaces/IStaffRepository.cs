@@ -1,4 +1,5 @@
 ﻿using ManagerApartment.Models;
+using Microsoft.Extensions.Hosting;
 using Services.Interfaces.IGenericRepository;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace Services.Interfaces
         Task<Staff> GetStaffById(int id);
         Task<Staff> GetAccount(string staffAccount);
         Task<Staff> GetAccountByEmail(string email);
+        Task<List<Staff>> GetStaffByName(string name);
     }
 }

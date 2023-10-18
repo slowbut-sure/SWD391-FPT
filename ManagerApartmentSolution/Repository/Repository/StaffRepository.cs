@@ -35,5 +35,10 @@ namespace Repository.Repository
         {
             return  _context.Staff.FirstOrDefault(s => s.StaffId == id);
         }
+
+        public async Task<List<Staff>> GetStaffByName(string name)
+        {
+            return _context.Staff.Where(n => n.Name == name).ToList();
+        }
     }
 }

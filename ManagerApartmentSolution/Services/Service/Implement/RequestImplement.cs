@@ -19,14 +19,19 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ResponseOfRequest>> GetAllRequests()
+        public async Task<List<ResponseOfRequest>> GetAllRequests(int page, int pageSize)
         {
             var rqs =  _unitOfWork.Request.GetAll().ToList();
             if (rqs is null)
             {
                 throw new Exception("The request list is empty");
             }
-            return _mapper.Map<List<ResponseOfRequest>>(rqs);
+            var requestDtos = _mapper.Map<List<ResponseOfRequest>>(rqs);
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedRequests = requestDtos.Skip(startIndex).Take(pageSize).ToList();
+
+            return pagedRequests;
         }
 
         public async Task<ResponseOfRequest> GetRequestById(int id)

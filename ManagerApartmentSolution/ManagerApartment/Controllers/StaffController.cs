@@ -46,6 +46,12 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpGet("StaffName/{name}")]
+        public async Task<ActionResult<ResponseAccountStaff>> GetStaffByName(string name)
+        {
+            var staff = await _staffService.GetStaffByName(name);
+            return staff == null ? NotFound() : Ok(staff);
+        }
 
         [HttpPost]
         public async Task<ActionResult<ResponseAccountStaff>> CreateStaff(RequestCreateStaff staff)
