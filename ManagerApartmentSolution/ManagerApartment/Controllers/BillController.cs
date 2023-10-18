@@ -17,11 +17,11 @@ namespace ManagerApartment.Controllers
             _billService = billService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfBill>>> GetBills()
+        public async Task<ActionResult<List<ResponseOfBill>>> GetBills(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
-                var bills = await _billService.GetAllBills();
+                var bills = await _billService.GetAllBills(page, pageSize, sortOrder);
                 return Ok(bills);
             }
             catch (Exception ex)

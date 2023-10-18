@@ -19,14 +19,28 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ResponseOfBill>> GetAllBills()
+        public async Task<List<ResponseOfBill>> GetAllBills(int page, int pageSize, string sortOrder)
         {
             var bills =  _unitOfWork.Bill.GetAll().ToList();
             if (bills is null)
             {
                 throw new Exception("The bill list is empty");
             }
-            return _mapper.Map<List<ResponseOfBill>>(bills);
+            var billDTO = _mapper.Map<List<ResponseOfBill>>(bills);
+            // Sắp xếp danh sách yêu cầu theo BookDateTime gần nhất
+            if (sortOrder == "desc")
+            {
+                billDTO = billDTO.OrderByDescending(r => r.BookDateTime).ToList();
+            }
+            else
+            {
+                billDTO = billDTO.OrderBy(r => r.BookDateTime).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedBills = billDTO.Skip(startIndex).Take(pageSize).ToList();
+
+            return pagedBills;
         }
 
         public async Task<ResponseOfBill> GetBillById(int id)

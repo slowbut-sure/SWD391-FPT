@@ -10,7 +10,7 @@ namespace Services.Servicesss
 {
     public interface BillService
     {
-        Task<List<ResponseOfBill>> GetAllBills();
+        Task<List<ResponseOfBill>> GetAllBills(int page, int pageSize, string sortOrder);
         Task<ResponseOfBill> GetBillById(int id);
     }
 }
