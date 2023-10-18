@@ -45,19 +45,19 @@ namespace ManagerApartment.Controllers
                 });
             }
         }
-        [HttpPost("Login")]
+        [HttpPost("staff/login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse>> Login(RequestLogin login)
+        public async Task<ActionResult<LoginResponse>> StaffLogin(RequestLogin login)
         {
-            var staff = _authentication.Validate(login);
+            var staff = await _authentication.Validate(login);
             //cấp token
             return Ok(staff);
         }
 
-        [HttpPost("Logout")]
+        [HttpPost("logout")]
         public async Task<ActionResult<Boolean>> Logout(int staffId)
         {
-            var staff = _authentication.Logout(staffId);
+            var staff = await _authentication.Logout(staffId);
             //cấp token
             return Ok(staff);
         }

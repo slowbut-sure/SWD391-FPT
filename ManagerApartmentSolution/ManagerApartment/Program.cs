@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddSwaggerGen();
 
 builder.Services.AddMemoryCache();
-builder.Services.AddDbContext<ManagerApartmentContext>();
+//builder.Services.AddDbContext<ManagerApartmentContext>();
 
 // Configuration
 var configuration = new ConfigurationBuilder()
@@ -23,12 +23,12 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 //appConfiguration
-var appConfiguration = configuration.Get<AppConfiguration>();
+var appConfiguration = configuration.GetSection("AppConfiguration").Get<AppConfiguration>();
 
 builder.Services.RepositoryConfiguration(appConfiguration.DatabaseConnection, configuration, appConfiguration.AzureBlobStorage);
 builder.Services.ManagerApartmentConfiguration(appConfiguration.JWTSecretKey);
-builder.Services.AddAuthentication(appConfiguration.JWTSecretKey);
-builder.Services.AddAuthorization();
+//builder.Services.AddAuthentication(appConfiguration.JWTSecretKey);
+//builder.Services.AddAuthorization();
 
 builder.Services.AddSingleton(appConfiguration);
 

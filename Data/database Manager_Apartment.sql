@@ -31,7 +31,7 @@ CREATE TABLE Owner (
     Code VARCHAR(50),
     Name VARCHAR(50),
     Email VARCHAR(50),
-    Password VARCHAR(50),
+    Password VARCHAR(max),
     Phone VARCHAR(11),
     Address VARCHAR(50),
     Status VARCHAR(50)
@@ -80,7 +80,7 @@ CREATE TABLE Tennant (
     Code VARCHAR(50),
     Name VARCHAR(50),
     Email VARCHAR(50),
-    Password VARCHAR(50),
+    Password VARCHAR(max),
     Status VARCHAR(50),
     Phone VARCHAR(11),
     Address VARCHAR(50),
@@ -158,7 +158,7 @@ CREATE TABLE Staff (
     Email VARCHAR(50),
     Name VARCHAR(50),
     Phone VARCHAR(50),
-    Password VARCHAR(50),
+    Password VARCHAR(max),
     Address VARCHAR(50),
     StaffStatus VARCHAR(50),
     AvatarLink VARCHAR(50),
@@ -248,6 +248,12 @@ CREATE TABLE AddOn(
 	FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
 );
 
-
+INSERT INTO [dbo].[Staff]
+           ([Role]
+           ,[Name]
+           ,[Password])		   
+     VALUES
+			('0','Staff01','IrnamGfNUv2P0yd6k1lwcg==;OlE8wNRKP+jXlDROxpYZF8QXvt6x/sM2ZBUtFvlLP9s='),
+			('1','Staff02','IrnamGfNUv2P0yd6k1lwcg==;OlE8wNRKP+jXlDROxpYZF8QXvt6x/sM2ZBUtFvlLP9s=');
 
 
