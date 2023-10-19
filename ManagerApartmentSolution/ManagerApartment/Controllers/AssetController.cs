@@ -46,6 +46,19 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpGet("apartment/{id}")]
+        public async Task<ActionResult<ResponseOfAsset>> GetAssetByApartmentId(int id)
+        {
+            try
+            {
+                var asset = await _assetService.GetAssetByApartmentId(id);
+                return Ok(asset);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
         [HttpGet("asset-history/{id}")]
         public async Task<ActionResult<ResponseAssetHistory>> GetAssetHistoryByAssetId(int id)
         {

@@ -45,6 +45,16 @@ namespace Services.Servicesss.Implement
             return _mapper.Map<List<ResponseOfAsset>>(assets);
         }
 
+        public async Task<List<ResponseOfAsset>> GetAssetByApartmentId(int apartmentId)
+        {
+            var asset = await _unitOfWork.Asset.GetAssetByApartmentId(apartmentId);
+            if (asset is null)
+            {
+                throw new Exception("The asset does not exist");
+            }
+            return _mapper.Map<List<ResponseOfAsset>>(asset);
+        }
+
         public async Task<ResponseOfAsset> GetAssetById(int id)
         {
             var asset = await _unitOfWork.Asset.GetAssetById(id);

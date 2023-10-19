@@ -14,6 +14,7 @@ namespace Services.Servicesss
     {
         Task<List<ResponseOfAsset>> GetAllAssets();
         Task<ResponseOfAsset> GetAssetById(int id);
+        Task<List<ResponseOfAsset>> GetAssetByApartmentId(int apartmentId);
         Task<ResponseAssetHistory> GetAssetHistoryByAssetId(int assetId);
         Task DeleteAsset(int assetId);
         Task<ResponseOfAsset> UpdateAsset(int id, UpdateAsset updateAsset);

@@ -20,6 +20,13 @@ namespace Repository.Repository
             return assets;
         }
 
+        public async Task<List<Asset>> GetAssetByApartmentId(int apartmentId)
+        {
+            return _context.Assets
+                .Where(a => a.ApartmentId == apartmentId)
+                .ToList();
+        }
+
         public async Task<Asset> GetAssetById(int id)
         {
             return  _context.Assets.FirstOrDefault(r => r.AssetId == id);
