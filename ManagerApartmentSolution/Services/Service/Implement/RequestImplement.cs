@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Domain.Enums.Status;
+using ManagerApartment.Models;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Response.RequestRespponse;
 using Services.Models.Response.TennantResponse;
@@ -19,6 +21,19 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
+        public async Task DeleteRequest(int requestId)
+        {
+            var request = _unitOfWork.Request.GetById(requestId);
+            if (request is null)
+            {
+                throw new Exception("Can not found by" + requestId);
+            }
+            request.ReqStatus = RequestEnum.NOTPROCESSED.ToString();
+            _unitOfWork.Request.Update(request);
+            _unitOfWork.Save();
+        }
+
         public async Task<List<ResponseOfRequest>> GetAllRequests(int page, int pageSize, string sortOrder)
         {
             var rqs =  _unitOfWork.Request.GetAll().ToList();
