@@ -12,5 +12,6 @@ namespace Services.Interfaces
     {
         Task<List<Tennant>> GetAllTennants();
         Task<Tennant> GetTennantById(int id);
+        Task<Tennant> GetTennantByName(string name);
     }
 }

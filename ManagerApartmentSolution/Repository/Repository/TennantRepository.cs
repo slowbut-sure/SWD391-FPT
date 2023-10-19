@@ -3,7 +3,7 @@ using Repository.GenericRepository;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +27,11 @@ namespace Repository.Repository
             return  _context.Tennants
                 .Include(c => c.ContractDetail)
                 .FirstOrDefault(s => s.TennantId == id);
+        }
+
+        public async Task<Tennant?> GetTennantByName(string name)
+        {
+            return await _context.Tennants.FirstOrDefaultAsync(s => s.Name == name);
         }
     }
 }
