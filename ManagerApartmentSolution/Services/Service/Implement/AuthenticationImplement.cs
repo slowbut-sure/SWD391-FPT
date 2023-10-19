@@ -70,13 +70,13 @@ namespace Services.Servicess.Implement
                 return response;
             }
 
-            var check = await _cacheManager.Get<bool>(Staff.StaffId.ToString());
-            if (check)
-            {
-                response.Success = false;
-                response.Messenger = "This Account has Login";
-                return response;
-            }
+            //var check = await _cacheManager.Get<bool>(Staff.StaffId.ToString());
+            //if (check)
+            //{
+            //    response.Success = false;
+            //    response.Messenger = "This Account has Login";
+            //    return response;
+            //}
 
             string role = Staff.Role;
             if (Int32.Parse(role) == (int)RolePositionStaff.STAFFMANAGER)
@@ -88,7 +88,7 @@ namespace Services.Servicess.Implement
                 role = RolePositionStaff.STAFF.ToString();
             }
 
-            _cacheManager.Set(Staff.StaffId.ToString(), true, 60);
+            //_cacheManager.Set(Staff.StaffId.ToString(), true, 60);
             response.Data = _authentication.GenerateToken(Staff.StaffId.ToString(), Staff.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
             response.Messenger = "Login Success";
@@ -114,17 +114,17 @@ namespace Services.Servicess.Implement
                 return response;
             }
 
-            var check = await _cacheManager.Get<bool>(owner.OwnerId.ToString());
-            if (check)
-            {
-                response.Success = false;
-                response.Messenger = "This Account has Login";
-                return response;
-            }
+            //var check = await _cacheManager.Get<bool>(owner.OwnerId.ToString());
+            //if (check)
+            //{
+            //    response.Success = false;
+            //    response.Messenger = "This Account has Login";
+            //    return response;
+            //}
 
             string role = ROLEACCOUNT.OWNER.ToString();
 
-            _cacheManager.Set(owner.OwnerId.ToString(), true, 60);
+            //_cacheManager.Set(owner.OwnerId.ToString(), true, 60);
             response.Data = _authentication.GenerateToken(owner.OwnerId.ToString(), owner.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
             response.Messenger = "Login Success";
@@ -150,17 +150,17 @@ namespace Services.Servicess.Implement
                 return response;
             }
 
-            var check = await _cacheManager.Get<bool>(tennant.TennantId.ToString());
-            if (check)
-            {
-                response.Success = false;
-                response.Messenger = "This Account has Login";
-                return response;
-            }
+            //var check = await _cacheManager.Get<bool>(tennant.TennantId.ToString());
+            //if (check)
+            //{
+            //    response.Success = false;
+            //    response.Messenger = "This Account has Login";
+            //    return response;
+            //}
 
             string role = ROLEACCOUNT.TENANT.ToString();
 
-            _cacheManager.Set(tennant.TennantId.ToString(), true, 60);
+            //_cacheManager.Set(tennant.TennantId.ToString(), true, 60);
             response.Data = _authentication.GenerateToken(tennant.TennantId.ToString(), tennant.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
             response.Messenger = "Login Success";
