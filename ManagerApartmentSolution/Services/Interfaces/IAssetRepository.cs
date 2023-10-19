@@ -12,5 +12,6 @@ namespace Services.Interfaces
     {
         Task<List<Asset>> GetAllAssets();
         Task<Asset> GetAssetById(int id);
+        Task<Asset> GetAssetHistoryByAssetId(int assetId);
     }
 }
