@@ -7,7 +7,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/service")]
     [ApiController]
     public class ServiceController : ControllerBase
     {
@@ -30,12 +30,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{serviceId}")]
-        public async Task<ActionResult<ResponseOfService>> GetServiceById(int serviceId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfService>> GetServiceById(int id)
         {
             try
             {
-                var service = await _serviceService.GetServiceById(serviceId);
+                var service = await _serviceService.GetServiceById(id);
                 return Ok(service);
             }
             catch (Exception ex)
@@ -50,17 +50,17 @@ namespace ManagerApartment.Controllers
             var createdService = await _serviceService.CreateService(service);
             return createdService == null ? NotFound() : Ok(createdService);
         }
-        [HttpPut("{serviceId}")]
-        public async Task<ActionResult<ResponseOfService>> UpdateService(int serviceId, UpdateService updateService)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ResponseOfService>> UpdateService(int id, UpdateService updateService)
         {
-            var updatedService = await _serviceService.UpdateService(serviceId, updateService);
+            var updatedService = await _serviceService.UpdateService(id, updateService);
             return updatedService == null ? NotFound() : Ok(updateService);
         }
 
-        [HttpDelete("{serviceId}")]
-        public async Task<ActionResult> DeleteService(int serviceId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteService(int id)
         {
-            var deletedService = _serviceService.DeleteService(serviceId);
+            var deletedService = _serviceService.DeleteService(id);
             return deletedService == null ? NoContent() : Ok(deletedService);
         }
     }

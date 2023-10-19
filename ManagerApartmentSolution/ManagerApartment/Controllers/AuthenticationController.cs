@@ -10,7 +10,7 @@ using System.Net;
 namespace ManagerApartment.Controllers
 {
     //[Authorize]
-    [Route("api/[controller]")]
+    [Route("api/authentication")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {

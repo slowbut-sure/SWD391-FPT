@@ -7,7 +7,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/request-detail")]
     [ApiController]
     public class RequestDetailController : Controller
     {
@@ -31,12 +31,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{requestDetailId}")]
-        public async Task<ActionResult<ResponseOfRequestDetail>> GetRequestDetailById(int requestDetailId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfRequestDetail>> GetRequestDetailById(int id)
         {
             try
             {
-                var request = await _rqDetailService.GetRequestDetailById(requestDetailId);
+                var request = await _rqDetailService.GetRequestDetailById(id);
                 return Ok(request);
             }
             catch (Exception ex)

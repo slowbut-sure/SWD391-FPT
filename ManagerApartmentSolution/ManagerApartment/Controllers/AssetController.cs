@@ -10,7 +10,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/asset")]
     [ApiController]
     public class AssetController : ControllerBase
     {
@@ -33,12 +33,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{assetId}")]
-        public async Task<ActionResult<ResponseOfAsset>> GetAssetById(int assetId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfAsset>> GetAssetById(int id)
         {
             try
             {
-                var asset = await _assetService.GetAssetById(assetId);
+                var asset = await _assetService.GetAssetById(id);
                 return Ok(asset);
             }
             catch (Exception ex)
@@ -46,12 +46,12 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
-        [HttpGet("AssetHistory/{assetId}")]
-        public async Task<ActionResult<ResponseAssetHistory>> GetAssetHistoryByAssetId(int assetId)
+        [HttpGet("asset-history/{id}")]
+        public async Task<ActionResult<ResponseAssetHistory>> GetAssetHistoryByAssetId(int id)
         {
             try
             {
-                var asset = await _assetService.GetAssetHistoryByAssetId(assetId);
+                var asset = await _assetService.GetAssetHistoryByAssetId(id);
                 return Ok(asset);
             }
             catch (Exception ex)
@@ -59,17 +59,17 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
-        [HttpPut("{assetId}")]
-        public async Task<ActionResult<ResponseOfAsset>> UpdateAsset(int assetId, UpdateAsset updateAsset)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ResponseOfAsset>> UpdateAsset(int id, UpdateAsset updateAsset)
         {
-            var updatedAsset = await _assetService.UpdateAsset(assetId, updateAsset);
+            var updatedAsset = await _assetService.UpdateAsset(id, updateAsset);
             return updatedAsset == null ? NotFound() : Ok(updatedAsset);
         }
 
-        [HttpDelete("{assetId}")]
-        public async Task<ActionResult> DeleteAsset(int assetId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAsset(int id)
         {
-            var deletedAsset = _assetService.DeleteAsset(assetId);
+            var deletedAsset = _assetService.DeleteAsset(id);
             return deletedAsset == null ? NoContent() : Ok(deletedAsset);
         }
     }

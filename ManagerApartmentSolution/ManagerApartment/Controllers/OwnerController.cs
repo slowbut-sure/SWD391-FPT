@@ -7,7 +7,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/owner")]
     [ApiController]
     public class OwnerController : Controller
     {
@@ -30,12 +30,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{ownerId}")]
-        public async Task<ActionResult<ResponseOfOwner>> GetOwnerById(int ownerId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfOwner>> GetOwnerById(int id)
         {
             try
             {
-                var owner = await _ownerService.GetOwnerById(ownerId);
+                var owner = await _ownerService.GetOwnerById(id);
                 return Ok(owner);
             }
             catch (Exception ex)

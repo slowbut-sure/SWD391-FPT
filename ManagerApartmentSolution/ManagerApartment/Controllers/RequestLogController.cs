@@ -6,7 +6,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/request-log")]
     [ApiController]
     public class RequestLogController : Controller
     {
@@ -29,12 +29,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{requestLogId}")]
-        public async Task<ActionResult<ResponseOfRequestLog>> GetRequestLogById(int requestLogId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfRequestLog>> GetRequestLogById(int id)
         {
             try
             {
-                var request = await _rqLogService.GetRequestLogById(requestLogId);
+                var request = await _rqLogService.GetRequestLogById(id);
                 return Ok(request);
             }
             catch (Exception ex)

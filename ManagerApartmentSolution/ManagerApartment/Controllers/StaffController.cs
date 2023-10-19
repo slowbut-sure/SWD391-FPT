@@ -9,7 +9,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/staff")]
     [ApiController]
     public class StaffController : ControllerBase
     {
@@ -33,12 +33,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{staffId}")]
-        public async Task<ActionResult<ResponseAccountStaff>> GetStaffById(int staffId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseAccountStaff>> GetStaffById(int id)
         {
             try
             {
-                var staff = await _staffService.GetStaffById(staffId);
+                var staff = await _staffService.GetStaffById(id);
                 return Ok(staff);
             }
             catch (Exception ex)
@@ -46,7 +46,7 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
-        [HttpGet("StaffName/{name}")]
+        [HttpGet("staff-name/{name}")]
         public async Task<ActionResult<ResponseAccountStaff>> GetStaffByName(string name)
         {
             var staff = await _staffService.GetStaffByName(name);
@@ -59,17 +59,17 @@ namespace ManagerApartment.Controllers
             var createdStaff = await _staffService.CreateStaff(staff);
             return createdStaff == null ? NotFound() : Ok(createdStaff);
         }
-        [HttpPut("{staffId}")]
-        public async Task<ActionResult<ResponseAccountStaff>> UpdateStaff(int staffId, UpdateStaff updateStaff)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ResponseAccountStaff>> UpdateStaff(int id, UpdateStaff updateStaff)
         {
-            var updatedStaff = await _staffService.UpdateStaff(staffId, updateStaff);
+            var updatedStaff = await _staffService.UpdateStaff(id, updateStaff);
             return updatedStaff == null ? NotFound() : Ok(updatedStaff);
         }
 
-        [HttpDelete("{staffId}")]
-        public async Task<ActionResult> DeleteStaff(int staffId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteStaff(int id)
         {
-            var deletedStaff = _staffService.DeleteStaff(staffId);
+            var deletedStaff = _staffService.DeleteStaff(id);
             return deletedStaff == null ? NoContent() : Ok(deletedStaff);
         }
     }

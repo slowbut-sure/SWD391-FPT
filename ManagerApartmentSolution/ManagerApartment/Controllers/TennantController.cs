@@ -10,7 +10,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/tennant")]
     [ApiController]
     public class TennantController : ControllerBase
     {
@@ -34,12 +34,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{tennantId}")]
-        public async Task<ActionResult<ResponseOfTennant>> GetTennantById(int tennantId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfTennant>> GetTennantById(int id)
         {
             try
             {
-                var staff = await _tennantService.GetTennantById(tennantId);
+                var staff = await _tennantService.GetTennantById(id);
                 return Ok(staff);
             }
             catch (Exception ex)
@@ -54,17 +54,17 @@ namespace ManagerApartment.Controllers
             var createdTennant = await _tennantService.CreateTennant(tennant);
             return createdTennant == null ? NotFound() : Ok(createdTennant);
         }
-        [HttpPut("{tennantId}")]
-        public async Task<ActionResult<ResponseOfTennant>> UpdateTennant(int tennantId, UpdateTennant updateTennant)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ResponseOfTennant>> UpdateTennant(int id, UpdateTennant updateTennant)
         {
-            var updatedTennant = await _tennantService.UpdateTennant(tennantId, updateTennant);
+            var updatedTennant = await _tennantService.UpdateTennant(id, updateTennant);
             return updatedTennant == null ? NotFound() : Ok(updatedTennant);
         }
 
-        [HttpDelete("{tennantId}")]
-        public async Task<ActionResult> DeleteTennant(int tennantId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTennant(int id)
         {
-            var deletedTennant = _tennantService.DeleteTennant(tennantId);
+            var deletedTennant = _tennantService.DeleteTennant(id);
             return deletedTennant == null ? NoContent() : Ok(deletedTennant);
         }
     }

@@ -6,7 +6,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/package")]
     [ApiController]
     public class PackageController : Controller
     {
@@ -29,12 +29,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{packageId}")]
-        public async Task<ActionResult<ResponseOfPackage>> GetPackageById(int packageId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfPackage>> GetPackageById(int id)
         {
             try
             {
-                var package = await _packageService.GetPackageById(packageId);
+                var package = await _packageService.GetPackageById(id);
                 return Ok(package);
             }
             catch (Exception ex)

@@ -7,7 +7,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/request")]
     [ApiController]
     public class RequestController : Controller
     {
@@ -30,12 +30,12 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{requestId}")]
-        public async Task<ActionResult<ResponseOfRequest>> GetRequestById(int requestId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponseOfRequest>> GetRequestById(int id)
         {
             try
             {
-                var request = await _requestService.GetRequestById(requestId);
+                var request = await _requestService.GetRequestById(id);
                 return Ok(request);
             }
             catch (Exception ex)
@@ -43,10 +43,10 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
-        [HttpDelete("{requestId}")]
-        public async Task<ActionResult> DeleteRequest(int requestId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteRequest(int id)
         {
-            var deletedRequest = _requestService.DeleteRequest(requestId);
+            var deletedRequest = _requestService.DeleteRequest(id);
             return deletedRequest == null ? NoContent() : Ok(deletedRequest);
         }
     }
