@@ -11,5 +11,6 @@ namespace Services.Servicesss
     {
         Task<List<ResponseOfRequest>> GetAllRequests(int page, int pageSize, string sortOrder);
         Task<ResponseOfRequest> GetRequestById(int id);
+        Task DeleteRequest(int requestId);
     }
 }

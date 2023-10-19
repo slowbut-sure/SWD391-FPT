@@ -24,5 +24,10 @@ namespace Repository.Repository
         {
             return  _context.Assets.FirstOrDefault(r => r.AssetId == id);
         }
+
+        public async Task<Asset> GetAssetHistoryByAssetId(int assetId)
+        {
+            return _context.Assets.FirstOrDefault(r => r.AssetId == assetId);
+        }
     }
 }

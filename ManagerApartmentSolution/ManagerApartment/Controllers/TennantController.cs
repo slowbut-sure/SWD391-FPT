@@ -58,7 +58,7 @@ namespace ManagerApartment.Controllers
         public async Task<ActionResult<ResponseOfTennant>> UpdateTennant(int tennantId, UpdateTennant updateTennant)
         {
             var updatedTennant = await _tennantService.UpdateTennant(tennantId, updateTennant);
-            return updateTennant == null ? NotFound() : Ok(updateTennant);
+            return updatedTennant == null ? NotFound() : Ok(updatedTennant);
         }
 
         [HttpDelete("{tennantId}")]

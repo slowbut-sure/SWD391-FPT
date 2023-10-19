@@ -8,6 +8,7 @@ using Domain.Enums.Role;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Services.Models.Request.AssetRequest;
 using Services.Models.Request.BuildingRequest;
 using Services.Models.Request.OwnerRequest;
 using Services.Models.Request.RequestDetailRequest;
@@ -24,6 +25,7 @@ using Services.Models.Response.ContractResponse;
 using Services.Models.Response.OwnerResponse;
 using Services.Models.Response.PackageResponse;
 using Services.Models.Response.RequestRespponse;
+using Services.Models.Response.ResponseAssetHistoryByAssetId;
 using Services.Models.Response.ServiceResponse;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;
@@ -68,6 +70,8 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ApaermentTypeDescription, act => act.MapFrom(src => src.Description))
                 .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));
 
+            //==============================================================================================
+
             CreateMap<Asset, ResponseOfAsset>()
                 .ForMember(re => re.AssetId, act => act.MapFrom(src => src.AssetId))
                 .ForMember(re => re.AssetHistoryId, act => act.MapFrom(src => src.AssetHistoryId))
@@ -77,6 +81,28 @@ namespace Services.AutoMappers
                 .ForMember(re => re.AssetDescription, act => act.MapFrom(src => src.Description))
                 .ForMember(re => re.ItemImage, act => act.MapFrom(src => src.ItemImage))
                 .ForMember(re => re.AssetStatus, act => act.MapFrom(src => src.Status));
+
+            CreateMap<Asset, ResponseAssetHistory>()
+                .ForMember(re => re.AssetId, act => act.MapFrom(src => src.AssetId))
+                .ForMember(re => re.AssetHistoryId, act => act.MapFrom(src => src.AssetHistoryId))
+                .ForMember(re => re.Code, act => act.MapFrom(src => src.AssetHistory.Code))
+                .ForMember(re => re.Date, act => act.MapFrom(src => src.AssetHistory.Date))
+                .ForMember(re => re.assHistoryDescription, act => act.MapFrom(src => src.AssetHistory.Description))
+                .ForMember(re => re.assHistoryQuantity, act => act.MapFrom(src => src.AssetHistory.Quantity))
+                .ForMember(re => re.assHistoryItemImage, act => act.MapFrom(src => src.AssetHistory.ItemImage))
+                .ForMember(re => re.assHistoryStatus, act => act.MapFrom(src => src.AssetHistory.Status));
+
+
+            CreateMap<UpdateAsset, Asset>()
+                .ForMember(re => re.AssetHistoryId, act => act.MapFrom(src => src.AssetHistoryId))
+                .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
+                .ForMember(re => re.Name, act => act.MapFrom(src => src.AssetName))
+                .ForMember(re => re.Quantity, act => act.MapFrom(src => src.Quantity))
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.AssetDescription))
+                .ForMember(re => re.ItemImage, act => act.MapFrom(src => src.ItemImage))
+                .ForMember(re => re.Status, act => act.MapFrom(src => src.AssetStatus));
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
 
             CreateMap<AssetHistory, ResponseOfAssetHistory>()
                 .ForMember(re => re.AssetHistoryId, act => act.MapFrom(src => src.AssetHistoryId))

@@ -43,5 +43,11 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpDelete("{requestId}")]
+        public async Task<ActionResult> DeleteRequest(int requestId)
+        {
+            var deletedRequest = _requestService.DeleteRequest(requestId);
+            return deletedRequest == null ? NoContent() : Ok(deletedRequest);
+        }
     }
 }

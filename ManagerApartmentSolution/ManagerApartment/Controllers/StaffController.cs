@@ -63,7 +63,7 @@ namespace ManagerApartment.Controllers
         public async Task<ActionResult<ResponseAccountStaff>> UpdateStaff(int staffId, UpdateStaff updateStaff)
         {
             var updatedStaff = await _staffService.UpdateStaff(staffId, updateStaff);
-            return updateStaff == null ? NotFound() : Ok(updateStaff);
+            return updatedStaff == null ? NotFound() : Ok(updatedStaff);
         }
 
         [HttpDelete("{staffId}")]
