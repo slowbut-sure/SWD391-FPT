@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfStaffDetail>> GetAllStaffDetails()
         {
-            var staffDetails =  _unitOfWork.StaffDetail.GetAll().ToList();
+            var staffDetails = await  _unitOfWork.StaffDetail.GetAllStaffDetails();
             if (staffDetails is null)
             {
                 throw new Exception("The staff Detail list is empty");

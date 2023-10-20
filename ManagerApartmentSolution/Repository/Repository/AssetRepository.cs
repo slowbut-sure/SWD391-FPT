@@ -34,7 +34,9 @@ namespace Repository.Repository
 
         public async Task<Asset> GetAssetHistoryByAssetId(int assetId)
         {
-            return _context.Assets.FirstOrDefault(r => r.AssetId == assetId);
+            return _context.Assets
+                .Include(c => c.AssetHistory)
+                .FirstOrDefault(r => r.AssetId == assetId);
         }
     }
 }

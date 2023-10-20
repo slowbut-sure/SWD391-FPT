@@ -16,13 +16,16 @@ namespace Repository.Repository
         public async Task<List<Package>> GetAllPackages()
         {
             var packages = await _context.Packages
+                .Include(x => x.ApartmentType)
                 .ToListAsync();
             return packages;
         }
 
         public async Task<Package> GetPackageById(int id)
         {
-            return  _context.Packages.FirstOrDefault(r => r.PackageId == id);
+            return  _context.Packages
+                .Include(x => x.ApartmentType)
+                .FirstOrDefault(r => r.PackageId == id);
         }
     }
 }

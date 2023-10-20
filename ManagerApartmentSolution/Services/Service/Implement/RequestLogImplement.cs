@@ -21,7 +21,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfRequestLog>> GetAllRequestLogs()
         {
-            var rqLogs =  _unitOfWork.RequestLog.GetAll().ToList();
+            var rqLogs = await _unitOfWork.RequestLog.GetAllRequestLogs();
             if (rqLogs is null)
             {
                 throw new Exception("The request log list is empty");

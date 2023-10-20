@@ -36,7 +36,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseOfRequest>> GetAllRequests(int page, int pageSize, string sortOrder)
         {
-            var rqs =  _unitOfWork.Request.GetAll().ToList();
+            var rqs = await _unitOfWork.Request.GetAllRequests();
             if (rqs is null)
             {
                 throw new Exception("The request list is empty");

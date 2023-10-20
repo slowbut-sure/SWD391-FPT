@@ -24,7 +24,7 @@ namespace Services.Servicesss.Implement
         }
         public async Task<List<ResponseOfApartment>> GetAllApartments(int page, int pageSize, string sortOrder)
         {
-            var apartments = _unitOfWork.Apartment.GetAll();
+            var apartments = await _unitOfWork.Apartment.GetAllApartments();
             if (apartments is null)
             {
                 throw new Exception("The apartment list is empty");
