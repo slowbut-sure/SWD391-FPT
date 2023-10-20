@@ -13,5 +13,6 @@ namespace Services.Interfaces
         Task<List<Owner>> GetAllOwners();
         Task<Owner> GetOwnerById(int id);
         Task<Owner> GetOwnerByName(string name);
+        Task<Owner> GetByEmail(string email);
     }
 }

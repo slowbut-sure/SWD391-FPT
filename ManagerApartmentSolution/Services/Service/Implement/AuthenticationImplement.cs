@@ -13,6 +13,9 @@ using Services.Models.Request;
 using Domain.Enums.Role;
 using Services.Helpers;
 using Microsoft.Identity.Client;
+using Services.Models.Response.StaffResponse;
+using Services.Models.Response.OwnerResponse;
+using Services.Models.Response.TennantResponse;
 
 namespace Services.Servicess.Implement
 {
@@ -51,11 +54,11 @@ namespace Services.Servicess.Implement
             return true;
         }
 
-        public async Task<LoginResponse> ValidateStaff(RequestLogin accountLogin)
+        public async Task<LoginResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin)
         {
             //check account has Exist or not
-            var Staff = await _staffRepository.GetAccount(accountLogin.Name);
-            var response = new LoginResponse();
+            var Staff = await _staffRepository.GetAccountByEmail(accountLogin.Email);
+            var response = new LoginResponse<ResponseAccountStaff>();
             if (Staff == null)
             {
                 response.Success = false;
@@ -89,17 +92,18 @@ namespace Services.Servicess.Implement
             }
 
             //_cacheManager.Set(Staff.StaffId.ToString(), true, 60);
-            response.Data = _authentication.GenerateToken(Staff.StaffId.ToString(), Staff.Name, _appConfiguration.JWTSecretKey, role);
+            response.Data = _mapper.Map<ResponseAccountStaff>(Staff);
+            response.Token = _authentication.GenerateToken(Staff.StaffId.ToString(), Staff.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
             response.Messenger = "Login Success";
             return response;
         }
 
-        public async Task<LoginResponse> ValidateOwner(RequestLogin accountLogin)
+        public async Task<LoginResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin)
         {
             //check account name has Exist or not
-            var owner = await _unitOfWork.Owner.GetOwnerByName(accountLogin.Name);
-            var response = new LoginResponse();
+            var owner = await _unitOfWork.Owner.GetByEmail(accountLogin.Email);
+            var response = new LoginResponse<ResponseAccountOwner>();
             if (owner == null)
             {
                 response.Success = false;
@@ -125,17 +129,18 @@ namespace Services.Servicess.Implement
             string role = ROLEACCOUNT.OWNER.ToString();
 
             //_cacheManager.Set(owner.OwnerId.ToString(), true, 60);
-            response.Data = _authentication.GenerateToken(owner.OwnerId.ToString(), owner.Name, _appConfiguration.JWTSecretKey, role);
+            response.Data = _mapper.Map<ResponseAccountOwner>(owner);
+            response.Token = _authentication.GenerateToken(owner.OwnerId.ToString(), owner.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
             response.Messenger = "Login Success";
             return response;
         }
 
-        public async Task<LoginResponse> ValidateTennant(RequestLogin accountLogin)
+        public async Task<LoginResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin)
         {
             //check account name has Exist or not
-            var tennant = await _unitOfWork.Tennant.GetTennantByName(accountLogin.Name);
-            var response = new LoginResponse();
+            var tennant = await _unitOfWork.Tennant.GetByEmail(accountLogin.Email);
+            var response = new LoginResponse<ResponseAccountTennant>();
             if (tennant == null)
             {
                 response.Success = false;
@@ -161,10 +166,11 @@ namespace Services.Servicess.Implement
             string role = ROLEACCOUNT.TENANT.ToString();
 
             //_cacheManager.Set(tennant.TennantId.ToString(), true, 60);
-            response.Data = _authentication.GenerateToken(tennant.TennantId.ToString(), tennant.Name, _appConfiguration.JWTSecretKey, role);
+            response.Data = _mapper.Map<ResponseAccountTennant>(tennant);
+            response.Token = _authentication.GenerateToken(tennant.TennantId.ToString(), tennant.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
             response.Messenger = "Login Success";
             return response;
         }
     }
-}
+    }

@@ -2,15 +2,18 @@
 
 using Services.Models.Request;
 using Services.Models.Response;
+using Services.Models.Response.OwnerResponse;
+using Services.Models.Response.StaffResponse;
+using Services.Models.Response.TennantResponse;
 
 namespace Services.Servicess
 {
 
     public interface AuthenticationService
     {
-        Task<LoginResponse> ValidateStaff(RequestLogin accountLogin);
-        Task<LoginResponse> ValidateOwner(RequestLogin accountLogin);
-        Task<LoginResponse> ValidateTennant(RequestLogin accountLogin);
+        Task<LoginResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin);
+        Task<LoginResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin);
+        Task<LoginResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin);
         Task<Boolean> Logout(int accountId);
 
 
