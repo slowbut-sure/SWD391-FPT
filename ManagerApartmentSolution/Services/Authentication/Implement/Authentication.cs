@@ -38,7 +38,7 @@ namespace Services.Authentication.Implement
             return string.Join(Delimiter, Convert.ToBase64String(salt), Convert.ToBase64String(hash));
         }
 
-        public string GenerateToken(Staff staff, string secretKey, string role)
+        public string GenerateToken(string id, string name, string secretKey, string role)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var secretKryByte = Encoding.UTF8.GetBytes(secretKey);
@@ -46,8 +46,8 @@ namespace Services.Authentication.Implement
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                new Claim(ClaimTypes.NameIdentifier, staff.Name),
-                new Claim("Id", staff.StaffId.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, name),
+                new Claim("Id", id),
                 new Claim(ClaimTypes.Role, role)
             }),
                 Expires = DateTime.UtcNow.AddHours(1),

@@ -49,9 +49,27 @@ namespace ManagerApartment.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<LoginResponse>> StaffLogin(RequestLogin login)
         {
-            var staff = await _authentication.Validate(login);
+            var staff = await _authentication.ValidateStaff(login);
             //cấp token
             return Ok(staff);
+        }
+
+        [HttpPost("owner/login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<LoginResponse>> OwnerLogin(RequestLogin login)
+        {
+            var owner = await _authentication.ValidateOwner(login);
+            //cấp token
+            return Ok(owner);
+        }
+
+        [HttpPost("tennant/login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<LoginResponse>> TennantLogin(RequestLogin login)
+        {
+            var tennant = await _authentication.ValidateTennant(login);
+            //cấp token
+            return Ok(tennant);
         }
 
         [HttpPost("logout")]

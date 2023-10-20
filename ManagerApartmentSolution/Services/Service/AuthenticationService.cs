@@ -8,7 +8,9 @@ namespace Services.Servicess
 
     public interface AuthenticationService
     {
-        Task<LoginResponse> Validate(RequestLogin accountLogin);
+        Task<LoginResponse> ValidateStaff(RequestLogin accountLogin);
+        Task<LoginResponse> ValidateOwner(RequestLogin accountLogin);
+        Task<LoginResponse> ValidateTennant(RequestLogin accountLogin);
         Task<Boolean> Logout(int accountId);
 
 
