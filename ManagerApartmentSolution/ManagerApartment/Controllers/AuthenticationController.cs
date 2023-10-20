@@ -75,6 +75,14 @@ namespace ManagerApartment.Controllers
             return Ok(tennant);
         }
 
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<LoginResponse<AccountResponse>>> Login(RequestLogin login)
+        {
+            var account = await _authentication.Validate(login);
+            return Ok(account);
+        }
+
         [HttpPost("logout")]
         public async Task<ActionResult<Boolean>> Logout(int staffId)
         {

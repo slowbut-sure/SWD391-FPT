@@ -14,6 +14,7 @@ namespace Services.Servicess
         Task<LoginResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin);
         Task<LoginResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin);
         Task<LoginResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin);
+        Task<LoginResponse<AccountResponse>> Validate(RequestLogin accountLogin);
         Task<Boolean> Logout(int accountId);
 
 

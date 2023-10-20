@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services.Models.Response.StaffResponse
 {
-    public class ResponseAccountStaff
+    public class ResponseAccountStaff : AccountResponse
     {
         public ResponseAccountStaff(int staffId, string email, string name, string phone, string address, string staffStatus,
             string avatarLink, string code, string role)
