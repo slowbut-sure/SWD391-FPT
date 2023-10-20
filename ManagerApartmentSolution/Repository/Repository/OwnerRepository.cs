@@ -20,6 +20,11 @@ namespace Repository.Repository
             return owners;
         }
 
+        public async Task<Owner?> GetByEmail(string email)
+        {
+            return await _context.Owners.FirstOrDefaultAsync(r => r.Email.Equals(email));
+        }
+
         public async Task<Owner> GetOwnerById(int id)
         {
             return  _context.Owners.FirstOrDefault(r => r.OwnerId == id);

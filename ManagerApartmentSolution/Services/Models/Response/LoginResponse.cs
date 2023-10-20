@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace Services.Models.Response
 {
-    public class LoginResponse
+    public class LoginResponse<T>
     {
-        public LoginResponse()
-        {
-            // Khởi tạo các thuộc tính
-            Data = string.Empty;
-            Success = false;
-            Messenger = string.Empty;
-        }
-
-        public string Data { get; set; }
+        public T Data { get; set; }
+        public string Token { get; set; }
         public bool Success { get; set; }
         public string Messenger { get; set; }
     }

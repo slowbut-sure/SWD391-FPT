@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request;
 using Services.Models.Response;
+using Services.Models.Response.OwnerResponse;
 using Services.Models.Response.StaffResponse;
+using Services.Models.Response.TennantResponse;
 using Services.Servicess;
 using System.Net;
 
@@ -45,9 +47,10 @@ namespace ManagerApartment.Controllers
                 });
             }
         }
+
         [HttpPost("staff/login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse>> StaffLogin(RequestLogin login)
+        public async Task<ActionResult<LoginResponse<ResponseAccountStaff>>> StaffLogin(RequestLogin login)
         {
             var staff = await _authentication.ValidateStaff(login);
             //cấp token
@@ -56,7 +59,7 @@ namespace ManagerApartment.Controllers
 
         [HttpPost("owner/login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse>> OwnerLogin(RequestLogin login)
+        public async Task<ActionResult<LoginResponse<ResponseAccountOwner>>> OwnerLogin(RequestLogin login)
         {
             var owner = await _authentication.ValidateOwner(login);
             //cấp token
@@ -65,7 +68,7 @@ namespace ManagerApartment.Controllers
 
         [HttpPost("tennant/login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse>> TennantLogin(RequestLogin login)
+        public async Task<ActionResult<LoginResponse<ResponseAccountTennant>>> TennantLogin(RequestLogin login)
         {
             var tennant = await _authentication.ValidateTennant(login);
             //cấp token
