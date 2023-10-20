@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -19,5 +20,5 @@ public partial class AssetHistory
 
     public string? Status { get; set; }
 
-    public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
+    [JsonInclude] public virtual ICollection<Asset> Assets { get; set; } = new List<Asset>();
 }

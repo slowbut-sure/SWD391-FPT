@@ -10,17 +10,18 @@ namespace Services.Models.Response.ApartmentResponse
     {
         public int ApartmentId { get; set; }    
         public int ApartmentTypeId { get; set; }
-        public string apTypeName { get; set; } = null!;
+        public string apTypeName { get; set; } 
         public int BuildingId { get; set; }
-        public string BuildingName { get; set; } = null!;
+        public string BuildingName { get; set; } 
+        public string BuildingAddress { get; set; }
         public int OwnerId {  get; set; }
-        public string OwnerCode { get; set; } = null!;
-        public string OwnerName { get; set; } = null!;
+        public string OwnerCode { get; set; } 
+        public string OwnerName { get; set; } 
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public int Sequence { get; set; }
         public string ApartmentStatus { get; set; }
-        public string BuildingAddress {  get; set; }
+
 
     }
 }

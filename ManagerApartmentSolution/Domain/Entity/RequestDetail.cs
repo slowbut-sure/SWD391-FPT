@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -15,7 +16,7 @@ public partial class RequestDetail
 
     public decimal? Price { get; set; }
 
-    public virtual Package? Package { get; set; }
+    [JsonInclude] public virtual Package? Package { get; set; }
 
-    public virtual Request? Request { get; set; }
+    [JsonInclude] public virtual Request? Request { get; set; }
 }

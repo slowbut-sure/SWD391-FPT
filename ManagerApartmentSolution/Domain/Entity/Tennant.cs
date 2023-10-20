@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -23,5 +24,5 @@ public partial class Tennant
 
     public string? Address { get; set; }
 
-    public virtual ContractDetail? ContractDetail { get; set; }
+    [JsonInclude] public virtual ContractDetail? ContractDetail { get; set; }
 }

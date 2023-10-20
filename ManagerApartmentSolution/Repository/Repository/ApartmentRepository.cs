@@ -1,12 +1,7 @@
 ﻿using ManagerApartment.Models;
 using Repository.GenericRepository;
 using Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository.Repository
 {
@@ -16,20 +11,21 @@ namespace Repository.Repository
         public async Task<List<Apartment>> GetAllApartments()
         {
             var apartments = await _context.Apartments
-                .Include(c => c.ApartmentType)
-                .Include(c => c.Owner)
-                .Include(c => c.Building)
+                .Include(a => a.ApartmentType)
+                .Include(a => a.Owner)
+                .Include(a => a.Building)
                 .ToListAsync();
             return apartments;
         }
 
         public async Task<Apartment> GetApartmentById(int id)
         {
-            return  _context.Apartments
+            var apartments = _context.Apartments
                 .Include(c => c.ApartmentType)
                 .Include(c => c.Owner)
                 .Include(c => c.Building)
                 .FirstOrDefault(r => r.ApartmentId == id);
+            return apartments;
         }
     }
 }

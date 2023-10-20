@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -11,7 +12,7 @@ public partial class StaffDetail
 
     public int? ServiceId { get; set; }
 
-    public virtual Service? Service { get; set; }
+    [JsonInclude] public virtual Service? Service { get; set; }
 
-    public virtual Staff? Staff { get; set; }
+    [JsonInclude] public virtual Staff? Staff { get; set; }
 }

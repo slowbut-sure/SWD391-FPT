@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -19,7 +20,7 @@ public partial class Contract
 
     public string? ContractStatus { get; set; }
 
-    public virtual Apartment? Apartment { get; set; }
+    [JsonInclude] public virtual Apartment? Apartment { get; set; }
 
-    public virtual ContractDetail? ContractDetail { get; set; }
+    [JsonInclude] public virtual ContractDetail? ContractDetail { get; set; }
 }

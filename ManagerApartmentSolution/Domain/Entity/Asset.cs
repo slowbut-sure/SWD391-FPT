@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -21,7 +22,7 @@ public partial class Asset
 
     public string? Status { get; set; }
 
-    public virtual Apartment? Apartment { get; set; }
+    [JsonInclude] public virtual Apartment? Apartment { get; set; }
 
-    public virtual AssetHistory? AssetHistory { get; set; }
+    [JsonInclude] public virtual AssetHistory? AssetHistory { get; set; }
 }

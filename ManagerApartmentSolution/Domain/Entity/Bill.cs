@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -13,5 +14,5 @@ public partial class Bill
 
     public string? Status { get; set; }
 
-    public virtual Request? Request { get; set; }
+    [JsonInclude] public virtual Request? Request { get; set; }
 }

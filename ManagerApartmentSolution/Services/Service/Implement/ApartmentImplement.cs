@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Services.Interfaces;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Response.ApartmentResponse;
 using Services.Models.Response.TennantResponse;
@@ -14,10 +15,12 @@ namespace Services.Servicesss.Implement
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public ApartmentImplement(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IApartmentRepository _apartmentRepository;
+        public ApartmentImplement(IUnitOfWork unitOfWork, IMapper mapper, IApartmentRepository apartmentRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _apartmentRepository = apartmentRepository;
         }
         public async Task<List<ResponseOfApartment>> GetAllApartments(int page, int pageSize, string sortOrder)
         {
@@ -45,10 +48,10 @@ namespace Services.Servicesss.Implement
 
         public async Task<ResponseOfApartment> GetApartmentById(int id)
         {
-            var apartment = await _unitOfWork.Apartment.GetApartmentById(id);
+            var apartment = await _apartmentRepository.GetApartmentById(id);
             if (apartment is null)
             {
-                throw new Exception("The apartment does not exist");
+                throw new Exception("Can not found by " + id);
             }
             return _mapper.Map<ResponseOfApartment>(apartment);
         }

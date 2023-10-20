@@ -1,10 +1,16 @@
-﻿using System;
+﻿using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
-public partial class Building
+public partial  class Building
 {
+    public Building()
+    {
+        Apartments = new HashSet<Apartment>();
+    }
     public int BuildingId { get; set; }
 
     public string? Code { get; set; }
@@ -15,7 +21,7 @@ public partial class Building
 
     public string? Status { get; set; }
 
-    public virtual ICollection<ApartmentType> ApartmentTypes { get; set; } = new List<ApartmentType>();
+    [JsonInclude] public virtual ICollection<ApartmentType> ApartmentTypes { get; set; } = new List<ApartmentType>();
 
-    public virtual ICollection<Apartment> Apartments { get; set; } = new List<Apartment>();
+    [JsonInclude]public virtual ICollection<Apartment> Apartments { get; set; } = new List<Apartment>();
 }

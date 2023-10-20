@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -11,7 +12,7 @@ public partial class StaffLog
 
     public int? RequestLogId { get; set; }
 
-    public virtual RequestLog? RequestLog { get; set; }
+    [JsonInclude] public virtual RequestLog? RequestLog { get; set; }
 
-    public virtual Staff? Staff { get; set; }
+    [JsonInclude] public virtual Staff? Staff { get; set; }
 }

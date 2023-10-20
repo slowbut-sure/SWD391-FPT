@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ManagerApartment.Models;
 
@@ -21,5 +22,5 @@ public partial class Owner
 
     public string? Status { get; set; }
 
-    public virtual ICollection<Apartment> Apartments { get; set; } = new List<Apartment>();
+    [JsonInclude] public virtual ICollection<Apartment> Apartments { get; set; } = new List<Apartment>();
 }

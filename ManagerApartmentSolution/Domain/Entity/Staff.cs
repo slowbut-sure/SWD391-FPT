@@ -26,7 +26,7 @@ public partial class Staff
 
     public string? Code { get; set; }
 
-    public virtual ICollection<StaffDetail> StaffDetails { get; set; } = new List<StaffDetail>();
+    [JsonInclude] public virtual ICollection<StaffDetail> StaffDetails { get; set; } = new List<StaffDetail>();
 
-    public virtual ICollection<StaffLog> StaffLogs { get; set; } = new List<StaffLog>();
+    [JsonInclude] public virtual ICollection<StaffLog> StaffLogs { get; set; } = new List<StaffLog>();
 }
