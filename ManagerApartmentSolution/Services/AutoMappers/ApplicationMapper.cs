@@ -177,6 +177,14 @@ namespace Services.AutoMappers
                 .ForMember(re => re.OwnerAddress, act => act.MapFrom(src => src.Address))
                 .ForMember(re => re.OwnerStatus, act => act.MapFrom(src => src.Status));
 
+            CreateMap<Owner, ResponseAccountOwner>()
+                .ForMember(re => re.Code, act => act.MapFrom(src => src.OwnerId))
+                .ForMember(re => re.OwnerName, act => act.MapFrom(src => src.Name))
+                .ForMember(re => re.OwnerEmail, act => act.MapFrom(src => src.Email))
+                .ForMember(re => re.OwnerPhone, act => act.MapFrom(src => src.Phone))
+                .ForMember(re => re.OwnerAddress, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.OwnerStatus, act => act.MapFrom(src => src.Status));
+
             CreateMap<RequestCreateOwner, Owner>()
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.OwnerCode))
                 .ForMember(re => re.Name, act => act.MapFrom(src => src.OwnerName))
@@ -381,6 +389,14 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ContractDetailId, act => act.MapFrom(src => src.ContractDetailId))
                 .ForMember(re => re.StartDate, act => act.MapFrom(src => src.ContractDetail.StartDate))
                 .ForMember(re => re.EndDate, act => act.MapFrom(src => src.ContractDetail.EndDate));
+
+            CreateMap<Tennant, ResponseAccountTennant>()
+                .ForMember(re => re.TennantCode, act => act.MapFrom(src => src.Code))
+                .ForMember(re => re.TennantName, act => act.MapFrom(src => src.Name))
+                .ForMember(re => re.TennantEmail, act => act.MapFrom(src => src.Email))
+                .ForMember(re => re.TennantPhone, act => act.MapFrom(src => src.Phone))
+                .ForMember(re => re.TennantAddress, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.TennantStatus, act => act.MapFrom(src => src.Status));
 
             CreateMap<RequestCreateTennant, Tennant>()
                .ForMember(re => re.Name, act => act.MapFrom(src => src.TennantName))

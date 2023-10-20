@@ -22,6 +22,11 @@ namespace Repository.Repository
             return tennants;
         }
 
+        public async Task<Tennant?> GetByEmail(string email)
+        {
+            return await _context.Tennants.FirstOrDefaultAsync(t => t.Email.Equals(email));
+        }
+
         public async Task<Tennant> GetTennantById(int id)
         {
             return  _context.Tennants
