@@ -22,7 +22,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseOfPackageServiceDetail>> GetAllPackageServiceDetails()
         {
-            var pkServiceDetails =  _unitOfWork.PackageServiceDetail.GetAll().ToList();
+            var pkServiceDetails = await _unitOfWork.PackageServiceDetail.GetAllPackageServiceDetails();
             if (pkServiceDetails is null)
             {
                 throw new Exception("The packeage service detail list is empty");

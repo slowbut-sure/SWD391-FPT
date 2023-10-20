@@ -16,13 +16,16 @@ namespace Repository.Repository
         public async Task<List<RequestLog>> GetAllRequestLogs()
         {
             var requestLogs = await _context.RequestLogs
+                .Include(r => r.Request)
                 .ToListAsync();
             return requestLogs;
         }
 
         public async Task<RequestLog> GetRequestLogById(int id)
         {
-            return  _context.RequestLogs.FirstOrDefault(r => r.RequestLogId == id);
+            return  _context.RequestLogs
+                .Include(r => r.Request)
+                .FirstOrDefault(r => r.RequestLogId == id);
         }
     }
 }

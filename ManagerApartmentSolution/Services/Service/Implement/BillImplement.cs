@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Services.Interfaces;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Response.Bill;
 using Services.Models.Response.TennantResponse;
@@ -14,14 +15,16 @@ namespace Services.Servicesss.Implement
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public BillImplement(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IBillRepository _billRepository;
+        public BillImplement(IUnitOfWork unitOfWork, IMapper mapper, IBillRepository billRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _billRepository = billRepository;
         }
         public async Task<List<ResponseOfBill>> GetAllBills(int page, int pageSize, string sortOrder)
         {
-            var bills =  _unitOfWork.Bill.GetAll().ToList();
+            var bills = await _unitOfWork.Bill.GetAllBills();
             if (bills is null)
             {
                 throw new Exception("The bill list is empty");
@@ -45,7 +48,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<ResponseOfBill> GetBillById(int id)
         {
-            var bill = await _unitOfWork.Bill.GetBillById(id);
+            var bill = await _billRepository.GetBillById(id);
             if (bill is null)
             {
                 throw new Exception("The bill does not exist");
