@@ -31,7 +31,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseOfAddOn>> GetAllAddOnss()
         {
-            var addOns =  _unitOfWork.AddOn.GetAll().ToList();
+            var addOns = await  _unitOfWork.AddOn.GetAllAddOns();
             if (addOns is null)
             {
                 throw new Exception("The addOn list is empty");

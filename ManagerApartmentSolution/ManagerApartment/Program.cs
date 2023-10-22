@@ -3,6 +3,7 @@ using ManagerApartment.DependencyInjection;
 using ManagerApartment.Models;
 using Services;
 using System.Configuration;
+using Microsoft.AspNetCore.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,21 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowOrigin", builder =>
+    {
+        builder
+            .WithOrigins("http://localhost:3000") // Thay đổi địa chỉ frontend của bạn
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
+    });
+});
+
 builder.Services.AddMemoryCache();
-//builder.Services.AddDbContext<ManagerApartmentContext>();
+
+
 
 // Configuration
 var configuration = new ConfigurationBuilder()
@@ -40,7 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowOrigin");
 //app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

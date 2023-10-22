@@ -17,12 +17,17 @@ namespace Repository.Repository
         }
         public async Task<AddOn> GetAddOnById(int id)
         {
-            return  _context.AddOns.FirstOrDefault(r => r.AddOnId == id);
+            return  _context.AddOns
+                .Include(r => r.Request)
+                .Include(r => r.Service)
+                .FirstOrDefault(r => r.AddOnId == id);
         }
 
         public async Task<List<AddOn>> GetAllAddOns()
         {
             var addOns = await _context.AddOns
+                .Include(r => r.Request)
+                .Include(r => r.Service)
                 .ToListAsync();
             return addOns;
         }
