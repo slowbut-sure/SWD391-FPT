@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
+using Domain.Enums.Status;
+using ManagerApartment.Models;
 using Services.Interfaces.IUnitOfWork;
+using Services.Models.Request.RequestDetailRequest;
 using Services.Models.Response.RequestRespponse;
-using Services.Models.Response.TennantResponse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace Services.Servicesss.Implement
 {
@@ -19,6 +18,29 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
+        public async Task<ResponseOfRequestLog> CreateRequestLog(RqLogCreateRequest rqLogRequest)
+        {
+            var createRqLog = _mapper.Map<RequestLog>(rqLogRequest);
+            createRqLog.Status = RequesLogEnum.PROCESSED.ToString();
+
+            _unitOfWork.RequestLog.Add(createRqLog);
+            _unitOfWork.Save();
+            return _mapper.Map<ResponseOfRequestLog>(createRqLog);
+        }
+
+        public async Task DeleteRequestLog(int rqLogId)
+        {
+            var rqLog = _unitOfWork.RequestLog.GetById(rqLogId);
+            if (rqLog is null)
+            {
+                throw new Exception("Can not found by" + rqLogId);
+            }
+            rqLog.Status = RequesLogEnum.CANCEL.ToString();
+            _unitOfWork.RequestLog.Update(rqLog);
+            _unitOfWork.Save();
+        }
+
         public async Task<List<ResponseOfRequestLog>> GetAllRequestLogs()
         {
             var rqLogs = await _unitOfWork.RequestLog.GetAllRequestLogs();
@@ -39,5 +61,20 @@ namespace Services.Servicesss.Implement
             return _mapper.Map<ResponseOfRequestLog>(rqLog);
         }
 
+        public async Task<ResponseOfRequestLog> UpdateRequestLog(int id, UpdateRequestLog requestLog)
+        {
+            var rqLog = _unitOfWork.RequestLog.GetById(id);
+            if (rqLog is null)
+            {
+                throw new Exception("Can not found " + id);
+            }
+            rqLog.RequestId = requestLog.RequestId;
+            rqLog.MaintainItem = requestLog.rqLogMaintainItem;
+            rqLog.Description = requestLog.ReqLogDescription;
+            rqLog.Status = requestLog.RqLogStatus;
+            _unitOfWork.RequestLog.Update(rqLog);
+            _unitOfWork.Save();
+            return _mapper.Map<ResponseOfRequestLog>(rqLog);
+        }
     }
 }

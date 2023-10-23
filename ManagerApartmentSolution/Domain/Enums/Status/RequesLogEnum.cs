@@ -9,6 +9,7 @@ namespace Domain.Enums.Status
     public enum RequesLogEnum
     {
         PROCESSED,
-        NOTPROCESSED,
+        PENDING,
+        CANCEL,
     }
 }

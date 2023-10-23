@@ -1,10 +1,7 @@
 ﻿using ManagerApartment.Models;
+using Services.Models.Request.RequestDetailRequest;
 using Services.Models.Response.RequestRespponse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Services.Servicesss
 {
@@ -12,5 +9,8 @@ namespace Services.Servicesss
     {
         Task<List<ResponseOfRequestLog>> GetAllRequestLogs();
         Task<ResponseOfRequestLog> GetRequestLogById(int id);
+        Task<ResponseOfRequestLog> CreateRequestLog(RqLogCreateRequest rqLogRequest);
+        Task DeleteRequestLog(int rqLogId);
+        Task<ResponseOfRequestLog> UpdateRequestLog(int id, UpdateRequestLog requestLog);
     }
 }
