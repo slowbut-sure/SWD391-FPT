@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services.Models.Response.OwnerResponse
 {
-    public class ResponseAccountOwner
+    public class ResponseAccountOwner : AccountResponse
     {
         public string Code { get; set; }
 

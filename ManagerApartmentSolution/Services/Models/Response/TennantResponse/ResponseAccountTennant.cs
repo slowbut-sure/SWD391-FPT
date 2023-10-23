@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services.Models.Response.TennantResponse
 {
-    public class ResponseAccountTennant
+    public class ResponseAccountTennant : AccountResponse
     {
         public string TennantCode { get; set; }
         public string TennantName { get; set; }
