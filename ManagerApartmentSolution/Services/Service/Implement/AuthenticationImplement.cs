@@ -62,14 +62,14 @@ namespace Services.Servicess.Implement
             if (Staff == null)
             {
                 response.Success = false;
-                response.Messenger = "Username Not Exist";
+                response.Message = "Username Not Exist";
                 return response;
             }
             var result = _authentication.Verify(Staff.Password, accountLogin.Password);
             if (!result)
             {
                 response.Success = false;
-                response.Messenger = "Invalid Password";
+                response.Message = "Invalid Password";
                 return response;
             }
 
@@ -95,7 +95,7 @@ namespace Services.Servicess.Implement
             response.Data = _mapper.Map<ResponseAccountStaff>(Staff);
             response.Token = _authentication.GenerateToken(Staff.StaffId.ToString(), Staff.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
-            response.Messenger = "Login Success";
+            response.Message = "Login Success";
             return response;
         }
 
@@ -107,14 +107,14 @@ namespace Services.Servicess.Implement
             if (owner == null)
             {
                 response.Success = false;
-                response.Messenger = "Username Not Exist";
+                response.Message = "Username Not Exist";
                 return response;
             }
             var result = _authentication.Verify(owner.Password, accountLogin.Password);
             if (!result)
             {
                 response.Success = false;
-                response.Messenger = "Invalid Password";
+                response.Message = "Invalid Password";
                 return response;
             }
 
@@ -132,7 +132,7 @@ namespace Services.Servicess.Implement
             response.Data = _mapper.Map<ResponseAccountOwner>(owner);
             response.Token = _authentication.GenerateToken(owner.OwnerId.ToString(), owner.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
-            response.Messenger = "Login Success";
+            response.Message = "Login Success";
             return response;
         }
 
@@ -144,14 +144,14 @@ namespace Services.Servicess.Implement
             if (tennant == null)
             {
                 response.Success = false;
-                response.Messenger = "Username Not Exist";
+                response.Message = "Username Not Exist";
                 return response;
             }
             var result = _authentication.Verify(tennant.Password, accountLogin.Password);
             if (!result)
             {
                 response.Success = false;
-                response.Messenger = "Invalid Password";
+                response.Message = "Invalid Password";
                 return response;
             }
 
@@ -169,7 +169,7 @@ namespace Services.Servicess.Implement
             response.Data = _mapper.Map<ResponseAccountTennant>(tennant);
             response.Token = _authentication.GenerateToken(tennant.TennantId.ToString(), tennant.Name, _appConfiguration.JWTSecretKey, role);
             response.Success = true;
-            response.Messenger = "Login Success";
+            response.Message = "Login Success";
             return response;
         }
 
@@ -187,7 +187,7 @@ namespace Services.Servicess.Implement
                     if (owner == null)
                     {
                         response.Success = false;
-                        response.Messenger = "Username Not Exist";
+                        response.Message = "Username Not Exist";
                         return response;
                     }
                     else
@@ -196,7 +196,7 @@ namespace Services.Servicess.Implement
                         if (!result)
                         {
                             response.Success = false;
-                            response.Messenger = "Invalid Password";
+                            response.Message = "Invalid Password";
                             return response;
                         }
 
@@ -214,7 +214,7 @@ namespace Services.Servicess.Implement
                         response.Data = _mapper.Map<ResponseAccountOwner>(owner);
                         response.Token = _authentication.GenerateToken(owner.OwnerId.ToString(), owner.Name, _appConfiguration.JWTSecretKey, role);
                         response.Success = true;
-                        response.Messenger = "Login Success";
+                        response.Message = "Login Success";
                     }
                 }
                 else
@@ -223,7 +223,7 @@ namespace Services.Servicess.Implement
                     if (!result)
                     {
                         response.Success = false;
-                        response.Messenger = "Invalid Password";
+                        response.Message = "Invalid Password";
                         return response;
                     }
 
@@ -241,7 +241,7 @@ namespace Services.Servicess.Implement
                     response.Data = _mapper.Map<ResponseAccountTennant>(tennant);
                     response.Token = _authentication.GenerateToken(tennant.TennantId.ToString(), tennant.Name, _appConfiguration.JWTSecretKey, role);
                     response.Success = true;
-                    response.Messenger = "Login Success";
+                    response.Message = "Login Success";
                 }
 
             }    
@@ -251,7 +251,7 @@ namespace Services.Servicess.Implement
                 if (!result)
                 {
                     response.Success = false;
-                    response.Messenger = "Invalid Password";
+                    response.Message = "Invalid Password";
                     return response;
                 }
 
@@ -277,7 +277,7 @@ namespace Services.Servicess.Implement
                 response.Data = _mapper.Map<ResponseAccountStaff>(Staff);
                 response.Token = _authentication.GenerateToken(Staff.StaffId.ToString(), Staff.Name, _appConfiguration.JWTSecretKey, role);
                 response.Success = true;
-                response.Messenger = "Login Success";
+                response.Message = "Login Success";
             }
                     
 
