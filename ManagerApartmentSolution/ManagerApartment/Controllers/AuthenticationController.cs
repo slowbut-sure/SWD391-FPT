@@ -50,7 +50,7 @@ namespace ManagerApartment.Controllers
 
         [HttpPost("staff/login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse<ResponseAccountStaff>>> StaffLogin(RequestLogin login)
+        public async Task<ActionResult<DataResponse<ResponseAccountStaff>>> StaffLogin(RequestLogin login)
         {
             var staff = await _authentication.ValidateStaff(login);
             //cấp token
@@ -59,7 +59,7 @@ namespace ManagerApartment.Controllers
 
         [HttpPost("owner/login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse<ResponseAccountOwner>>> OwnerLogin(RequestLogin login)
+        public async Task<ActionResult<DataResponse<ResponseAccountOwner>>> OwnerLogin(RequestLogin login)
         {
             var owner = await _authentication.ValidateOwner(login);
             //cấp token
@@ -68,7 +68,7 @@ namespace ManagerApartment.Controllers
 
         [HttpPost("tennant/login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse<ResponseAccountTennant>>> TennantLogin(RequestLogin login)
+        public async Task<ActionResult<DataResponse<ResponseAccountTennant>>> TennantLogin(RequestLogin login)
         {
             var tennant = await _authentication.ValidateTennant(login);
             //cấp token
@@ -77,7 +77,7 @@ namespace ManagerApartment.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<LoginResponse<AccountResponse>>> Login(RequestLogin login)
+        public async Task<ActionResult<DataResponse<AccountResponse>>> Login(RequestLogin login)
         {
             var account = await _authentication.Validate(login);
             return Ok(account);
@@ -91,10 +91,11 @@ namespace ManagerApartment.Controllers
             return Ok(staff);
         }
 
-        [HttpGet("token")]
-        public async Task<ActionResult> GetTokenStatus(string token)
+        [HttpPost("token/renew")]
+        public async Task<ActionResult<DataResponse<AccountResponse>>> RenewToken()
         {
-            throw new NotImplementedException();
+            string token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            return await _authentication.ValidateToken(token);
         }
 
     }

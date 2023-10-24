@@ -47,10 +47,11 @@ namespace Services.Authentication.Implement
                 Subject = new ClaimsIdentity(new[]
                 {
                 new Claim(ClaimTypes.NameIdentifier, staff.Name),
+                new Claim(ClaimTypes.Email, staff.Email),
                 new Claim("Id", staff.StaffId.ToString()),
                 new Claim(ClaimTypes.Role, role)
             }),
-                Expires = DateTime.UtcNow.AddHours(1),
+                Expires = DateTime.UtcNow.AddMinutes(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKryByte), SecurityAlgorithms.HmacSha256)
             };
             var token = jwtTokenHandler.CreateToken(tokenDescription);
@@ -66,6 +67,7 @@ namespace Services.Authentication.Implement
                 Subject = new ClaimsIdentity(new[]
                 {
                 new Claim(ClaimTypes.NameIdentifier, owner.Name),
+                new Claim(ClaimTypes.Email, owner.Email),
                 new Claim("Id", owner.OwnerId.ToString()),
                 new Claim(ClaimTypes.Role, role)
             }),
@@ -85,6 +87,7 @@ namespace Services.Authentication.Implement
                 Subject = new ClaimsIdentity(new[]
                 {
                 new Claim(ClaimTypes.NameIdentifier, tennant.Name),
+                new Claim(ClaimTypes.Email, tennant.Email),
                 new Claim("Id", tennant.TennantId.ToString()),
                 new Claim(ClaimTypes.Role, role)
             }),

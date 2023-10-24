@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services.Models.Response
 {
-    public class LoginResponse<T>
+    public class DataResponse<T>
     {
         public Object Data { get; set; }
         public string Token { get; set; }

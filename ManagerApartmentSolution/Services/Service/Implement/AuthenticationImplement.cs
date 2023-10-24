@@ -16,6 +16,10 @@ using Microsoft.Identity.Client;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.OwnerResponse;
 using Services.Models.Response.TennantResponse;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using ManagerApartment.Models;
 
 namespace Services.Servicess.Implement
 {
@@ -54,11 +58,11 @@ namespace Services.Servicess.Implement
             return true;
         }
 
-        public async Task<LoginResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin)
+        public async Task<DataResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin)
         {
             //check account has Exist or not
             var Staff = await _staffRepository.GetAccountByEmail(accountLogin.Email);
-            var response = new LoginResponse<ResponseAccountStaff>();
+            var response = new DataResponse<ResponseAccountStaff>();
             if (Staff == null)
             {
                 response.Success = false;
@@ -99,11 +103,11 @@ namespace Services.Servicess.Implement
             return response;
         }
 
-        public async Task<LoginResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin)
+        public async Task<DataResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin)
         {
             //check account name has Exist or not
             var owner = await _unitOfWork.Owner.GetByEmail(accountLogin.Email);
-            var response = new LoginResponse<ResponseAccountOwner>();
+            var response = new DataResponse<ResponseAccountOwner>();
             if (owner == null)
             {
                 response.Success = false;
@@ -136,11 +140,11 @@ namespace Services.Servicess.Implement
             return response;
         }
 
-        public async Task<LoginResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin)
+        public async Task<DataResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin)
         {
             //check account name has Exist or not
             var tennant = await _unitOfWork.Tennant.GetByEmail(accountLogin.Email);
-            var response = new LoginResponse<ResponseAccountTennant>();
+            var response = new DataResponse<ResponseAccountTennant>();
             if (tennant == null)
             {
                 response.Success = false;
@@ -173,9 +177,9 @@ namespace Services.Servicess.Implement
             return response;
         }
 
-        public async Task<LoginResponse<AccountResponse>> Validate(RequestLogin accountLogin)
+        public async Task<DataResponse<AccountResponse>> Validate(RequestLogin accountLogin)
         {
-            var response = new LoginResponse<AccountResponse>();
+            var response = new DataResponse<AccountResponse>();
 
             var Staff = await _unitOfWork.Staff.GetAccountByEmail(accountLogin.Email);
             var tennant = await _unitOfWork.Tennant.GetByEmail(accountLogin.Email);
@@ -283,6 +287,132 @@ namespace Services.Servicess.Implement
 
 
             return response;
+        }
+
+        public async Task<DataResponse<AccountResponse>> ValidateToken(string token)
+        {
+            var response = new DataResponse<AccountResponse>();
+            if (string.IsNullOrEmpty(token))
+            {
+                response.Message = "Token is required";
+                response.Success = false;
+                return response;
+            }
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateLifetime = true,
+                RequireExpirationTime = true,
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ClockSkew = TimeSpan.Zero
+            };
+
+            try
+            {
+                // Read token
+                var tokenData = tokenHandler.ReadJwtToken(token);
+
+                var tokenExp = tokenData.Claims.FirstOrDefault(Claim => Claim.Type.Equals("exp"))!.Value;
+                var tokenDate = DateTimeOffset.FromUnixTimeSeconds(long.Parse(tokenExp)).UtcDateTime;
+                var now = DateTime.UtcNow;
+
+                if (now > tokenDate)
+                {
+                    // Expired = true
+                    response.Success = true;
+                    response.Message = "Token is expired";
+                    return response;
+                }
+                else
+                {
+                    var roleClaim = tokenData.Claims.FirstOrDefault(claim => claim.Type.Equals("role"));
+                    var emailClaim = tokenData.Claims.FirstOrDefault(claim => claim.Type.Equals("email"));
+                    if (roleClaim != null)
+                    {
+                        var role = roleClaim.Value;
+                        if (role.Equals(RolePositionStaff.STAFFMANAGER.ToString()) || role.Equals(RolePositionStaff.STAFF.ToString()))
+                        {                          
+                            if (emailClaim != null) 
+                            {
+                                var email = emailClaim.Value;
+                                var staff = await _unitOfWork.Staff.GetAccountByEmail(email);
+                                response.Data = _mapper.Map<ResponseAccountStaff>(staff);
+                                response.Token = _authentication.GenerateToken(staff, _appConfiguration.JWTSecretKey, role);
+                                response.Success = true;
+                                response.Message = "Renew Token";
+                                return response;
+                            }
+                            else
+                            {
+                                response.Success = false;
+                                response.Message = "Email claim not found in the JWT.";
+                                return response;
+                            }
+                        }
+                        else if (role.Equals(ROLEACCOUNT.OWNER.ToString()))
+                        {                            
+                            if (emailClaim != null)
+                            {
+                                var email = emailClaim.Value;
+                                var owner = await _unitOfWork.Owner.GetByEmail(email);
+                                response.Data = _mapper.Map<ResponseAccountOwner>(owner);
+                                response.Token = _authentication.GenerateToken(owner, _appConfiguration.JWTSecretKey, role);
+                                response.Success = true;
+                                response.Message = "Renew Token";
+                                return response;
+                            }
+                            else
+                            {
+                                response.Success = false;
+                                response.Message = "Email claim not found in the JWT.";
+                                return response;
+                            }
+                        }
+                        else if (role.Equals(ROLEACCOUNT.TENANT.ToString()))
+                        {
+                            if (emailClaim != null)
+                            {
+                                var email = emailClaim.Value;
+                                var tennant = await _unitOfWork.Tennant.GetByEmail(email);
+                                response.Data = _mapper.Map<ResponseAccountTennant>(tennant);
+                                response.Token = _authentication.GenerateToken(tennant, _appConfiguration.JWTSecretKey, role);
+                                response.Success = true;
+                                response.Message = "Renew Token";
+                                return response;
+                            }
+                            else
+                            {
+                                response.Success = false;
+                                response.Message = "Email claim not found in the JWT.";
+                                return response;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        response.Success = false;
+                        response.Message = "Role claim not found in the JWT.";
+                        return response;
+                    }
+
+
+                    return response;
+                }
+            }
+            catch (SecurityTokenExpiredException)
+            {
+                response.Success = true;
+                response.Message = "Token is expired";
+                return response;
+            }
+            catch
+            {
+                response.Message = "Invalid token.";
+                response.Success = false;
+                return response;
+            }
         }
     }
  }
