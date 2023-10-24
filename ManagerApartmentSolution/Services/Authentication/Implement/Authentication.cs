@@ -38,7 +38,7 @@ namespace Services.Authentication.Implement
             return string.Join(Delimiter, Convert.ToBase64String(salt), Convert.ToBase64String(hash));
         }
 
-        public string GenerateToken(string id, string name, string secretKey, string role)
+        public string GenerateToken(Staff staff, string secretKey, string role)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var secretKryByte = Encoding.UTF8.GetBytes(secretKey);
@@ -46,8 +46,8 @@ namespace Services.Authentication.Implement
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                new Claim(ClaimTypes.NameIdentifier, name),
-                new Claim("Id", id),
+                new Claim(ClaimTypes.NameIdentifier, staff.Name),
+                new Claim("Id", staff.StaffId.ToString()),
                 new Claim(ClaimTypes.Role, role)
             }),
                 Expires = DateTime.UtcNow.AddHours(1),
@@ -57,19 +57,57 @@ namespace Services.Authentication.Implement
             return jwtTokenHandler.WriteToken(token);
         }
 
-    //    public string GenerateToken(Staff staff, Owner owner, Tennant tennant, string secretKey, string role)
-    //    {
-    //        Subject = new ClaimsIdentity(new[]
-    //            {
-    //            new Claim(ClaimTypes.NameIdentifier, staff.Name),
-    //            new Claim("Id", staff.StaffId.ToString()),
-    //            new Claim(ClaimTypes.Role, role)
-    //        }),
-    //            Expires = DateTime.UtcNow.AddHours(1),
-    //            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKryByte), SecurityAlgorithms.HmacSha256)
-    //        };
-    //    var token = jwtTokenHandler.CreateToken(tokenDescription);
-    //        return jwtTokenHandler.WriteToken(token);
-    //    }
+        public string GenerateToken(Owner owner, string secretKey, string role)
+        {
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var secretKryByte = Encoding.UTF8.GetBytes(secretKey);
+            var tokenDescription = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                new Claim(ClaimTypes.NameIdentifier, owner.Name),
+                new Claim("Id", owner.OwnerId.ToString()),
+                new Claim(ClaimTypes.Role, role)
+            }),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKryByte), SecurityAlgorithms.HmacSha256)
+            };
+            var token = jwtTokenHandler.CreateToken(tokenDescription);
+            return jwtTokenHandler.WriteToken(token);
+        }
+
+        public string GenerateToken(Tennant tennant, string secretKey, string role)
+        {
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var secretKryByte = Encoding.UTF8.GetBytes(secretKey);
+            var tokenDescription = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                new Claim(ClaimTypes.NameIdentifier, tennant.Name),
+                new Claim("Id", tennant.TennantId.ToString()),
+                new Claim(ClaimTypes.Role, role)
+            }),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKryByte), SecurityAlgorithms.HmacSha256)
+            };
+            var token = jwtTokenHandler.CreateToken(tokenDescription);
+            return jwtTokenHandler.WriteToken(token);
+        }
+
+        //    public string GenerateToken(Staff staff, Owner owner, Tennant tennant, string secretKey, string role)
+        //    {
+        //        Subject = new ClaimsIdentity(new[]
+        //            {
+        //            new Claim(ClaimTypes.NameIdentifier, staff.Name),
+        //            new Claim("Id", staff.StaffId.ToString()),
+        //            new Claim(ClaimTypes.Role, role)
+        //        }),
+        //            Expires = DateTime.UtcNow.AddHours(1),
+        //            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKryByte), SecurityAlgorithms.HmacSha256)
+        //        };
+        //    var token = jwtTokenHandler.CreateToken(tokenDescription);
+        //        return jwtTokenHandler.WriteToken(token);
+        //    }
     }
 }

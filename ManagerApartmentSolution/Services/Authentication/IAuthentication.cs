@@ -11,6 +11,8 @@ namespace Services.Authentication
     {
         public bool Verify(string HashPassword, string InputPassword);
         public string Hash(string password);
-        public string GenerateToken(string id, string name, string secretKey, string role);
+        public string GenerateToken(Staff staff, string secretKey, string role);
+        public string GenerateToken(Tennant tennant, string secretKey, string role);
+        public string GenerateToken(Owner owner, string secretKey, string role);
     }
 }

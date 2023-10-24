@@ -91,5 +91,11 @@ namespace ManagerApartment.Controllers
             return Ok(staff);
         }
 
+        [HttpGet("token")]
+        public async Task<ActionResult> GetTokenStatus(string token)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
