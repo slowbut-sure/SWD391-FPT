@@ -11,10 +11,11 @@ namespace Services.Servicess
 
     public interface AuthenticationService
     {
-        Task<LoginResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin);
-        Task<LoginResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin);
-        Task<LoginResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin);
-        Task<LoginResponse<AccountResponse>> Validate(RequestLogin accountLogin);
+        Task<DataResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin);
+        Task<DataResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin);
+        Task<DataResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin);
+        Task<DataResponse<AccountResponse>> Validate(RequestLogin accountLogin);
+        Task<DataResponse<AccountResponse>> ValidateToken(string token);
         Task<Boolean> Logout(int accountId);
 
 
