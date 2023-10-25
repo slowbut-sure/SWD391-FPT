@@ -8,7 +8,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/staff")]
     [ApiController]
     public class StaffController : ControllerBase
@@ -71,6 +71,19 @@ namespace ManagerApartment.Controllers
         {
             var deletedStaff = _staffService.DeleteStaff(id);
             return deletedStaff == null ? NoContent() : Ok(deletedStaff);
+        }
+
+        [HttpGet("request-list")]
+        public async Task<IActionResult> GetStaffRequestList()
+        {
+            try
+            {
+                return Ok(await _staffService.GetRequets());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 

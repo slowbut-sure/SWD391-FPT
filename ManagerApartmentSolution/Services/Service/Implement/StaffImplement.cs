@@ -12,6 +12,7 @@ using Domain.Enums.Status;
 using Services.Models.Request.ServiceRequest;
 using Services.Models.Response.ServiceResponse;
 using Services.Interfaces;
+using Services.Models.Response;
 
 namespace Services.Servicesss.Implement
 {
@@ -56,6 +57,25 @@ namespace Services.Servicesss.Implement
                 throw new Exception("The staff list is empty");
             }
             return _mapper.Map<List<ResponseAccountStaff>>(staffs);
+        }
+
+        public async Task<DataResponse<List<StaffRequestListResponse>>> GetRequets()
+        {
+            var response = new DataResponse<List<StaffRequestListResponse>>();
+            var requets = await _unitOfWork.Request.GetStaffRequests();
+            if (requets is null)
+            {
+                response.Success = true;
+                response.Message = "Empty request";
+            }
+            else
+            {
+                response.Data = _mapper.Map<List<StaffRequestListResponse>>(requets);
+                response.Success = true;
+                response.Message = "Staff request list";
+            }
+
+            return response;
         }
 
         public async Task<ResponseAccountStaff> GetStaffById(int id)

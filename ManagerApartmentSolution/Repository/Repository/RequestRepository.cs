@@ -27,5 +27,13 @@ namespace Repository.Repository
                 .Include(a => a.Apartment)
                 .FirstOrDefault(r => r.RequestId == id);
         }
+
+        public async Task<List<Request>> GetStaffRequests()
+        {
+            var result = await _context.Requests.Include(r => r.Apartment)
+                                        .Include(r => r.RequestDetails).ThenInclude(rds => rds.Package)
+                                        .Include(r => r.AddOns).ToListAsync();
+            return result;
+        }   
     }
 }

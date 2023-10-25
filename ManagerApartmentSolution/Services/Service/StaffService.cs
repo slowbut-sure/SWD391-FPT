@@ -1,4 +1,5 @@
 ﻿using Services.Models.Request.StaffRequest;
+using Services.Models.Response;
 using Services.Models.Response.StaffResponse;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace Services.Servicesss
         Task<ResponseAccountStaff> UpdateStaff(int staffId ,UpdateStaff updateStaff); 
         Task DeleteStaff(int staffId);
         Task<List<ResponseAccountStaff>> GetStaffByName(string name);
+        Task<DataResponse<List<StaffRequestListResponse>>> GetRequets();
     }
 }

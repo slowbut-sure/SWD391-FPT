@@ -12,5 +12,6 @@ namespace Services.Interfaces
     {
         Task<List<Request>> GetAllRequests();
         Task<Request> GetRequestById(int id);
+        Task<List<Request>> GetStaffRequests();
     }
 }
