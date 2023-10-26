@@ -8,7 +8,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/staff")]
     [ApiController]
     public class StaffController : ControllerBase

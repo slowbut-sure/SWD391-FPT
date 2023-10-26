@@ -11,26 +11,27 @@ namespace Services.Models.Response.StaffResponse
         public ResponseAccountStaff(int staffId, string email, string name, string phone, string address, string staffStatus,
             string avatarLink, string code, string role)
         {
-            StaffId = staffId;
+            Id = staffId;
             Email = email;
-            StaffName = name;
-            StaffPhone = phone;
+            Name = name;
+            Phone = phone;
             Address = address;
-            StaffStatus = staffStatus;
+            Status = staffStatus;
             AvatarLink = avatarLink;
             Code = code;
 
             Role = role;
         }
-        public int StaffId { get; set; }    
-        public string Email { get; set; }
-        public string StaffName { get; set; }
-        public string StaffPhone { get; set; }
-        public string Address { get; set; }
-        public string StaffStatus { get; set; }
-        public string AvatarLink { get; set; }
+        public int Id { get; set; }
         public string Code { get; set; }
-
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
         public string Role { get; set; }
+        public string AvatarLink { get; set; }
+        public DateTime LastLogin { get; set; }
+        public DateTime LastUpdate { get; set; }
+        public string Status { get; set; }
     }
 }

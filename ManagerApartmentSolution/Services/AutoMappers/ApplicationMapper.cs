@@ -178,12 +178,13 @@ namespace Services.AutoMappers
                 .ForMember(re => re.OwnerStatus, act => act.MapFrom(src => src.Status));
 
             CreateMap<Owner, ResponseAccountOwner>()
-                .ForMember(re => re.Code, act => act.MapFrom(src => src.OwnerId))
-                .ForMember(re => re.OwnerName, act => act.MapFrom(src => src.Name))
-                .ForMember(re => re.OwnerEmail, act => act.MapFrom(src => src.Email))
-                .ForMember(re => re.OwnerPhone, act => act.MapFrom(src => src.Phone))
-                .ForMember(re => re.OwnerAddress, act => act.MapFrom(src => src.Address))
-                .ForMember(re => re.OwnerStatus, act => act.MapFrom(src => src.Status));
+                .ForMember(re => re.Id, act => act.MapFrom(src => src.OwnerId))
+                .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
+                .ForMember(re => re.Name, act => act.MapFrom(src => src.Name))
+                .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
+                .ForMember(re => re.Phone, act => act.MapFrom(src => src.Phone))
+                .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));
 
             CreateMap<RequestCreateOwner, Owner>()
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.OwnerCode))
@@ -345,12 +346,12 @@ namespace Services.AutoMappers
             //==============================================================================================================
 
             CreateMap<Staff, ResponseAccountStaff>()
-                .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId))
+                .ForMember(re => re.Id, act => act.MapFrom(src => src.StaffId))
                 .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
-                .ForMember(re => re.StaffName, act => act.MapFrom(src => src.Name))
-                .ForMember(re => re.StaffPhone, act => act.MapFrom(src => src.Phone))
+                .ForMember(re => re.Name, act => act.MapFrom(src => src.Name))
+                .ForMember(re => re.Phone, act => act.MapFrom(src => src.Phone))
                 .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
-                .ForMember(re => re.StaffStatus, act => act.MapFrom(src => src.StaffStatus))
+                .ForMember(re => re.Status, act => act.MapFrom(src => src.StaffStatus))
                 .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.AvatarLink))
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
                 .ForMember(re => re.Role, act => act.MapFrom(src => src.Role));
@@ -415,12 +416,13 @@ namespace Services.AutoMappers
                 .ForMember(re => re.EndDate, act => act.MapFrom(src => src.ContractDetail.EndDate));
 
             CreateMap<Tennant, ResponseAccountTennant>()
-                .ForMember(re => re.TennantCode, act => act.MapFrom(src => src.Code))
-                .ForMember(re => re.TennantName, act => act.MapFrom(src => src.Name))
-                .ForMember(re => re.TennantEmail, act => act.MapFrom(src => src.Email))
-                .ForMember(re => re.TennantPhone, act => act.MapFrom(src => src.Phone))
-                .ForMember(re => re.TennantAddress, act => act.MapFrom(src => src.Address))
-                .ForMember(re => re.TennantStatus, act => act.MapFrom(src => src.Status));
+                .ForMember(re => re.Id, act => act.MapFrom(src =>  src.TennantId))
+                .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
+                .ForMember(re => re.Name, act => act.MapFrom(src => src.Name))
+                .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
+                .ForMember(re => re.Phone, act => act.MapFrom(src => src.Phone))
+                .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));
 
             CreateMap<RequestCreateTennant, Tennant>()
                .ForMember(re => re.Name, act => act.MapFrom(src => src.TennantName))

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enums.Role;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +9,16 @@ namespace Services.Models.Response.OwnerResponse
 {
     public class ResponseAccountOwner : AccountResponse
     {
-        public string Code { get; set; }
-
-        public string OwnerName { get; set; }
-
-        public string OwnerEmail { get; set; }
-
-        public string OwnerPhone { get; set; }
-
-        public string OwnerAddress { get; set; }
-
-        public string OwnerStatus { get; set; }
+        public int Id { get; set; }
+        public string? Code { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
+        public string? Address { get; set; }
+        public string? Role { get; set; } = ROLEACCOUNT.OWNER.ToString();   
+        public string? AvatarLink { get; set; }
+        public DateTime LastLogin { get; set; }
+        public DateTime LastUpdate { get; set; }
+        public string? Status { get; set; }
     }
 }

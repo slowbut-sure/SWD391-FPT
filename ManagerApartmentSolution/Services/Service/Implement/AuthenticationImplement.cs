@@ -271,10 +271,12 @@ namespace Services.Servicess.Implement
                 if (Int32.Parse(role) == (int)RolePositionStaff.STAFFMANAGER)
                 {
                     role = RolePositionStaff.STAFFMANAGER.ToString();
+                    Staff.Role = role;
                 }
                 else
                 {
                     role = RolePositionStaff.STAFF.ToString();
+                    Staff.Role = role;
                 }
 
                 //_cacheManager.Set(Staff.StaffId.ToString(), true, 60);
