@@ -51,7 +51,7 @@ public partial class ManagerApartmentContext : DbContext
 
     public virtual DbSet<StaffDetail> StaffDetails { get; set; } = null!;
 
-    public virtual DbSet<StaffLog> StaffLogs { get; set; } = null!;
+    //public virtual DbSet<StaffLog> StaffLogs { get; set; } = null!;
 
     public virtual DbSet<Tennant> Tennants { get; set; } = null!;
 
@@ -127,7 +127,7 @@ public partial class ManagerApartmentContext : DbContext
             entity.ToTable("ApartmentType");
 
             entity.Property(e => e.ApartmentTypeId).HasColumnName("ApartmentTypeID");
-            entity.Property(e => e.BuildingId).HasColumnName("BuildingID");
+            /*entity.Property(e => e.BuildingId).HasColumnName("BuildingID");*/
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .IsUnicode(false);
@@ -138,9 +138,9 @@ public partial class ManagerApartmentContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Building).WithMany(p => p.ApartmentTypes)
+/*            entity.HasOne(d => d.Building).WithMany(p => p.ApartmentTypes)
                 .HasForeignKey(d => d.BuildingId)
-                .HasConstraintName("FK__Apartment__Build__3D5E1FD2");
+                .HasConstraintName("FK__Apartment__Build__3D5E1FD2");*/
         });
 
         modelBuilder.Entity<Asset>(entity =>
@@ -296,7 +296,7 @@ public partial class ManagerApartmentContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Password)
-                .HasMaxLength(50)
+                .HasMaxLength(256)
                 .IsUnicode(false);
             entity.Property(e => e.Phone)
                 .HasMaxLength(11)
@@ -412,6 +412,9 @@ public partial class ManagerApartmentContext : DbContext
             entity.HasOne(d => d.Request).WithMany(p => p.RequestLogs)
                 .HasForeignKey(d => d.RequestId)
                 .HasConstraintName("FK__RequestLo__Reque__628FA481");
+            entity.HasOne(d => d.Staff).WithMany(p => p.RequestLogs)
+                .HasForeignKey(d => d.StaffId)
+                .HasConstraintName("FK__RequestLo__Staff__628FA481");
         });
 
         modelBuilder.Entity<Service>(entity =>
@@ -459,7 +462,7 @@ public partial class ManagerApartmentContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Password)
-                .HasMaxLength(50)
+                .HasMaxLength(256)
                 .IsUnicode(false);
             entity.Property(e => e.Phone)
                 .HasMaxLength(50)
@@ -489,9 +492,10 @@ public partial class ManagerApartmentContext : DbContext
             entity.HasOne(d => d.Staff).WithMany(p => p.StaffDetails)
                 .HasForeignKey(d => d.StaffId)
                 .HasConstraintName("FK__StaffDeta__Staff__5BE2A6F2");
+
         });
 
-        modelBuilder.Entity<StaffLog>(entity =>
+/*        modelBuilder.Entity<StaffLog>(entity =>
         {
             entity.HasKey(e => e.StaffLogId).HasName("PK__StaffLog__511DAB3CA2BD394C");
 
@@ -501,14 +505,16 @@ public partial class ManagerApartmentContext : DbContext
             entity.Property(e => e.RequestLogId).HasColumnName("RequestLogID");
             entity.Property(e => e.StaffId).HasColumnName("StaffID");
 
-            entity.HasOne(d => d.RequestLog).WithMany(p => p.StaffLogs)
+           *//* entity.HasOne(d => d.RequestLog).WithMany(p => p.StaffLogs)
                 .HasForeignKey(d => d.RequestLogId)
-                .HasConstraintName("FK__StaffLog__Reques__693CA210");
+                .HasConstraintName("FK__StaffLog__Reques__693CA210");*//*
+
+
 
             entity.HasOne(d => d.Staff).WithMany(p => p.StaffLogs)
                 .HasForeignKey(d => d.StaffId)
                 .HasConstraintName("FK__StaffLog__StaffI__68487DD7");
-        });
+        });*/
 
         modelBuilder.Entity<Tennant>(entity =>
         {
@@ -531,7 +537,7 @@ public partial class ManagerApartmentContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Password)
-                .HasMaxLength(50)
+                .HasMaxLength(256)
                 .IsUnicode(false);
             entity.Property(e => e.Phone)
                 .HasMaxLength(11)

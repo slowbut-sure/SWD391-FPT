@@ -10,6 +10,8 @@ public partial class Apartment
 
     public int? ApartmentTypeId { get; set; }
 
+    public string? ApartmentName { get; set; }
+
     public int? BuildingId { get; set; }
 
     public int? OwnerId { get; set; }
@@ -21,6 +23,8 @@ public partial class Apartment
     public int? Sequence { get; set; }
 
     public string? ApartmentStatus { get; set; }
+
+    public int? ContractNumber { get; set; }
 
     [JsonInclude] public virtual ApartmentType? ApartmentType { get; set; }
 

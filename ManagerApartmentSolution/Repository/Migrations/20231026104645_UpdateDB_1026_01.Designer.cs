@@ -4,6 +4,7 @@ using ManagerApartment.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManagerApartment.Migrations
 {
     [DbContext(typeof(ManagerApartmentContext))]
-    partial class ManagerApartmentContextModelSnapshot : ModelSnapshot
+    [Migration("20231026104645_UpdateDB_1026_01")]
+    partial class UpdateDB_1026_01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,9 +87,6 @@ namespace ManagerApartment.Migrations
                     b.Property<int?>("BuildingId")
                         .HasColumnType("int")
                         .HasColumnName("BuildingID");
-
-                    b.Property<int?>("ContractNumber")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("FromDate")
                         .HasColumnType("date");
@@ -406,9 +406,9 @@ namespace ManagerApartment.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Password")
-                        .HasMaxLength(256)
+                        .HasMaxLength(50)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(11)
@@ -453,9 +453,6 @@ namespace ManagerApartment.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("PackageImageLink")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(10, 2)");
@@ -688,9 +685,9 @@ namespace ManagerApartment.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Password")
-                        .HasMaxLength(256)
+                        .HasMaxLength(50)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(50)
@@ -783,9 +780,9 @@ namespace ManagerApartment.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Password")
-                        .HasMaxLength(256)
+                        .HasMaxLength(50)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(11)

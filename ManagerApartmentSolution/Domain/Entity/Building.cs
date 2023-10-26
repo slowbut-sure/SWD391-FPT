@@ -21,7 +21,7 @@ public partial  class Building
 
     public string? Status { get; set; }
 
-    [JsonInclude] public virtual ICollection<ApartmentType> ApartmentTypes { get; set; } = new List<ApartmentType>();
+    //[JsonInclude] public virtual ICollection<ApartmentType> ApartmentTypes { get; set; } = new List<ApartmentType>();
 
     [JsonInclude]public virtual ICollection<Apartment> Apartments { get; set; } = new List<Apartment>();
 }

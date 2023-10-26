@@ -8,7 +8,7 @@ public partial class ApartmentType
 {
     public int ApartmentTypeId { get; set; }
 
-    public int? BuildingId { get; set; }
+    //public int? BuildingId { get; set; }
 
     public string? Name { get; set; }
 
@@ -18,7 +18,7 @@ public partial class ApartmentType
 
     [JsonInclude] public virtual ICollection<Apartment> Apartments { get; set; } = new List<Apartment>();
 
-    [JsonInclude] public virtual Building? Building { get; set; }
+    //[JsonInclude] public virtual Building? Building { get; set; }
 
     [JsonInclude] public virtual ICollection<Package> Packages { get; set; } = new List<Package>();
 }

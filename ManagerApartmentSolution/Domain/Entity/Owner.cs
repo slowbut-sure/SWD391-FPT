@@ -22,5 +22,11 @@ public partial class Owner
 
     public string? Status { get; set; }
 
+    public string? AvatarLink { get; set; }
+
+    public DateTime? LastLogin { get; set; }
+
+    public DateTime? LastUpdate { get; set; }
+
     [JsonInclude] public virtual ICollection<Apartment> Apartments { get; set; } = new List<Apartment>();
 }
