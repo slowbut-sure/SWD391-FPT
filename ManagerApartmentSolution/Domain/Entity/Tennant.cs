@@ -24,5 +24,11 @@ public partial class Tennant
 
     public string? Address { get; set; }
 
+    public string? AvatarLink { get; set; }
+
+    public DateTime? LastLogin { get; set; }
+
+    public DateTime? LastUpdate { get; set; }
+
     [JsonInclude] public virtual ContractDetail? ContractDetail { get; set; }
 }

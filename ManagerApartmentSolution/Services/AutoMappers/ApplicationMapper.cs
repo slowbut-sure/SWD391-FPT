@@ -65,9 +65,9 @@ namespace Services.AutoMappers
 
             CreateMap<ApartmentType, ResponseOfApartmentType>()
                 .ForMember(re => re.ApartmentTypeId, act => act.MapFrom(src => src.ApartmentTypeId))
-                .ForMember(re => re.BuildingId, act => act.MapFrom(src => src.Building.BuildingId))
-                .ForMember(re => re.BuildingName, act => act.MapFrom(src => src.Building.Name))
-                .ForMember(re => re.BuildingAddress, act => act.MapFrom(src => src.Building.Address))
+                //.ForMember(re => re.BuildingId, act => act.MapFrom(src => src.Building.BuildingId))
+                //.ForMember(re => re.BuildingName, act => act.MapFrom(src => src.Building.Name))
+                //.ForMember(re => re.BuildingAddress, act => act.MapFrom(src => src.Building.Address))
                 .ForMember(re => re.ApartmentTypeName, act => act.MapFrom(src => src.Name))
                 .ForMember(re => re.ApaermentTypeDescription, act => act.MapFrom(src => src.Description))
                 .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));

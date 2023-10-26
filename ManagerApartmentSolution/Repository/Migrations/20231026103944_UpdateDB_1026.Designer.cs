@@ -4,6 +4,7 @@ using ManagerApartment.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManagerApartment.Migrations
 {
     [DbContext(typeof(ManagerApartmentContext))]
-    partial class ManagerApartmentContextModelSnapshot : ModelSnapshot
+    [Migration("20231026103944_UpdateDB_1026")]
+    partial class UpdateDB_1026
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,9 +88,6 @@ namespace ManagerApartment.Migrations
                         .HasColumnType("int")
                         .HasColumnName("BuildingID");
 
-                    b.Property<int?>("ContractNumber")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("FromDate")
                         .HasColumnType("date");
 
@@ -122,6 +122,10 @@ namespace ManagerApartment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApartmentTypeId"));
 
+                    b.Property<int?>("BuildingId")
+                        .HasColumnType("int")
+                        .HasColumnName("BuildingID");
+
                     b.Property<string>("Description")
                         .HasMaxLength(255)
                         .IsUnicode(false)
@@ -139,6 +143,8 @@ namespace ManagerApartment.Migrations
 
                     b.HasKey("ApartmentTypeId")
                         .HasName("PK__Apartmen__8BA7C03291493104");
+
+                    b.HasIndex("BuildingId");
 
                     b.ToTable("ApartmentType", (string)null);
                 });
@@ -406,9 +412,9 @@ namespace ManagerApartment.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Password")
-                        .HasMaxLength(256)
+                        .HasMaxLength(50)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(11)
@@ -453,9 +459,6 @@ namespace ManagerApartment.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
-
-                    b.Property<string>("PackageImageLink")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(10, 2)");
@@ -688,9 +691,9 @@ namespace ManagerApartment.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Password")
-                        .HasMaxLength(256)
+                        .HasMaxLength(50)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(50)
@@ -783,9 +786,9 @@ namespace ManagerApartment.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Password")
-                        .HasMaxLength(256)
+                        .HasMaxLength(50)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(11)
@@ -844,6 +847,13 @@ namespace ManagerApartment.Migrations
                     b.Navigation("Building");
 
                     b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("ManagerApartment.Models.ApartmentType", b =>
+                {
+                    b.HasOne("ManagerApartment.Models.Building", null)
+                        .WithMany("ApartmentTypes")
+                        .HasForeignKey("BuildingId");
                 });
 
             modelBuilder.Entity("ManagerApartment.Models.Asset", b =>
@@ -1013,6 +1023,8 @@ namespace ManagerApartment.Migrations
 
             modelBuilder.Entity("ManagerApartment.Models.Building", b =>
                 {
+                    b.Navigation("ApartmentTypes");
+
                     b.Navigation("Apartments");
                 });
 

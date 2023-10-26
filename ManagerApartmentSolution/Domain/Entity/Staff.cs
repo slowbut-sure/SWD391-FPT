@@ -23,10 +23,15 @@ public partial class Staff
     public string? StaffStatus { get; set; }
 
     public string? AvatarLink { get; set; }
+    
+    public DateTime? LastLogin { get; set; }
+
+    public DateTime? LastUpdate { get; set; }
 
     public string? Code { get; set; }
 
     [JsonInclude] public virtual ICollection<StaffDetail> StaffDetails { get; set; } = new List<StaffDetail>();
+    [JsonInclude] public virtual ICollection<RequestLog> RequestLogs { get; set; } = new List<RequestLog>();
 
-    [JsonInclude] public virtual ICollection<StaffLog> StaffLogs { get; set; } = new List<StaffLog>();
+    //[JsonInclude] public virtual ICollection<StaffLog> StaffLogs { get; set; } = new List<StaffLog>();
 }
