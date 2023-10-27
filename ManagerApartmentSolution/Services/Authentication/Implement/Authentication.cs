@@ -51,7 +51,7 @@ namespace Services.Authentication.Implement
                 new Claim("Id", staff.StaffId.ToString()),
                 new Claim(ClaimTypes.Role, role)
             }),
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKryByte), SecurityAlgorithms.HmacSha256)
             };
             var token = jwtTokenHandler.CreateToken(tokenDescription);
