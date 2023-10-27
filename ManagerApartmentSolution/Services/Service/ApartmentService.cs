@@ -1,4 +1,5 @@
 ﻿using ManagerApartment.Models;
+using Services.Models.Response;
 using Services.Models.Response.ApartmentResponse;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Services.Servicesss
 {
     public interface ApartmentService
     {
-        Task<List<ResponseOfApartment>> GetAllApartments(int page, int pageSize, string sortOrder);
-        Task<ResponseOfApartment> GetApartmentById(int id);
+        Task<DataResponse<List<ResponseOfApartment>>> GetAllApartments(int page, int pageSize, string sortOrder);
+        Task<DataResponse<ResponseOfApartment>> GetApartmentById(int id);
     }
 }

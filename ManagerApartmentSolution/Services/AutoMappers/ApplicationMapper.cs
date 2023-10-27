@@ -184,6 +184,9 @@ namespace Services.AutoMappers
                 .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
                 .ForMember(re => re.Phone, act => act.MapFrom(src => src.Phone))
                 .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.AvatarLink))
+                .ForMember(re => re.LastLogin, act => act.MapFrom(src => src.LastLogin))
+                .ForMember(re => re.LastUpdate, act => act.MapFrom(src => src.LastUpdate))
                 .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));
 
             CreateMap<RequestCreateOwner, Owner>()
@@ -353,6 +356,8 @@ namespace Services.AutoMappers
                 .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
                 .ForMember(re => re.Status, act => act.MapFrom(src => src.StaffStatus))
                 .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.AvatarLink))
+                .ForMember(re => re.LastLogin, act => act.MapFrom(src => src.LastLogin))
+                .ForMember(re => re.LastUpdate, act => act.MapFrom(src => src.LastUpdate))
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
                 .ForMember(re => re.Role, act => act.MapFrom(src => src.Role));
 
@@ -422,6 +427,9 @@ namespace Services.AutoMappers
                 .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
                 .ForMember(re => re.Phone, act => act.MapFrom(src => src.Phone))
                 .ForMember(re => re.Address, act => act.MapFrom(src => src.Address))
+                .ForMember(re => re.AvatarLink, act => act.MapFrom(src => src.AvatarLink))
+                .ForMember(re => re.LastLogin, act => act.MapFrom(src => src.LastLogin))
+                .ForMember(re => re.LastUpdate, act => act.MapFrom(src => src.LastUpdate))
                 .ForMember(re => re.Status, act => act.MapFrom(src => src.Status));
 
             CreateMap<RequestCreateTennant, Tennant>()

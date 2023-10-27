@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Request.StaffRequest;
 using Services.Models.Request.TennantRequest;
+using Services.Models.Response;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;
 using Services.Servicesss;
@@ -34,7 +35,7 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ResponseAccountStaff>> GetStaffById(int id)
+        public async Task<ActionResult<DataResponse<ResponseAccountStaff>>> GetStaffById(int id)
         {
             try
             {
@@ -54,13 +55,13 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseAccountStaff>> CreateStaff(RequestCreateStaff staff)
+        public async Task<ActionResult<DataResponse<ResponseAccountStaff>>> CreateStaff(RequestCreateStaff staff)
         {
             var createdStaff = await _staffService.CreateStaff(staff);
             return createdStaff == null ? NotFound() : Ok(createdStaff);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<ResponseAccountStaff>> UpdateStaff(int id, UpdateStaff updateStaff)
+        public async Task<ActionResult<DataResponse<ResponseAccountStaff>>> UpdateStaff(int id, UpdateStaff updateStaff)
         {
             var updatedStaff = await _staffService.UpdateStaff(id, updateStaff);
             return updatedStaff == null ? NotFound() : Ok(updatedStaff);

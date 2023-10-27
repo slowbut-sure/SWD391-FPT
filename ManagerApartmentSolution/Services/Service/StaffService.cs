@@ -11,12 +11,12 @@ namespace Services.Servicesss
 {
     public interface StaffService
     {
-        Task<List<ResponseAccountStaff>> GetAllStaffs();
-        Task<ResponseAccountStaff> GetStaffById(int id);
-        Task<ResponseAccountStaff> CreateStaff(RequestCreateStaff staff);
-        Task<ResponseAccountStaff> UpdateStaff(int staffId ,UpdateStaff updateStaff); 
+        Task<DataResponse<List<ResponseAccountStaff>>> GetAllStaffs();
+        Task<DataResponse<ResponseAccountStaff>> GetStaffById(int id);
+        Task<DataResponse<ResponseAccountStaff>> CreateStaff(RequestCreateStaff staff);
+        Task<DataResponse<ResponseAccountStaff>> UpdateStaff(int staffId ,UpdateStaff updateStaff); 
         Task DeleteStaff(int staffId);
-        Task<List<ResponseAccountStaff>> GetStaffByName(string name);
+        Task<DataResponse<List<ResponseAccountStaff>>> GetStaffByName(string name);
         Task<DataResponse<List<StaffRequestListResponse>>> GetRequets();
     }
 }

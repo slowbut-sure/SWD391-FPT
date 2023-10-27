@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
+using Services.Authentication;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request.TennantRequest;
+using Services.Models.Response;
 using Services.Models.Response.ServiceResponse;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;
@@ -18,20 +20,35 @@ namespace Services.Servicesss.Implement
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public TennantImplement(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IAuthentication _authentication;
+        public TennantImplement(IUnitOfWork unitOfWork, IMapper mapper, IAuthentication authentication)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _authentication = authentication;
         }
 
-        public async Task<ResponseOfTennant> CreateTennant(RequestCreateTennant tennantRequest)
+        public async Task<DataResponse<ResponseOfTennant>> CreateTennant(RequestCreateTennant tennantRequest)
         {
-            var createTennant = _mapper.Map<Tennant>(tennantRequest);
-            createTennant.Status = TennantEnum.ACTIVE.ToString();
+            var response = new DataResponse<ResponseOfTennant>();
 
-            _unitOfWork.Tennant.Add(createTennant);
-            _unitOfWork.Save();
-            return _mapper.Map<ResponseOfTennant>(createTennant);
+            try
+            {
+                var createTennant = _mapper.Map<Tennant>(tennantRequest);
+                createTennant.Status = TennantEnum.ACTIVE.ToString();
+                createTennant.Password = _authentication.Hash(tennantRequest.Password);
+                _unitOfWork.Tennant.Add(createTennant);
+                _unitOfWork.Save();
+                response.Data = _mapper.Map<ResponseOfTennant>(createTennant);
+                response.Message = "Create Successfully.";
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+            return response;
         }
 
         public async Task DeleteTennant(int tennantId)
@@ -46,42 +63,86 @@ namespace Services.Servicesss.Implement
             _unitOfWork.Save();
         }
 
-        public async Task<List<ResponseOfTennant>> GetAllTennants()
+        public async Task<DataResponse<List<ResponseOfTennant>>> GetAllTennants()
         {
-            var tennants =  _unitOfWork.Tennant.GetAll().ToList();
-            if (tennants is null)
+            var response = new DataResponse<List<ResponseOfTennant>>();
+
+            try
             {
-                throw new Exception("The tennant list is empty");
+                var tennants = _unitOfWork.Tennant.GetAll().ToList();
+                if (tennants is null)
+                {
+                    throw new Exception("The tennant list is empty");
+                }
+                response.Data = _mapper.Map<List<ResponseOfTennant>>(tennants);
+                response.Message = "List tennants";
+                response.Success = true;
             }
-            return _mapper.Map<List<ResponseOfTennant>>(tennants);
+            catch (Exception ex) 
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
-        public async Task<ResponseOfTennant> GetTennantById(int id)
+        public async Task<DataResponse<ResponseOfTennant>> GetTennantById(int id)
         {
-            var tennant = await _unitOfWork.Tennant.GetTennantById(id);
-            if (tennant is null)
+            var response = new DataResponse<ResponseOfTennant>();
+
+            try
             {
-                throw new Exception("The tennant does not exist");
+                var tennant = await _unitOfWork.Tennant.GetTennantById(id);
+                if (tennant is null)
+                {
+                    throw new Exception("The tennant does not exist");
+                }
+                response.Data = _mapper.Map<ResponseOfTennant>(tennant);
+                response.Message = $"TennantId {tennant.TennantId}";
+                response.Success = true;
             }
-            return _mapper.Map<ResponseOfTennant>(tennant);
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
-        public async Task<ResponseOfTennant> UpdateTennant(int id, UpdateTennant tennantRequest)
+        public async Task<DataResponse<ResponseOfTennant>> UpdateTennant(int id, UpdateTennant tennantRequest)
         {
-            var tennant = _unitOfWork.Tennant.GetById(id);
-            if (tennant is null)
+            var response = new DataResponse<ResponseOfTennant>();
+
+            try
             {
-                throw new Exception("Can not found ");
+                var tennant = _unitOfWork.Tennant.GetById(id);
+                if (tennant is null)
+                {
+                    response.Message = "Can not found ";
+                    response.Success = false;
+                    return response;
+                }
+                tennant.Name = tennantRequest.TennantName;
+                tennant.Email = tennantRequest.TennantEmail;
+                tennant.Password = _authentication.Hash(tennantRequest.Password);
+                tennant.Phone = tennantRequest.TennantPhone;
+                tennant.Address = tennantRequest.TennantAddress;
+                tennant.Status = tennantRequest.TennantStatus;
+                _unitOfWork.Tennant.Update(tennant);
+                _unitOfWork.Save();
+                response.Data = _mapper.Map<ResponseOfTennant>(tennant);
+                response.Success = true;
+                response.Message = "Update Successfully.";
             }
-            tennant.Name = tennantRequest.TennantName;
-            tennant.Email = tennantRequest.TennantEmail;
-            tennant.Password = tennantRequest.Password;
-            tennant.Phone = tennantRequest.TennantPhone;
-            tennant.Address = tennantRequest.TennantAddress;
-            tennant.Status = tennantRequest.TennantStatus;
-            _unitOfWork.Tennant.Update(tennant);
-            _unitOfWork.Save();
-            return _mapper.Map<ResponseOfTennant>(tennant);
+            catch(Exception ex) 
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
     }
 }

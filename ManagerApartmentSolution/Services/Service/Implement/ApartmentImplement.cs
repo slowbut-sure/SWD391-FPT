@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Services.Interfaces;
 using Services.Interfaces.IUnitOfWork;
+using Services.Models.Response;
 using Services.Models.Response.ApartmentResponse;
 using Services.Models.Response.TennantResponse;
 using System;
@@ -22,38 +23,67 @@ namespace Services.Servicesss.Implement
             _mapper = mapper;
             _apartmentRepository = apartmentRepository;
         }
-        public async Task<List<ResponseOfApartment>> GetAllApartments(int page, int pageSize, string sortOrder)
+        public async Task<DataResponse<List<ResponseOfApartment>>> GetAllApartments(int page, int pageSize, string sortOrder)
         {
-            var apartments = await _unitOfWork.Apartment.GetAllApartments();
-            if (apartments is null)
+            var response = new DataResponse<List<ResponseOfApartment>>();
+
+            try
             {
-                throw new Exception("The apartment list is empty");
+                var apartments = await _unitOfWork.Apartment.GetAllApartments();
+                if (apartments is null)
+                {
+                    response.Message = "The apartment list is empty";
+                    response.Success = true;
+                }
+                var apartmentDTO = _mapper.Map<List<ResponseOfApartment>>(apartments);
+                // Sắp xếp danh sách yêu cầu theo FromDate gần nhất
+                if (sortOrder == "desc")
+                {
+                    apartmentDTO = apartmentDTO.OrderByDescending(r => r.FromDate).ToList();
+                }
+                else
+                {
+                    apartmentDTO = apartmentDTO.OrderBy(r => r.FromDate).ToList();
+                }
+
+                var startIndex = (page - 1) * pageSize;
+                var pagedApartments = apartmentDTO.Skip(startIndex).Take(pageSize).ToList();
+
+                response.Data = pagedApartments;
+                response.Message = "List Apartments";
+                response.Success = true;
             }
-            var apartmentDTO = _mapper.Map<List<ResponseOfApartment>>(apartments);
-            // Sắp xếp danh sách yêu cầu theo FromDate gần nhất
-            if (sortOrder == "desc")
+            catch (Exception ex)
             {
-                apartmentDTO = apartmentDTO.OrderByDescending(r => r.FromDate).ToList();
-            }
-            else
-            {
-                apartmentDTO = apartmentDTO.OrderBy(r => r.FromDate).ToList();
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
             }
 
-            var startIndex = (page - 1) * pageSize;
-            var pagedApartments = apartmentDTO.Skip(startIndex).Take(pageSize).ToList();
-
-            return pagedApartments;
+            return response;
         }
 
-        public async Task<ResponseOfApartment> GetApartmentById(int id)
+        public async Task<DataResponse<ResponseOfApartment>> GetApartmentById(int id)
         {
-            var apartment = await _apartmentRepository.GetApartmentById(id);
-            if (apartment is null)
+            var response = new DataResponse<ResponseOfApartment>();
+
+            try
             {
-                throw new Exception("Can not found by " + id);
+                var apartment = await _apartmentRepository.GetApartmentById(id);
+                if (apartment is null)
+                {
+                    throw new Exception("Can not found by " + id);
+                }
+                response.Data = _mapper.Map<ResponseOfApartment>(apartment);
+                response.Message = $"ApartmentId: {apartment.ApartmentId}";
+                response.Success = true;
             }
-            return _mapper.Map<ResponseOfApartment>(apartment);
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
     }
 }
