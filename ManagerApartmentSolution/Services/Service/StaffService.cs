@@ -18,5 +18,6 @@ namespace Services.Servicesss
         Task DeleteStaff(int staffId);
         Task<DataResponse<List<ResponseAccountStaff>>> GetStaffByName(string name);
         Task<DataResponse<List<StaffRequestListResponse>>> GetRequets();
+        Task<DataResponse<List<ResponseAccountStaff>>> GetStaffsOnly(); 
     }
 }

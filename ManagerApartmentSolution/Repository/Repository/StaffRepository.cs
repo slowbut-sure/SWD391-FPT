@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Enums.Role;
 
 namespace Repository.Repository
 {
@@ -39,6 +40,11 @@ namespace Repository.Repository
         public async Task<List<Staff>> GetStaffByName(string name)
         {
             return _context.Staff.Where(n => n.Name == name).ToList();
+        }
+
+        public Task<List<Staff>> GetStaffsOnly()
+        {
+            return _context.Staff.Where(s => s.Role == ((int)RolePositionStaff.STAFF).ToString()).ToListAsync();
         }
     }
 }

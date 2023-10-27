@@ -9,7 +9,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/staff")]
     [ApiController]
     public class StaffController : ControllerBase
@@ -85,6 +85,13 @@ namespace ManagerApartment.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("roles/staff")]
+        public async Task<IActionResult> GetStaffOnly()
+        {
+            return Ok(await _staffService.GetStaffsOnly());
+           
         }
     }
 
