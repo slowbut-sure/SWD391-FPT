@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.StaffResponse
+namespace Services.Models.Response.Response.StaffResponse
 {
-     public class ResponseOfStaffLog
+    public class ResponseOfStaffLog
     {
         public int StaffLogId { get; set; }
         public int StaffId { get; set; }

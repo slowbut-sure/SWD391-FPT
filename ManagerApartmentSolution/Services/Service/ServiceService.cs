@@ -1,6 +1,6 @@
 ﻿
 using Services.Models.Request.ServiceRequest;
-using Services.Models.Response.ServiceResponse;
+using Services.Models.Response.Response.ServiceResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using Services.Interfaces.IUnitOfWork;
-using Services.Models.Response.StaffResponse;
+using Services.Models.Response.Response.StaffResponse;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -10,15 +10,16 @@ using Services.Models.Request.StaffRequest;
 using ManagerApartment.Models;
 using Domain.Enums.Status;
 using Services.Models.Request.ServiceRequest;
-using Services.Models.Response.ServiceResponse;
+using Services.Models.Response.Response.ServiceResponse;
 using Services.Interfaces;
-using Services.Models.Response;
+using Services.Models.Response.Response;
 using Services.Authentication;
 using Domain.Enums.Role;
 using Services.Models.Request;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using Azure;
+using Services.Models.Response;
 
 namespace Services.Servicesss.Implement
 {

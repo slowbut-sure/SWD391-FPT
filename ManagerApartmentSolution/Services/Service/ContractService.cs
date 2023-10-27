@@ -1,4 +1,4 @@
-﻿using Services.Models.Response.ContractResponse;
+﻿using Services.Models.Response.Response.ContractResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

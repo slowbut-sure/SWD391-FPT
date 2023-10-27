@@ -1,13 +1,13 @@
-﻿using Services.Models.Response.PackageResponse;
+﻿using Services.Models.Response.Response.PackageResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.StaffResponse
+namespace Services.Models.Response.Response.StaffResponse
 {
-	public class StaffRequestListResponse
+    public class StaffRequestListResponse
 	{
 		public int ApartmentId { get; set; }
 		public int ApartmentOwnerId { get; set; }

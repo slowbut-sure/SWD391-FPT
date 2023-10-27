@@ -1,5 +1,5 @@
 ﻿using ManagerApartment.Models;
-using Services.Models.Response.PackageResponse;
+using Services.Models.Response.Response.PackageResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

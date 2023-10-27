@@ -1,6 +1,6 @@
 ﻿using ManagerApartment.Models;
 using Services.Models.Request.RequestDetailRequest;
-using Services.Models.Response.RequestRespponse;
+using Services.Models.Response.Response.RequestRespponse;
 
 
 namespace Services.Servicesss

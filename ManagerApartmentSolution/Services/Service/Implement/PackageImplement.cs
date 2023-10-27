@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Services.Interfaces.IUnitOfWork;
-using Services.Models.Response.PackageResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response.PackageResponse;
+using Services.Models.Response.Response.TennantResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

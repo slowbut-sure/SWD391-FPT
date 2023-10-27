@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request;
 using Services.Models.Response;
-using Services.Models.Response.OwnerResponse;
-using Services.Models.Response.StaffResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response;
+using Services.Models.Response.Response.OwnerResponse;
+using Services.Models.Response.Response.StaffResponse;
+using Services.Models.Response.Response.TennantResponse;
 using Services.Servicess;
 using System.Net;
 

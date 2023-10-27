@@ -1,5 +1,5 @@
 ﻿using ManagerApartment.Models;
-using Services.Models.Response.OwnerResponse;
+using Services.Models.Response.Response.OwnerResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

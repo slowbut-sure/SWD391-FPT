@@ -8,14 +8,14 @@ using Services;
 using Services.Authentication.Implement;
 using Services.Interfaces.IUnitOfWork;
 using Services.Interfaces;
-using Services.Models.Response;
+using Services.Models.Response.Response;
 using Services.Models.Request;
 using Domain.Enums.Role;
 using Services.Helpers;
 using Microsoft.Identity.Client;
-using Services.Models.Response.StaffResponse;
-using Services.Models.Response.OwnerResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response.StaffResponse;
+using Services.Models.Response.Response.OwnerResponse;
+using Services.Models.Response.Response.TennantResponse;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -58,11 +58,11 @@ namespace Services.Servicess.Implement
             return true;
         }
 
-        public async Task<DataResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin)
+        public async Task<AuthResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin)
         {
             //check account has Exist or not
             var Staff = await _staffRepository.GetAccountByEmail(accountLogin.Email);
-            var response = new DataResponse<ResponseAccountStaff>();
+            var response = new AuthResponse<ResponseAccountStaff>();
             if (Staff == null)
             {
                 response.Success = false;
@@ -103,11 +103,11 @@ namespace Services.Servicess.Implement
             return response;
         }
 
-        public async Task<DataResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin)
+        public async Task<AuthResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin)
         {
             //check account name has Exist or not
             var owner = await _unitOfWork.Owner.GetByEmail(accountLogin.Email);
-            var response = new DataResponse<ResponseAccountOwner>();
+            var response = new AuthResponse<ResponseAccountOwner>();
             if (owner == null)
             {
                 response.Success = false;
@@ -140,11 +140,11 @@ namespace Services.Servicess.Implement
             return response;
         }
 
-        public async Task<DataResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin)
+        public async Task<AuthResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin)
         {
             //check account name has Exist or not
             var tennant = await _unitOfWork.Tennant.GetByEmail(accountLogin.Email);
-            var response = new DataResponse<ResponseAccountTennant>();
+            var response = new AuthResponse<ResponseAccountTennant>();
             if (tennant == null)
             {
                 response.Success = false;
@@ -177,9 +177,9 @@ namespace Services.Servicess.Implement
             return response;
         }
 
-        public async Task<DataResponse<AccountResponse>> Validate(RequestLogin accountLogin)
+        public async Task<AuthResponse<AccountResponse>> Validate(RequestLogin accountLogin)
         {
-            var response = new DataResponse<AccountResponse>();
+            var response = new AuthResponse<AccountResponse>();
 
             var Staff = await _unitOfWork.Staff.GetAccountByEmail(accountLogin.Email);
             var tennant = await _unitOfWork.Tennant.GetByEmail(accountLogin.Email);
@@ -291,9 +291,9 @@ namespace Services.Servicess.Implement
             return response;
         }
 
-        public async Task<DataResponse<AccountResponse>> ValidateToken(string token)
+        public async Task<AuthResponse<AccountResponse>> ValidateToken(string token)
         {
-            var response = new DataResponse<AccountResponse>();
+            var response = new AuthResponse<AccountResponse>();
             if (string.IsNullOrEmpty(token))
             {
                 response.Message = "Token is required";
@@ -323,7 +323,7 @@ namespace Services.Servicess.Implement
                 if (now > tokenDate)
                 {
                     // Expired = true
-                    response.Success = true;
+                    response.Success = false;
                     response.Message = "Token is expired";
                     return response;
                 }

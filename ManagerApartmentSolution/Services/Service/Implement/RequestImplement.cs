@@ -2,8 +2,11 @@
 using Domain.Enums.Status;
 using ManagerApartment.Models;
 using Services.Interfaces.IUnitOfWork;
-using Services.Models.Response.RequestRespponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response;
+using Services.Models.Response.Response;
+using Services.Models.Response.Response.RequestRespponse;
+using Services.Models.Response.Response.StaffResponse;
+using Services.Models.Response.Response.TennantResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,13 +37,14 @@ namespace Services.Servicesss.Implement
             _unitOfWork.Save();
         }
 
-        public async Task<List<ResponseOfRequest>> GetAllRequests(int page, int pageSize, string sortOrder)
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetAllRequests(int page, int pageSize, string sortOrder)
         {
             var rqs = await _unitOfWork.Request.GetAllRequests();
             if (rqs is null)
             {
                 throw new Exception("The request list is empty");
             }
+            var response = new DataResponse<List<ResponseOfRequest>>();
             var requestDtos = _mapper.Map<List<ResponseOfRequest>>(rqs);
 
             // Sắp xếp danh sách yêu cầu theo BookDateTime gần nhất
@@ -55,8 +59,10 @@ namespace Services.Servicesss.Implement
 
             var startIndex = (page - 1) * pageSize;
             var pagedRequests = requestDtos.Skip(startIndex).Take(pageSize).ToList();
-
-            return pagedRequests;
+            response.Data = pagedRequests;
+            response.Success = true;
+            response.Message = "Successfully get requested";
+            return response;
         }
 
         public async Task<ResponseOfRequest> GetRequestById(int id)
