@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Enums.Role;
+using Domain.Enums.Status;
 
 namespace Repository.Repository
 {
@@ -42,9 +43,12 @@ namespace Repository.Repository
             return _context.Staff.Where(n => n.Name == name).ToList();
         }
 
-        public Task<List<Staff>> GetStaffsOnly()
+        public async Task<List<Staff>> GetStaffsOnly()
         {
-            return _context.Staff.Where(s => s.Role == ((int)RolePositionStaff.STAFF).ToString()).ToListAsync();
+            return await _context.Staff
+                        .Include(s => s.RequestLogs.Where(rl => rl.Status == ((int)RequesLogEnum.PENDING).ToString()))
+                        .Where(s => s.Role == ((int)RolePositionStaff.STAFF).ToString())
+                        .ToListAsync();
         }
     }
 }

@@ -159,9 +159,9 @@ namespace Services.Servicesss.Implement
             return response;
         }
 
-        public async Task<DataResponse<List<ResponseAccountStaff>>> GetStaffsOnly()
+        public async Task<DataResponse<List<StaffsOnlyResponse>>> GetStaffsOnly()
         {
-            var response = new DataResponse<List<ResponseAccountStaff>>();
+            var response = new DataResponse<List<StaffsOnlyResponse>>();
             try
             {
                 var list = await _unitOfWork.Staff.GetStaffsOnly();
@@ -175,7 +175,7 @@ namespace Services.Servicesss.Implement
                 {
                     staff.Role = RolePositionStaff.STAFF.ToString();
                 }
-                response.Data = _mapper.Map<List<ResponseAccountStaff>>(list);
+                response.Data = _mapper.Map<List<StaffsOnlyResponse>>(list);
                 response.Success = true;
                 response.Message = "List of Staff Roles";
 
