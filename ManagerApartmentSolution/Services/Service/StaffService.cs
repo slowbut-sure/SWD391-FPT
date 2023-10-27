@@ -1,4 +1,5 @@
-﻿using Services.Models.Request.StaffRequest;
+﻿using Services.Models.Request;
+using Services.Models.Request.StaffRequest;
 using Services.Models.Response;
 using Services.Models.Response.StaffResponse;
 using System;
@@ -18,6 +19,7 @@ namespace Services.Servicesss
         Task DeleteStaff(int staffId);
         Task<DataResponse<List<ResponseAccountStaff>>> GetStaffByName(string name);
         Task<DataResponse<List<StaffRequestListResponse>>> GetRequets();
-        Task<DataResponse<List<StaffsOnlyResponse>>> GetStaffsOnly(); 
+        Task<DataResponse<List<StaffsOnlyResponse>>> GetStaffsOnly();
+        Task<DataResponse<ResponseAccountStaff>> ChangePasswordService(RequestChangePassword request, int? Id);
     }
 }

@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services;
+using Services.Models.Request;
 using Services.Models.Request.StaffRequest;
 using Services.Models.Request.TennantRequest;
 using Services.Models.Response;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;
 using Services.Servicesss;
+using System.Security.Claims;
 
 namespace ManagerApartment.Controllers
 {
@@ -92,6 +95,18 @@ namespace ManagerApartment.Controllers
         {
             return Ok(await _staffService.GetStaffsOnly());
            
+        }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword(RequestChangePassword request)
+        {           
+            var id = User.FindFirstValue("Id");
+            if (id != null)
+            {
+                return Ok(await _staffService.ChangePasswordService(request, int.Parse(id)));
+            }
+            else
+            { return BadRequest(); }
         }
     }
 
