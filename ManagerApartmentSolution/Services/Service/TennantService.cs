@@ -1,4 +1,5 @@
 ﻿using Services.Models.Request.TennantRequest;
+using Services.Models.Response;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;
 using System;
@@ -12,10 +13,10 @@ namespace Services.Servicesss
     public interface TennantService
     {
         
-        Task<List<ResponseOfTennant>> GetAllTennants();
-        Task<ResponseOfTennant> GetTennantById(int id);
-        Task<ResponseOfTennant> CreateTennant(RequestCreateTennant tennantRequest);
+        Task<DataResponse<List<ResponseOfTennant>>> GetAllTennants();
+        Task<DataResponse<ResponseOfTennant>> GetTennantById(int id);
+        Task<DataResponse<ResponseOfTennant>> CreateTennant(RequestCreateTennant tennantRequest);
         Task DeleteTennant(int tennantId);
-        Task<ResponseOfTennant> UpdateTennant(int id, UpdateTennant tennantRequest);
+        Task<DataResponse<ResponseOfTennant>> UpdateTennant(int id, UpdateTennant tennantRequest);
     }
 }

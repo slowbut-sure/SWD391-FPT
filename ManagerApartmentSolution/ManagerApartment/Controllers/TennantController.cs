@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Request.ServiceRequest;
 using Services.Models.Request.TennantRequest;
+using Services.Models.Response;
 using Services.Models.Response.ServiceResponse;
 using Services.Models.Response.StaffResponse;
 using Services.Models.Response.TennantResponse;
@@ -21,7 +22,7 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfTennant>>> GetTennants()
+        public async Task<ActionResult<DataResponse<List<ResponseOfTennant>>>> GetTennants()
         {
             try
             {
@@ -35,7 +36,7 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ResponseOfTennant>> GetTennantById(int id)
+        public async Task<ActionResult<DataResponse<ResponseOfTennant>>> GetTennantById(int id)
         {
             try
             {
@@ -49,13 +50,13 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseOfTennant>> CreateTennant(RequestCreateTennant tennant)
+        public async Task<ActionResult<DataResponse<ResponseOfTennant>>> CreateTennant(RequestCreateTennant tennant)
         {
             var createdTennant = await _tennantService.CreateTennant(tennant);
             return createdTennant == null ? NotFound() : Ok(createdTennant);
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<ResponseOfTennant>> UpdateTennant(int id, UpdateTennant updateTennant)
+        public async Task<ActionResult<DataResponse<ResponseOfTennant>>> UpdateTennant(int id, UpdateTennant updateTennant)
         {
             var updatedTennant = await _tennantService.UpdateTennant(id, updateTennant);
             return updatedTennant == null ? NotFound() : Ok(updatedTennant);
