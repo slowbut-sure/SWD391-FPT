@@ -16,7 +16,7 @@ namespace ManagerApartment.Controllers
             _apartmentService = apartmentService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfApartment>>> GetApartments(int page = 1, int pageSize = 10, string sortOrder = "asc")
+        public async Task<IActionResult> GetApartments(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
@@ -25,12 +25,12 @@ namespace ManagerApartment.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ResponseOfApartment>> GetApartmentById(int id)
+        public async Task<IActionResult> GetApartmentById(int id)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace ManagerApartment.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
     }
