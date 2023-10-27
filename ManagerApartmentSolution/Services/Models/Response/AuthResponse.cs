@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Services.Models.Response.Response
 {
-    public interface AccountResponse
+    public class AuthResponse<T> : DataResponse<T>
     {
+        public string? Token { get; set; }
     }
 }

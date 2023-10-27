@@ -9,7 +9,6 @@ namespace Services.Models.Response
     public class DataResponse<T>
     {
         public Object Data { get; set; }
-        public string Token { get; set; }
         public bool Success { get; set; }
         public string Message { get; set; }
     }

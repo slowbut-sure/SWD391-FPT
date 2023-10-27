@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Request.ServiceRequest;
-using Services.Models.Response.ServiceResponse;
+using Services.Models.Response.Response.ServiceResponse;
 using Services.Servicesss;
 
 namespace ManagerApartment.Controllers

@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Services.Models.Request.ServiceRequest;
 using Services.Models.Request.TennantRequest;
 using Services.Models.Response;
-using Services.Models.Response.ServiceResponse;
-using Services.Models.Response.StaffResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response;
+using Services.Models.Response.Response.ServiceResponse;
+using Services.Models.Response.Response.StaffResponse;
+using Services.Models.Response.Response.TennantResponse;
 using Services.Servicesss;
 
 namespace ManagerApartment.Controllers

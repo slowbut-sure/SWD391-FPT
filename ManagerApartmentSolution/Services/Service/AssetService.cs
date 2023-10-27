@@ -1,7 +1,7 @@
 ﻿using ManagerApartment.Models;
 using Services.Models.Request.AssetRequest;
-using Services.Models.Response.Asset;
-using Services.Models.Response.ResponseAssetHistoryByAssetId;
+using Services.Models.Response.Response.Asset;
+using Services.Models.Response.Response.ResponseAssetHistoryByAssetId;
 using System;
 using System.Collections.Generic;
 using System.Linq;

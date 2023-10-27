@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Request.AssetRequest;
-using Services.Models.Request.TennantRequest;
-using Services.Models.Response.Asset;
-using Services.Models.Response.ResponseAssetHistoryByAssetId;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response.Asset;
+using Services.Models.Response.Response.ResponseAssetHistoryByAssetId;
 using Services.Servicesss;
 
 namespace ManagerApartment.Controllers

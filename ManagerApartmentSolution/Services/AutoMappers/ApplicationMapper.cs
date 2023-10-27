@@ -16,19 +16,19 @@ using Services.Models.Request.RequestRequest;
 using Services.Models.Request.ServiceRequest;
 using Services.Models.Request.StaffRequest;
 using Services.Models.Request.TennantRequest;
-using Services.Models.Response.AddOnResponse;
-using Services.Models.Response.ApartmentResponse;
-using Services.Models.Response.Asset;
-using Services.Models.Response.Bill;
-using Services.Models.Response.BuildingResponse;
-using Services.Models.Response.ContractResponse;
-using Services.Models.Response.OwnerResponse;
-using Services.Models.Response.PackageResponse;
-using Services.Models.Response.RequestRespponse;
-using Services.Models.Response.ResponseAssetHistoryByAssetId;
-using Services.Models.Response.ServiceResponse;
-using Services.Models.Response.StaffResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response.AddOnResponse;
+using Services.Models.Response.Response.ApartmentResponse;
+using Services.Models.Response.Response.Asset;
+using Services.Models.Response.Response.Bill;
+using Services.Models.Response.Response.BuildingResponse;
+using Services.Models.Response.Response.ContractResponse;
+using Services.Models.Response.Response.OwnerResponse;
+using Services.Models.Response.Response.PackageResponse;
+using Services.Models.Response.Response.RequestRespponse;
+using Services.Models.Response.Response.ResponseAssetHistoryByAssetId;
+using Services.Models.Response.Response.ServiceResponse;
+using Services.Models.Response.Response.StaffResponse;
+using Services.Models.Response.Response.TennantResponse;
 
 namespace Services.AutoMappers
 {

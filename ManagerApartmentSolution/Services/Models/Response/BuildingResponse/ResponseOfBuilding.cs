@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.BuildingResponse
+namespace Services.Models.Response.Response.BuildingResponse
 {
     public class ResponseOfBuilding
     {

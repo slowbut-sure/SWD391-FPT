@@ -1,7 +1,8 @@
 ﻿using Services.Models.Request.TennantRequest;
 using Services.Models.Response;
-using Services.Models.Response.StaffResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response;
+using Services.Models.Response.Response.StaffResponse;
+using Services.Models.Response.Response.TennantResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,7 @@
 ﻿using ManagerApartment.Models;
 using Services.Models.Response;
-using Services.Models.Response.ApartmentResponse;
+using Services.Models.Response.Response;
+using Services.Models.Response.Response.ApartmentResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;

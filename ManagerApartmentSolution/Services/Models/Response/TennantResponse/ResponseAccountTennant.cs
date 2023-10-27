@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.TennantResponse
+namespace Services.Models.Response.Response.TennantResponse
 {
     public class ResponseAccountTennant : AccountResponse
     {

@@ -3,7 +3,7 @@ using Domain.Enums.Status;
 using ManagerApartment.Models;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request.RequestDetailRequest;
-using Services.Models.Response.RequestRespponse;
+using Services.Models.Response.Response.RequestRespponse;
 
 
 

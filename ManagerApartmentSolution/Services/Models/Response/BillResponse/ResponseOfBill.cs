@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.Bill
+namespace Services.Models.Response.Response.Bill
 {
     public class ResponseOfBill
     {

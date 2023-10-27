@@ -1,21 +1,21 @@
 ﻿
 
 using Services.Models.Request;
-using Services.Models.Response;
-using Services.Models.Response.OwnerResponse;
-using Services.Models.Response.StaffResponse;
-using Services.Models.Response.TennantResponse;
+using Services.Models.Response.Response;
+using Services.Models.Response.Response.OwnerResponse;
+using Services.Models.Response.Response.StaffResponse;
+using Services.Models.Response.Response.TennantResponse;
 
 namespace Services.Servicess
 {
 
     public interface AuthenticationService
     {
-        Task<DataResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin);
-        Task<DataResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin);
-        Task<DataResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin);
-        Task<DataResponse<AccountResponse>> Validate(RequestLogin accountLogin);
-        Task<DataResponse<AccountResponse>> ValidateToken(string token);
+        Task<AuthResponse<ResponseAccountStaff>> ValidateStaff(RequestLogin accountLogin);
+        Task<AuthResponse<ResponseAccountOwner>> ValidateOwner(RequestLogin accountLogin);
+        Task<AuthResponse<ResponseAccountTennant>> ValidateTennant(RequestLogin accountLogin);
+        Task<AuthResponse<AccountResponse>> Validate(RequestLogin accountLogin);
+        Task<AuthResponse<AccountResponse>> ValidateToken(string token);
         Task<Boolean> Logout(int accountId);
 
 

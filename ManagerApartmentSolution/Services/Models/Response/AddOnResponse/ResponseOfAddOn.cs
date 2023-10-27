@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.AddOnResponse
+namespace Services.Models.Response.Response.AddOnResponse
 {
     public class ResponseOfAddOn
     {

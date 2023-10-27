@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Models.Response.StaffResponse
+namespace Services.Models.Response.Response.StaffResponse
 {
     public class ResponseOfStaffDetail
     {
