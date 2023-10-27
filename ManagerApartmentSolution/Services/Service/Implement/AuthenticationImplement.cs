@@ -121,15 +121,6 @@ namespace Services.Servicess.Implement
                 response.Message = "Invalid Password";
                 return response;
             }
-
-            //var check = await _cacheManager.Get<bool>(owner.OwnerId.ToString());
-            //if (check)
-            //{
-            //    response.Success = false;
-            //    response.Messenger = "This Account has Login";
-            //    return response;
-            //}
-
             string role = ROLEACCOUNT.OWNER.ToString();
 
             //_cacheManager.Set(owner.OwnerId.ToString(), true, 60);
