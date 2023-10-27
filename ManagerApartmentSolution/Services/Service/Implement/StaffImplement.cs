@@ -15,6 +15,10 @@ using Services.Interfaces;
 using Services.Models.Response;
 using Services.Authentication;
 using Domain.Enums.Role;
+using Services.Models.Request;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+using Azure;
 
 namespace Services.Servicesss.Implement
 {
@@ -24,12 +28,55 @@ namespace Services.Servicesss.Implement
         private readonly IMapper _mapper;
         private readonly IStaffRepository _staffRepository;
         private readonly IAuthentication _authentication;
-        public StaffImplement(IUnitOfWork unitOfWork, IMapper mapper, IStaffRepository staffRepository, IAuthentication authentication)
+        private readonly IHttpContextAccessor _contextAccessor;
+        public StaffImplement(IUnitOfWork unitOfWork, IMapper mapper, IStaffRepository staffRepository, IAuthentication authentication, IHttpContextAccessor contextAccessor = null)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _staffRepository = staffRepository;
             _authentication = authentication;
+            _contextAccessor = contextAccessor;
+        }
+
+        public async Task<DataResponse<ResponseAccountStaff>> ChangePasswordService(RequestChangePassword request, int? Id)
+        {
+            var response = new DataResponse<ResponseAccountStaff>();
+
+            try
+            {
+                if (Id != null)
+                {
+
+                    var staff = await _unitOfWork.Staff.GetStaffById(Id);
+                    if (_authentication.Verify(staff.Password, request.OldPassword))
+                    {
+                        staff.Password = _authentication.Hash(request.NewPassword);
+                        _unitOfWork.Staff.Update(staff);
+                        _unitOfWork.Save();
+
+                        response.Data = _mapper.Map<ResponseAccountStaff>(staff);
+                        response.Success = true;
+                        response.Message = "Password Changed";
+                    }
+                    else
+                    {
+                        response.Success = false;
+                        response.Message = "Wrong Old Password";
+                    }
+                }
+                else
+                {
+                    response.Success = true;
+                    response.Message = "Can't Find User.";
+                }
+            }
+            catch (Exception ex) 
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
         public async Task<DataResponse<ResponseAccountStaff>> CreateStaff(RequestCreateStaff staff)

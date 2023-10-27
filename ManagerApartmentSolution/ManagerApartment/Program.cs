@@ -28,7 +28,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddMemoryCache();
 
-
+builder.Services.AddSingleton<CurrentUser>();
 
 // Configuration
 var configuration = new ConfigurationBuilder()

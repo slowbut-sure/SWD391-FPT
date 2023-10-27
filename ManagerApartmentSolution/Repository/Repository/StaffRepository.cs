@@ -33,7 +33,7 @@ namespace Repository.Repository
             return staffs;
         }
 
-        public async Task<Staff> GetStaffById(int id)
+        public async Task<Staff> GetStaffById(int? id)
         {
             return  _context.Staff.FirstOrDefault(s => s.StaffId == id);
         }

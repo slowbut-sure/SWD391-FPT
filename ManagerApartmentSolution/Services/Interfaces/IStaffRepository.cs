@@ -12,7 +12,7 @@ namespace Services.Interfaces
     public interface IStaffRepository : IGenericRepository<Staff>
     {
         Task<List<Staff>> GetAllStaffs();
-        Task<Staff> GetStaffById(int id);
+        Task<Staff> GetStaffById(int? id);
         Task<Staff> GetAccount(string staffAccount);
         Task<Staff> GetAccountByEmail(string email);
         Task<List<Staff>> GetStaffByName(string name);
