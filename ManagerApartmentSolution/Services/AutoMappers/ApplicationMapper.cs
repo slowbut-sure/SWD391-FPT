@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Domain.Entity;
 using Domain.Enums.Role;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
@@ -231,16 +232,19 @@ namespace Services.AutoMappers
 
             //=============================================================================================================
 
-            CreateMap<Request, ResponseOfRequest>()
+            CreateMap<RequestView, ResponseOfRequest>()
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
-                .ForMember(re => re.OwnerId, act => act.MapFrom(src => src.Apartment.OwnerId))
-                .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Description))
+                .ForMember(re => re.OwnerId, act => act.MapFrom(src => src.OwnerId))
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.RequestDescription))
                 .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
-                .ForMember(re => re.EndDate, act => act.MapFrom(src => src.EndDate))
+                .ForMember(re => re.EndDateTime, act => act.MapFrom(src => src.EndDateTime))
                 .ForMember(re => re.IsSequence, act => act.MapFrom(src => src.IsSequence))
-                .ForMember(re => re.RequestSequence, act => act.MapFrom(src => src.Sequence))
-                .ForMember(re => re.ReqStatus, act => act.MapFrom(src => src.ReqStatus));
+                .ForMember(re => re.sequence, act => act.MapFrom(src => src.RequestSequence))
+                .ForMember(re => re.ReqStatus, act => act.MapFrom(src => src.ReqStatus))
+                .ForMember(re => re.NumberOfAddOns, act => act.MapFrom(src => src.NumberOfAddOns))
+                .ForMember(re => re.PackageRequestedId, act => act.MapFrom(src => src.PackageRequestedId));
+            
 
             CreateMap<RequestCreateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
