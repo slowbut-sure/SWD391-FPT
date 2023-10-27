@@ -13,6 +13,7 @@ using Services.Models.Request.ServiceRequest;
 using Services.Models.Response.ServiceResponse;
 using Services.Interfaces;
 using Services.Models.Response;
+using Services.Authentication;
 
 namespace Services.Servicesss.Implement
 {
@@ -21,20 +22,37 @@ namespace Services.Servicesss.Implement
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IStaffRepository _staffRepository;
-        public StaffImplement(IUnitOfWork unitOfWork, IMapper mapper, IStaffRepository staffRepository)
+        private readonly IAuthentication _authentication;
+        public StaffImplement(IUnitOfWork unitOfWork, IMapper mapper, IStaffRepository staffRepository, IAuthentication authentication)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _staffRepository = staffRepository;
+            _authentication = authentication;
         }
 
-        public async Task<ResponseAccountStaff> CreateStaff(RequestCreateStaff staff)
+        public async Task<DataResponse<ResponseAccountStaff>> CreateStaff(RequestCreateStaff staff)
         {
-            var createStaff = _mapper.Map<Staff>(staff);
-            createStaff.StaffStatus = StaffEnum.ACTIVE.ToString();
-            _unitOfWork.Staff.Add(createStaff);
-            _unitOfWork.Save();
-            return _mapper.Map<ResponseAccountStaff>(createStaff);
+            var response = new DataResponse<ResponseAccountStaff>();
+
+            try
+            {
+                var createStaff = _mapper.Map<Staff>(staff);
+                createStaff.StaffStatus = StaffEnum.ACTIVE.ToString();
+                createStaff.Password = _authentication.Hash(staff.StaffPassword);
+                _unitOfWork.Staff.Add(createStaff);
+                _unitOfWork.Save();
+                response.Data = _mapper.Map<ResponseAccountStaff>(createStaff);
+                response.Message = "Create Successfully.";
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
         public async Task DeleteStaff(int staffId)
@@ -49,14 +67,30 @@ namespace Services.Servicesss.Implement
             _unitOfWork.Save();
         }
 
-        public async Task<List<ResponseAccountStaff>> GetAllStaffs()
+        public async Task<DataResponse<List<ResponseAccountStaff>>> GetAllStaffs()
         {
-            var staffs =  _unitOfWork.Staff.GetAll().ToList();
-            if(staffs is null)
+            var response = new DataResponse<List<ResponseAccountStaff>>();
+
+            try
             {
-                throw new Exception("The staff list is empty");
+                var staffs = _unitOfWork.Staff.GetAll().ToList();
+                if (staffs is null)
+                {
+                    response.Message = "List staffs is null";
+                    response.Success = true;
+                    return response;
+                }
+                response.Data = _mapper.Map<List<ResponseAccountStaff>>(staffs);
+                response.Message = "List staffs";
+                response.Success = true;
             }
-            return _mapper.Map<List<ResponseAccountStaff>>(staffs);
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
         public async Task<DataResponse<List<StaffRequestListResponse>>> GetRequets()
@@ -78,40 +112,85 @@ namespace Services.Servicesss.Implement
             return response;
         }
 
-        public async Task<ResponseAccountStaff> GetStaffById(int id)
+        public async Task<DataResponse<ResponseAccountStaff>> GetStaffById(int id)
         {
-            var staff = await _unitOfWork.Staff.GetStaffById(id);
-            if (staff is null)
+            var response = new DataResponse<ResponseAccountStaff>();
+
+            try
             {
-                throw new Exception("The staff does not exist");
+                var staff = await _unitOfWork.Staff.GetStaffById(id);
+                if (staff is null)
+                {
+                    response.Message = "Staff not exist";
+                    response.Success = false;
+                    return response;
+                }
+                response.Data = _mapper.Map<ResponseAccountStaff>(staff);
+                response.Success = true;
+                response.Message = $"StaffId: {id}";
             }
-            return _mapper.Map<ResponseAccountStaff>(staff);
+            catch (Exception ex) 
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
-        public async Task<List<ResponseAccountStaff>> GetStaffByName(string name)
+        public async Task<DataResponse<List<ResponseAccountStaff>>> GetStaffByName(string name)
         {
-            var names = await _staffRepository.GetStaffByName(name);
-            return _mapper.Map<List<ResponseAccountStaff>>(names);
+            var response = new DataResponse<List<ResponseAccountStaff>>();
+
+            try
+            {
+                var names = await _staffRepository.GetStaffByName(name);
+                response.Data = _mapper.Map<List<ResponseAccountStaff>>(names);
+                response.Success = true;
+                response.Message = "Get Staffs by name";
+            }
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
-        public async Task<ResponseAccountStaff> UpdateStaff(int staffId, UpdateStaff updateStaff)
+        public async Task<DataResponse<ResponseAccountStaff>> UpdateStaff(int staffId, UpdateStaff updateStaff)
         {
-            var staff = _unitOfWork.Staff.GetById(staffId);
-            if (staff is null)
-            {
-                throw new Exception("Can not found ");
-            }
-            staff.Name = updateStaff.StaffName;
-            staff.Phone = updateStaff.StaffPhone;
-            staff.Password = updateStaff.StaffPassword;
-            staff.Address = updateStaff.StaffAddress;
-            staff.AvatarLink = updateStaff.AvatarLink;
-            staff.StaffStatus = updateStaff.StaffStatus;
-            staff.Code = updateStaff.StaffCode;
-            _unitOfWork.Staff.Update(staff);
-            _unitOfWork.Save();
-            return _mapper.Map<ResponseAccountStaff>(staff);
+            var response = new DataResponse<ResponseAccountStaff>();
 
+            try
+            {
+                var staff = _unitOfWork.Staff.GetById(staffId);
+                if (staff is null)
+                {
+                    response.Message = "Can not found";
+                    response.Success = false;
+                    return response;
+                }
+                staff.Name = updateStaff.StaffName;
+                staff.Phone = updateStaff.StaffPhone;
+                staff.Password = updateStaff.StaffPassword;
+                staff.Address = updateStaff.StaffAddress;
+                staff.AvatarLink = updateStaff.AvatarLink;
+                staff.StaffStatus = updateStaff.StaffStatus;
+                staff.Code = updateStaff.StaffCode;
+                _unitOfWork.Staff.Update(staff);
+                _unitOfWork.Save();
+                response.Data = _mapper.Map<ResponseAccountStaff>(staff);
+                response.Message = "Update Successfully.";
+                response.Success = true;
+            }
+            catch (Exception ex) 
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
     }
 }
