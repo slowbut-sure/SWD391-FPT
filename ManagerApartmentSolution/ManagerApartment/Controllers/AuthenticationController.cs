@@ -92,7 +92,7 @@ namespace ManagerApartment.Controllers
             return Ok(staff);
         }
 
-        [HttpPost("token/renew")]
+        [HttpGet("token/renew")]
         public async Task<ActionResult<DataResponse<AccountResponse>>> RenewToken()
         {
             string token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
