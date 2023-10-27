@@ -16,5 +16,6 @@ namespace Services.Interfaces
         Task<Staff> GetAccount(string staffAccount);
         Task<Staff> GetAccountByEmail(string email);
         Task<List<Staff>> GetStaffByName(string name);
+        Task<List<Staff>> GetStaffsOnly();
     }
 }

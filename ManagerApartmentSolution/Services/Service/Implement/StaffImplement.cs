@@ -14,6 +14,7 @@ using Services.Models.Response.ServiceResponse;
 using Services.Interfaces;
 using Services.Models.Response;
 using Services.Authentication;
+using Domain.Enums.Role;
 
 namespace Services.Servicesss.Implement
 {
@@ -97,7 +98,7 @@ namespace Services.Servicesss.Implement
         {
             var response = new DataResponse<List<StaffRequestListResponse>>();
             var requets = await _unitOfWork.Request.GetStaffRequests();
-            if (requets is null)
+            if (requets == null)
             {
                 response.Success = true;
                 response.Message = "Empty request";
@@ -148,6 +149,36 @@ namespace Services.Servicesss.Implement
                 response.Data = _mapper.Map<List<ResponseAccountStaff>>(names);
                 response.Success = true;
                 response.Message = "Get Staffs by name";
+            }
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
+        }
+
+        public async Task<DataResponse<List<StaffsOnlyResponse>>> GetStaffsOnly()
+        {
+            var response = new DataResponse<List<StaffsOnlyResponse>>();
+            try
+            {
+                var list = await _unitOfWork.Staff.GetStaffsOnly();
+                if (list is null)
+                {
+                    response.Message = "No staff found";
+                    response.Success = false;
+                    return response;
+                }
+                foreach (var staff in list)
+                {
+                    staff.Role = RolePositionStaff.STAFF.ToString();
+                }
+                response.Data = _mapper.Map<List<StaffsOnlyResponse>>(list);
+                response.Success = true;
+                response.Message = "List of Staff Roles";
+
             }
             catch (Exception ex)
             {
