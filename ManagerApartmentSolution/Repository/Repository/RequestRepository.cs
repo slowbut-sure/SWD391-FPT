@@ -41,6 +41,9 @@ namespace Repository.Repository
                                                         OwnerId = ow.OwnerId,
                                                         RequestDescription = rq.Description,
                                                         PackageRequestedId = (int)rq.PackageId,
+                                                        PackageName = pa.Name,
+                                                        owner = ow.Name,
+                                                        ApartmentName = ap.ApartmentName
                                                     } into reqGroup
                                                     group reqGroup by new
                                                     {
@@ -52,6 +55,9 @@ namespace Repository.Repository
                                                         OwnerId = reqGroup.OwnerId,
                                                         RequestDescription = reqGroup.RequestDescription,
                                                         PackageRequestedId = (int)reqGroup.PackageRequestedId,
+                                                        PackageName = reqGroup.PackageName,
+                                                        owner = reqGroup.owner,
+                                                        ApartmentName = reqGroup.ApartmentName
                                                     } into countGroup
                                                     select new RequestView
                                                     {
@@ -63,7 +69,10 @@ namespace Repository.Repository
                                                         OwnerId = countGroup.Key.OwnerId,
                                                         RequestDescription = countGroup.Key.RequestDescription,
                                                         PackageRequestedId = (int)countGroup.Key.PackageRequestedId,
-                                                        NumberOfAddOns = countGroup.Count()
+                                                        NumberOfAddOns = countGroup.Count(),
+                                                        PackageName = countGroup.Key.PackageName,
+                                                        Owner = countGroup.Key.owner,
+                                                        ApartmentName= countGroup.Key.ApartmentName
                                                     }
                            );
             return await result.ToListAsync();

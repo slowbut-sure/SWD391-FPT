@@ -12,6 +12,9 @@ namespace Services.Models.Response.Response.RequestRespponse
         public int ApartmentId { get; set; }
         public int PackageRequestedId { get; set; }
         public int OwnerId { get; set; }
+        public string ApartmentName { get; set; }
+        public string PackageName { get; set; }
+        public string Owner { get; set; }
 
         public string Description { get; set; }
 

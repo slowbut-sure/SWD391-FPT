@@ -11,6 +11,9 @@ namespace Domain.Entity
         public int RequestId { get; set; }
         public int ApartmentId { get; set; }
         public int PackageRequestedId { get; set; }
+        public string PackageName { get; set; }
+        public string ApartmentName { get; set; }
+        public string Owner { get; set; }
         public int OwnerId { get; set; }
 
         public string? RequestDescription { get; set; }
