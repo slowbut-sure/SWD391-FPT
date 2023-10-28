@@ -15,19 +15,22 @@ namespace Repository.Repository
         public RequestDetailRepository(ManagerApartmentContext context) : base(context) { }
         public async Task<List<RequestDetail>> GetAllRequestDetails()
         {
-            var requestDetails = await _context.RequestDetails
+            throw new NotImplementedException();
+/*            var requestDetails = await _context.RequestDetails
                 .Include(r => r.Request)
                 .Include(r => r.Package)
                 .ToListAsync();
-            return requestDetails;
+            return requestDetails;*/
         }
 
         public async Task<RequestDetail> GetRequestDetailById(int id)
         {
-            return  _context.RequestDetails
-                .Include(r => r.Request)
-                .Include(r => r.Package)
-                .FirstOrDefault(r => r.RequestDetailId == id);
+            throw new NotImplementedException();
+
+            /*            return  _context.RequestDetails
+                            .Include(r => r.Request)
+                            .Include(r => r.Package)
+                            .FirstOrDefault(r => r.RequestDetailId == id);*/
         }
     }
 }
