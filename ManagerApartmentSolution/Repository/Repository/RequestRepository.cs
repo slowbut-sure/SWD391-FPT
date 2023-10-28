@@ -42,7 +42,8 @@ namespace Repository.Repository
                                                         RequestDescription = rq.Description,
                                                         PackageRequestedId = (int)rd.PackageId,
                                                         PackageName = pa.Name,
-                                                        owner = ow.Name
+                                                        owner = ow.Name,
+                                                        ApartmentName = ap.ApartmentName
                                                     } into reqGroup
                                                     group reqGroup by new
                                                     {
@@ -55,7 +56,8 @@ namespace Repository.Repository
                                                         RequestDescription = reqGroup.RequestDescription,
                                                         PackageRequestedId = (int)reqGroup.PackageRequestedId,
                                                         PackageName = reqGroup.PackageName,
-                                                        owner = reqGroup.owner
+                                                        owner = reqGroup.owner,
+                                                        ApartmentName = reqGroup.ApartmentName
                                                     } into countGroup
                                                     select new RequestView
                                                     {
@@ -69,8 +71,8 @@ namespace Repository.Repository
                                                         PackageRequestedId = (int)countGroup.Key.PackageRequestedId,
                                                         NumberOfAddOns = countGroup.Count(),
                                                         PackageName = countGroup.Key.PackageName,
-                                                        Owner = countGroup.Key.owner
-                                                        
+                                                        Owner = countGroup.Key.owner,
+                                                        ApartmentName= countGroup.Key.ApartmentName
                                                     }
                            );
             return await result.ToListAsync();
