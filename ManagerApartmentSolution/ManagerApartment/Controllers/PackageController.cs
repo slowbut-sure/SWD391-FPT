@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Models.Response;
 using Services.Models.Response.Response.PackageResponse;
 using Services.Servicesss;
 
@@ -16,10 +17,12 @@ namespace ManagerApartment.Controllers
             _packageService = packageService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfPackage>>> GetPackages(int page = 1, int pageSize = 10, string sortOrder = "asc")
+        public async Task<IActionResult> GetPackages(int page = 1)
         {
             try
             {
+                int pageSize = 10;
+                string sortOrder = "asc";
                 var packages = await _packageService.GetAllPackages(page, pageSize, sortOrder);
                 return Ok(packages);
             }

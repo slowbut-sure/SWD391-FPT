@@ -1,4 +1,5 @@
 ﻿using ManagerApartment.Models;
+using Services.Models.Response;
 using Services.Models.Response.Response.PackageResponse;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Services.Servicesss
 {
     public interface PackageService
     {
-        Task<List<ResponseOfPackage>> GetAllPackages(int page, int pageSize, string sortOrder);
+        Task<PaginationResponse<List<ResponseOfPackage>>> GetAllPackages(int page, int pageSize, string sortOrder);
         Task<ResponseOfPackage> GetPackageById(int id);
     }
 }

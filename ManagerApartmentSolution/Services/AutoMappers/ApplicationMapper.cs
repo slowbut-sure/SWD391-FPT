@@ -210,12 +210,12 @@ namespace Services.AutoMappers
 
             CreateMap<Package, ResponseOfPackage>()
                 .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
-                .ForMember(re => re.ApartmentTypeId, act => act.MapFrom(src => src.ApartmentType.ApartmentTypeId))
                 .ForMember(re => re.ApartmentTypeName, act => act.MapFrom(src => src.ApartmentType.Name))
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
                 .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Name))
                 .ForMember(re => re.PackageDescription, act => act.MapFrom(src => src.Description))
-                .ForMember(re => re.PackagePrice, act => act.MapFrom(src => src.Price));
+                .ForMember(re => re.PackagePrice, act => act.MapFrom(src => src.Price))
+                .ForMember(re => re.PackageImageLink, act => act.MapFrom(src => src.PackageImageLink));
 
             CreateMap<PackageServiceDetail, ResponseOfPackageServiceDetail>()
                 .ForMember(re => re.PackServiceDetailId, act => act.MapFrom(src => src.PackSerDetailId))
