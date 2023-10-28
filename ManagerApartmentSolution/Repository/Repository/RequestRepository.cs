@@ -25,10 +25,10 @@ namespace Repository.Repository
                                                     on rq.ApartmentId equals ap.ApartmentId
                                                     join ow in _context.Owners
                                                     on ap.OwnerId equals ow.OwnerId
-                                                    join rd in _context.RequestDetails
-                                                    on rq.RequestId equals rd.RequestId
+                                                    /*join rd in _context.RequestDetails
+                                                    on rq.RequestId equals rd.RequestId*/
                                                     join pa in _context.Packages
-                                                    on rd.PackageId equals pa.PackageId
+                                                    on rq.PackageId equals pa.PackageId
                                                     join ao in _context.AddOns
                                                     on rq.RequestId equals ao.RequestId
                                                     select new
@@ -40,7 +40,7 @@ namespace Repository.Repository
                                                         ReqStatus = rq.ReqStatus,
                                                         OwnerId = ow.OwnerId,
                                                         RequestDescription = rq.Description,
-                                                        PackageRequestedId = (int)rd.PackageId,
+                                                        PackageRequestedId = (int)rq.PackageId,
                                                         PackageName = pa.Name,
                                                         owner = ow.Name,
                                                         ApartmentName = ap.ApartmentName
@@ -88,8 +88,10 @@ namespace Repository.Repository
         public async Task<List<Request>> GetStaffRequests()
         {
             var result = await _context.Requests.Include(r => r.Apartment)
-                                        .Include(r => r.RequestDetails).ThenInclude(rds => rds.Package)
+                                        //.Include(r => r.RequestDetails).ThenInclude(rds => rds.Package)
+                                        .Include(r => r.Package)
                                         .Include(r => r.AddOns).ToListAsync();
+                                        
             return result;
         }
     }

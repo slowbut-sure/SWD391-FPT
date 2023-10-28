@@ -272,12 +272,12 @@ namespace Services.AutoMappers
 				.ForPath(re => re.ApartmentOwner, act => act.MapFrom(src => src.Apartment.Owner.Name))
 				.ForPath(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
 				.ForPath(re => re.EndDate, act => act.MapFrom(src => src.EndDate))
-				.ForPath(re => re.Packages, act => act.MapFrom(src => src.RequestDetails.Select(rd => rd.Package)))
+				//.ForPath(re => re.Packages, act => act.MapFrom(src => src.RequestDetails.Select(rd => rd.Package)))
 				.ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.AddOns.Count));
 
 			//================================================================================================================
 
-			CreateMap<RequestDetail, ResponseOfRequestDetail>()
+/*			CreateMap<RequestDetail, ResponseOfRequestDetail>()
                 .ForMember(re => re.RequestDetailId, act => act.MapFrom(src => src.RequestDetailId))
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
@@ -298,7 +298,7 @@ namespace Services.AutoMappers
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
                 .ForMember(re => re.Amount, act => act.MapFrom(src => src.RequestDetailAmount))
-                .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));
+                .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));*/
 
 /*			CreateMap<RequestDetail, StaffRequestListResponse>()
 	            .ForPath(re => re.ApartmentId, act => act.MapFrom(src => src.Request.ApartmentId))

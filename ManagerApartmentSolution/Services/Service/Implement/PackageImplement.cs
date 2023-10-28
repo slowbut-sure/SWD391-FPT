@@ -28,7 +28,8 @@ namespace Services.Servicesss.Implement
                 var packages = await _unitOfWork.Package.GetAllPackages();
                 if (packages is null)
                 {
-                    throw new Exception("The package list is empty");
+                    response.Message = "The package list is empty";
+                    return response;
                 }
                 var packageDTO = _mapper.Map<List<ResponseOfPackage>>(packages);
                 // Sắp xếp danh sách yêu cầu theo package tang dan
@@ -44,14 +45,20 @@ namespace Services.Servicesss.Implement
                 var startIndex = (page - 1) * pageSize;
                 var pagedRequests = packageDTO.Skip(startIndex).Take(pageSize).ToList();
 
+                int temp = 0;
+                if (packages.Count % pageSize == 0)
+                    temp = packages.Count / pageSize;
+                else
+                    temp = (packages.Count / pageSize) + 1;
+
                 response.Data = pagedRequests;
                 response.Page = page;
                 response.PageSize = pageSize;
+                response.TotalPage = temp;
                 response.Message = "List Packages";
             }
             catch (Exception ex) 
             {
-                response.Message = "List Packages";
                 response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
             }
             
