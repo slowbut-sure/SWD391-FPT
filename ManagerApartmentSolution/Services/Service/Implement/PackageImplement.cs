@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Services.Interfaces.IUnitOfWork;
+using Services.Models.Response;
 using Services.Models.Response.Response.PackageResponse;
 using Services.Models.Response.Response.TennantResponse;
 using System;
@@ -19,28 +20,43 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ResponseOfPackage>> GetAllPackages(int page, int pageSize, string sortOrder)
+        public async Task<PaginationResponse<List<ResponseOfPackage>>> GetAllPackages(int page, int pageSize, string sortOrder)
         {
-            var packages = await _unitOfWork.Package.GetAllPackages();
-            if (packages is null)
+            var response = new PaginationResponse<List<ResponseOfPackage>>();
+            try
             {
-                throw new Exception("The package list is empty");
-            }
-            var packageDTO = _mapper.Map<List<ResponseOfPackage>>(packages);
-            // Sắp xếp danh sách yêu cầu theo package tang dan
-            if (sortOrder == "desc")
-            {
-                packageDTO = packageDTO.OrderByDescending(r => r.PackageId).ToList();
-            }
-            else
-            {
-                packageDTO = packageDTO.OrderBy(r => r.PackageId).ToList();
-            }
+                var packages = await _unitOfWork.Package.GetAllPackages();
+                if (packages is null)
+                {
+                    throw new Exception("The package list is empty");
+                }
+                var packageDTO = _mapper.Map<List<ResponseOfPackage>>(packages);
+                // Sắp xếp danh sách yêu cầu theo package tang dan
+                if (sortOrder == "desc")
+                {
+                    packageDTO = packageDTO.OrderByDescending(r => r.PackageId).ToList();
+                }
+                else
+                {
+                    packageDTO = packageDTO.OrderBy(r => r.PackageId).ToList();
+                }
 
-            var startIndex = (page - 1) * pageSize;
-            var pagedRequests = packageDTO.Skip(startIndex).Take(pageSize).ToList();
+                var startIndex = (page - 1) * pageSize;
+                var pagedRequests = packageDTO.Skip(startIndex).Take(pageSize).ToList();
 
-            return pagedRequests;
+                response.Data = pagedRequests;
+                response.Page = page;
+                response.PageSize = pageSize;
+                response.Message = "List Packages";
+            }
+            catch (Exception ex) 
+            {
+                response.Message = "List Packages";
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+            }
+            
+
+            return response;
         }
 
         public async Task<ResponseOfPackage> GetPackageById(int id)
