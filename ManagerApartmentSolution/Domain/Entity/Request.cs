@@ -32,8 +32,5 @@ public partial class Request
 
     [JsonInclude] public virtual ICollection<Bill> Bills { get; set; } = new List<Bill>();
 
-    //[JsonInclude] public virtual ICollection<RequestDetail> RequestDetails { get; set; } = new List<RequestDetail>();
-    [JsonInclude] public virtual Package? Package { get; set; }
-
     [JsonInclude] public virtual ICollection<RequestLog> RequestLogs { get; set; } = new List<RequestLog>();
 }
