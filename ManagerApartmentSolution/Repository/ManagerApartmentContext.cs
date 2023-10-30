@@ -138,9 +138,9 @@ public partial class ManagerApartmentContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-/*            entity.HasOne(d => d.Building).WithMany(p => p.ApartmentTypes)
-                .HasForeignKey(d => d.BuildingId)
-                .HasConstraintName("FK__Apartment__Build__3D5E1FD2");*/
+            /*            entity.HasOne(d => d.Building).WithMany(p => p.ApartmentTypes)
+                            .HasForeignKey(d => d.BuildingId)
+                            .HasConstraintName("FK__Apartment__Build__3D5E1FD2");*/
         });
 
         modelBuilder.Entity<Asset>(entity =>
@@ -365,30 +365,15 @@ public partial class ManagerApartmentContext : DbContext
             entity.Property(e => e.ReqStatus)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.PackageID).HasColumnName("PackageID");
+
+            entity.HasOne(d => d.Package).WithMany(p => p.Requests)
+                .HasForeignKey(d => d.PackageID)
+                .HasConstraintName("FK__Request__Packg__61B365L6");
 
             entity.HasOne(d => d.Apartment).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.ApartmentId)
                 .HasConstraintName("FK__Request__Apartme__5FB337D6");
-        });
-
-        modelBuilder.Entity<RequestDetail>(entity =>
-        {
-            entity.HasKey(e => e.RequestDetailId).HasName("PK__RequestD__DC528B7058AD6952");
-
-            entity.ToTable("RequestDetail");
-
-            entity.Property(e => e.RequestDetailId).HasColumnName("RequestDetailID");
-            entity.Property(e => e.PackageId).HasColumnName("PackageID");
-            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
-            entity.Property(e => e.RequestId).HasColumnName("RequestID");
-
-            entity.HasOne(d => d.Package).WithMany(p => p.RequestDetails)
-                .HasForeignKey(d => d.PackageId)
-                .HasConstraintName("FK__RequestDe__Packa__6D0D32F4");
-
-            entity.HasOne(d => d.Request).WithMany(p => p.RequestDetails)
-                .HasForeignKey(d => d.RequestId)
-                .HasConstraintName("FK__RequestDe__Reque__6C190EBB");
         });
 
         modelBuilder.Entity<RequestLog>(entity =>
@@ -495,26 +480,26 @@ public partial class ManagerApartmentContext : DbContext
 
         });
 
-/*        modelBuilder.Entity<StaffLog>(entity =>
-        {
-            entity.HasKey(e => e.StaffLogId).HasName("PK__StaffLog__511DAB3CA2BD394C");
+        /*        modelBuilder.Entity<StaffLog>(entity =>
+                {
+                    entity.HasKey(e => e.StaffLogId).HasName("PK__StaffLog__511DAB3CA2BD394C");
 
-            entity.ToTable("StaffLog");
+                    entity.ToTable("StaffLog");
 
-            entity.Property(e => e.StaffLogId).HasColumnName("StaffLogID");
-            entity.Property(e => e.RequestLogId).HasColumnName("RequestLogID");
-            entity.Property(e => e.StaffId).HasColumnName("StaffID");
+                    entity.Property(e => e.StaffLogId).HasColumnName("StaffLogID");
+                    entity.Property(e => e.RequestLogId).HasColumnName("RequestLogID");
+                    entity.Property(e => e.StaffId).HasColumnName("StaffID");
 
-           *//* entity.HasOne(d => d.RequestLog).WithMany(p => p.StaffLogs)
-                .HasForeignKey(d => d.RequestLogId)
-                .HasConstraintName("FK__StaffLog__Reques__693CA210");*//*
+                   *//* entity.HasOne(d => d.RequestLog).WithMany(p => p.StaffLogs)
+                        .HasForeignKey(d => d.RequestLogId)
+                        .HasConstraintName("FK__StaffLog__Reques__693CA210");*//*
 
 
 
-            entity.HasOne(d => d.Staff).WithMany(p => p.StaffLogs)
-                .HasForeignKey(d => d.StaffId)
-                .HasConstraintName("FK__StaffLog__StaffI__68487DD7");
-        });*/
+                    entity.HasOne(d => d.Staff).WithMany(p => p.StaffLogs)
+                        .HasForeignKey(d => d.StaffId)
+                        .HasConstraintName("FK__StaffLog__StaffI__68487DD7");
+                });*/
 
         modelBuilder.Entity<Tennant>(entity =>
         {

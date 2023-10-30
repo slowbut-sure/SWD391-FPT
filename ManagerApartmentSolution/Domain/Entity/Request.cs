@@ -22,13 +22,16 @@ public partial class Request
 
     public string? ReqStatus { get; set; }
 
+    public int PackageID { get; set; }
+
     [JsonInclude] public virtual ICollection<AddOn> AddOns { get; set; } = new List<AddOn>();
 
     [JsonInclude] public virtual Apartment? Apartment { get; set; }
 
+    [JsonInclude] public virtual Package? Package { get; set; }
+
     [JsonInclude] public virtual ICollection<Bill> Bills { get; set; } = new List<Bill>();
 
-    [JsonInclude] public virtual ICollection<RequestDetail> RequestDetails { get; set; } = new List<RequestDetail>();
 
     [JsonInclude] public virtual ICollection<RequestLog> RequestLogs { get; set; } = new List<RequestLog>();
 }
