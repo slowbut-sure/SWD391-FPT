@@ -41,7 +41,7 @@ public partial class ManagerApartmentContext : DbContext
 
     public virtual DbSet<Request> Requests { get; set; } = null!;
 
-    public virtual DbSet<RequestDetail> RequestDetails { get; set; } = null!;
+    //public virtual DbSet<RequestDetail> RequestDetails { get; set; } = null!;
 
     public virtual DbSet<RequestLog> RequestLogs { get; set; } = null!;
 
@@ -358,6 +358,7 @@ public partial class ManagerApartmentContext : DbContext
             entity.Property(e => e.RequestId).HasColumnName("RequestID");
             entity.Property(e => e.ApartmentId).HasColumnName("ApartmentID");
             entity.Property(e => e.BookDateTime).HasColumnType("datetime");
+            entity.Property(e => e.PackageId).HasColumnName("PackageID");
             entity.Property(e => e.Description)
                 .HasMaxLength(100)
                 .IsUnicode(false);
@@ -374,6 +375,10 @@ public partial class ManagerApartmentContext : DbContext
             entity.HasOne(d => d.Apartment).WithMany(p => p.Requests)
                 .HasForeignKey(d => d.ApartmentId)
                 .HasConstraintName("FK__Request__Apartme__5FB337D6");
+
+            entity.HasOne(r => r.Package).WithMany(p => p.Requests)
+                .HasForeignKey(r => r.PackageId)
+                .HasConstraintName("FK__Request__Packg__61B365L6");
         });
 
         modelBuilder.Entity<RequestLog>(entity =>

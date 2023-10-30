@@ -277,7 +277,7 @@ namespace Services.AutoMappers
 
 			//================================================================================================================
 
-			CreateMap<RequestDetail, ResponseOfRequestDetail>()
+/*			CreateMap<RequestDetail, ResponseOfRequestDetail>()
                 .ForMember(re => re.RequestDetailId, act => act.MapFrom(src => src.RequestDetailId))
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
@@ -298,7 +298,7 @@ namespace Services.AutoMappers
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
                 .ForMember(re => re.Amount, act => act.MapFrom(src => src.RequestDetailAmount))
-                .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));
+                .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));*/
 
 /*			CreateMap<RequestDetail, StaffRequestListResponse>()
 	            .ForPath(re => re.ApartmentId, act => act.MapFrom(src => src.Request.ApartmentId))
