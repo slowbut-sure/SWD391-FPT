@@ -366,10 +366,10 @@ public partial class ManagerApartmentContext : DbContext
             entity.Property(e => e.ReqStatus)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.PackageID).HasColumnName("PackageID");
+            entity.Property(e => e.PackageId).HasColumnName("PackageID");
 
             entity.HasOne(d => d.Package).WithMany(p => p.Requests)
-                .HasForeignKey(d => d.PackageID)
+                .HasForeignKey(d => d.PackageId)
                 .HasConstraintName("FK__Request__Packg__61B365L6");
 
             entity.HasOne(d => d.Apartment).WithMany(p => p.Requests)
