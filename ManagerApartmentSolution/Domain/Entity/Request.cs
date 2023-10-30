@@ -22,7 +22,6 @@ public partial class Request
 
     public string? ReqStatus { get; set; }
 
-    public int PackageID { get; set; }
 
     [JsonInclude] public virtual ICollection<AddOn> AddOns { get; set; } = new List<AddOn>();
 

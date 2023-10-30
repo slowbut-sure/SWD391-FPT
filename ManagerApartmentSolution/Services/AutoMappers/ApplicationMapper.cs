@@ -272,7 +272,7 @@ namespace Services.AutoMappers
 				.ForPath(re => re.ApartmentOwner, act => act.MapFrom(src => src.Apartment.Owner.Name))
 				.ForPath(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
 				.ForPath(re => re.EndDate, act => act.MapFrom(src => src.EndDate))
-				.ForPath(re => re.Packages, act => act.MapFrom(src => src.PackageID))
+				.ForPath(re => re.Packages, act => act.MapFrom(src => src.PackageId))
 				.ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.AddOns.Count));
 
 			//================================================================================================================
