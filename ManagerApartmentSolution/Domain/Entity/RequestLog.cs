@@ -15,6 +15,8 @@ public partial class RequestLog
 
     public string? Status { get; set; }
 
+    public DateTime UpdateDate { get; set; }
+
     [JsonInclude] public virtual Request? Request { get; set; }
 
     //[JsonInclude] public virtual ICollection<StaffLog> StaffLogs { get; set; } = new List<StaffLog>();

@@ -247,14 +247,14 @@ namespace Services.AutoMappers
                 .ForMember(re => re.PackageName, act => act.MapFrom(src => src.PackageName))
                 .ForMember(re => re.Owner, act => act.MapFrom(src => src.Owner))
                 .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.ApartmentName));
-            
+
 
             CreateMap<RequestCreateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
                 .ForMember(s => s.Description, act => act.MapFrom(src => src.RequestDescription))
                 .ForMember(s => s.BookDateTime, act => act.MapFrom(src => src.rqBookDateTime))
                 .ForMember(s => s.EndDate, act => act.MapFrom(src => src.rqEndDate))
-                .ForMember(s => s.IsSequence , act => act.MapFrom(src => src.rqIsSequence))
+                .ForMember(s => s.IsSequence, act => act.MapFrom(src => src.rqIsSequence))
                 .ForMember(s => s.Sequence, act => act.MapFrom(src => src.RequestSequence));
 
             CreateMap<UpdateRequest, Request>()
@@ -265,70 +265,74 @@ namespace Services.AutoMappers
                 .ForMember(s => s.IsSequence, act => act.MapFrom(src => src.rqIsSequence))
                 .ForMember(s => s.Sequence, act => act.MapFrom(src => src.RequestSequence));
 
-			CreateMap<Request, StaffRequestListResponse>()
-				.ForPath(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
-				.ForPath(re => re.ApartmentOwnerId, act => act.MapFrom(src => src.Apartment.OwnerId))
-				.ForPath(re => re.ApartmentTypeName, act => act.MapFrom(src => src.Apartment.ApartmentType.Name))
-				.ForPath(re => re.ApartmentOwner, act => act.MapFrom(src => src.Apartment.Owner.Name))
-				.ForPath(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
-				.ForPath(re => re.EndDate, act => act.MapFrom(src => src.EndDate))
-				.ForPath(re => re.Packages, act => act.MapFrom(src => src.PackageId))
-				.ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.AddOns.Count));
+            CreateMap<Request, StaffRequestListResponse>()
+                .ForPath(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
+                .ForPath(re => re.ApartmentOwnerId, act => act.MapFrom(src => src.Apartment.OwnerId))
+                .ForPath(re => re.ApartmentTypeName, act => act.MapFrom(src => src.Apartment.ApartmentType.Name))
+                .ForPath(re => re.ApartmentOwner, act => act.MapFrom(src => src.Apartment.Owner.Name))
+                .ForPath(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
+                .ForPath(re => re.EndDate, act => act.MapFrom(src => src.EndDate))
+                .ForPath(re => re.Packages, act => act.MapFrom(src => src.PackageId))
+                .ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.AddOns.Count));
 
-			//================================================================================================================
+            //================================================================================================================
 
-/*			CreateMap<RequestDetail, ResponseOfRequestDetail>()
-                .ForMember(re => re.RequestDetailId, act => act.MapFrom(src => src.RequestDetailId))
-                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
-                .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
-                .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.Request.BookDateTime))
-                .ForMember(re => re.EndDate, act => act.MapFrom(src => src.Request.EndDate))
-                .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
-                .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
-                .ForMember(re => re.RequestDetailAmount, act => act.MapFrom(src => src.Amount))
-                .ForMember(re => re.RequestPrice, act => act.MapFrom(src => src.Price));
+            /*			CreateMap<RequestDetail, ResponseOfRequestDetail>()
+                            .ForMember(re => re.RequestDetailId, act => act.MapFrom(src => src.RequestDetailId))
+                            .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                            .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
+                            .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.Request.BookDateTime))
+                            .ForMember(re => re.EndDate, act => act.MapFrom(src => src.Request.EndDate))
+                            .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
+                            .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
+                            .ForMember(re => re.RequestDetailAmount, act => act.MapFrom(src => src.Amount))
+                            .ForMember(re => re.RequestPrice, act => act.MapFrom(src => src.Price));
 
-            CreateMap<RqDetailCreateRequest, RequestDetail>()
-                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
-                .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
-                .ForMember(re => re.Amount, act => act.MapFrom(src => src.RequestDetailAmount))
-                .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));
+                        CreateMap<RqDetailCreateRequest, RequestDetail>()
+                            .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                            .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
+                            .ForMember(re => re.Amount, act => act.MapFrom(src => src.RequestDetailAmount))
+                            .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));
 
-            CreateMap<UpdateRequestDetail, RequestDetail>()
-                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
-                .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
-                .ForMember(re => re.Amount, act => act.MapFrom(src => src.RequestDetailAmount))
-                .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));*/
+                        CreateMap<UpdateRequestDetail, RequestDetail>()
+                            .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                            .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
+                            .ForMember(re => re.Amount, act => act.MapFrom(src => src.RequestDetailAmount))
+                            .ForMember(re => re.Price, act => act.MapFrom(src => src.RequestPrice));*/
 
-/*			CreateMap<RequestDetail, StaffRequestListResponse>()
-	            .ForPath(re => re.ApartmentId, act => act.MapFrom(src => src.Request.ApartmentId))
-	            .ForPath(re => re.ApartmentOwnerId, act => act.MapFrom(src => src.Request.Apartment.OwnerId))
-	            .ForPath(re => re.ApartmentTypeName, act => act.MapFrom(src => src.Request.Apartment.ApartmentType.Name))
-	            .ForPath(re => re.ApartmentOwner, act => act.MapFrom(src => src.Request.Apartment.Owner.Name))
-	            .ForPath(re => re.BookDateTime, act => act.MapFrom(src => src.Request.BookDateTime))
-	            .ForPath(re => re.EndDate, act => act.MapFrom(src => src.Request.EndDate))
-	            .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
-                .ForPath(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
-                .ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.Request.AddOns.Count));*/
+            /*			CreateMap<RequestDetail, StaffRequestListResponse>()
+                            .ForPath(re => re.ApartmentId, act => act.MapFrom(src => src.Request.ApartmentId))
+                            .ForPath(re => re.ApartmentOwnerId, act => act.MapFrom(src => src.Request.Apartment.OwnerId))
+                            .ForPath(re => re.ApartmentTypeName, act => act.MapFrom(src => src.Request.Apartment.ApartmentType.Name))
+                            .ForPath(re => re.ApartmentOwner, act => act.MapFrom(src => src.Request.Apartment.Owner.Name))
+                            .ForPath(re => re.BookDateTime, act => act.MapFrom(src => src.Request.BookDateTime))
+                            .ForPath(re => re.EndDate, act => act.MapFrom(src => src.Request.EndDate))
+                            .ForMember(re => re.PackageId, act => act.MapFrom(src => src.PackageId))
+                            .ForPath(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
+                            .ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.Request.AddOns.Count));*/
 
-			//================================================================================================================
+            //================================================================================================================
 
-			CreateMap<RequestLog, ResponseOfRequestLog>()
+            CreateMap<RequestLog, ResponseOfRequestLog>()
                 .ForMember(re => re.RequestLogId, act => act.MapFrom(src => src.RequestLogId))
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.MaintainItem))
                 .ForMember(re => re.ReqLogDescription, act => act.MapFrom(src => src.Description))
-                .ForMember(re => re.RqLogStatus, act => act.MapFrom(src => src.Status));
+                .ForMember(re => re.RqLogStatus, act => act.MapFrom(src => src.Status))
+                .ForMember(re => re.UpdateTime, act => act.MapFrom(src => src.UpdateDate));
+
 
             CreateMap<RqLogCreateRequest, RequestLog>()
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.rqLogMaintainItem))
-                .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription));
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription))
+                .ForMember(re => re.UpdateDate, act => act.MapFrom(src => src.UpdateDate));
 
             CreateMap<UpdateRequestLog, RequestLog>()
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.rqLogMaintainItem))
-                .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription));
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription))
+                .ForMember(re => re.UpdateDate, act => act.MapFrom(src => src.UpdateTime));
 
             //==============================================================================================================
 
@@ -442,7 +446,7 @@ namespace Services.AutoMappers
                 .ForMember(re => re.EndDate, act => act.MapFrom(src => src.ContractDetail.EndDate));
 
             CreateMap<Tennant, ResponseAccountTennant>()
-                .ForMember(re => re.Id, act => act.MapFrom(src =>  src.TennantId))
+                .ForMember(re => re.Id, act => act.MapFrom(src => src.TennantId))
                 .ForMember(re => re.Code, act => act.MapFrom(src => src.Code))
                 .ForMember(re => re.Name, act => act.MapFrom(src => src.Name))
                 .ForMember(re => re.Email, act => act.MapFrom(src => src.Email))
