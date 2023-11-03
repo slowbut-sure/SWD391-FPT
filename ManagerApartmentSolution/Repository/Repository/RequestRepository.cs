@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Services.Models.Response.Response.RequestRespponse;
 using Domain.Entity;
 using Microsoft.IdentityModel.Tokens;
+using Domain.Enums.Status;
 
 namespace Repository.Repository
 {
@@ -18,49 +19,95 @@ namespace Repository.Repository
         public RequestRepository(ManagerApartmentContext context) : base(context) { }
         public async Task<List<RequestView>> GetAllRequests()
         {
-            var requests = await _context.Requests
-                .Include(a => a.Apartment)
-                .ToListAsync();
             IQueryable<RequestView> result = (from rq in _context.Requests
-                                                    join ap in _context.Apartments
-                                                    on rq.ApartmentId equals ap.ApartmentId
-                                                    join ow in _context.Owners
-                                                    on ap.OwnerId equals ow.OwnerId
-                                                    join pa in _context.Packages
-                                                    on rq.PackageId equals pa.PackageId
-                                                    join ao in _context.AddOns
-                                                    on rq.RequestId equals ao.RequestId into t2
-                                                    from ao in t2.DefaultIfEmpty()
-                                                    group ao by new
-                                                    {
-                                                        RequestId = rq.RequestId,
-                                                        ApartmentId = ap.ApartmentId,
-                                                        BookDateTime = (DateTime)rq.BookDateTime,
-                                                        EndDateTime = (DateTime)rq.BookDateTime,
-                                                        ReqStatus = rq.ReqStatus,
-                                                        OwnerId = ow.OwnerId,
-                                                        RequestDescription = rq.Description,
-                                                        PackageRequestedId = (int)rq.PackageId,
-                                                        PackageName = pa.Name,
-                                                        owner = ow.Name,
-                                                        ApartmentName = ap.ApartmentName
-                                                    } into reqGroup
-                                                   
-                                                    select new RequestView
-                                                    {
-                                                        RequestId = reqGroup.Key.RequestId,
-                                                        ApartmentId = reqGroup.Key.ApartmentId,
-                                                        BookDateTime = (DateTime)reqGroup.Key.BookDateTime,
-                                                        EndDateTime = (DateTime)reqGroup.Key.BookDateTime,
-                                                        ReqStatus = reqGroup.Key.ReqStatus,
-                                                        OwnerId = reqGroup.Key.OwnerId,
-                                                        RequestDescription = reqGroup.Key.RequestDescription,
-                                                        PackageRequestedId = (int)reqGroup.Key.PackageRequestedId,
-                                                        NumberOfAddOns = reqGroup.Count(x => x != null),
-                                                        PackageName = reqGroup.Key.PackageName,
-                                                        Owner = reqGroup.Key.owner,
-                                                        ApartmentName= reqGroup.Key.ApartmentName
-                                                    }
+                                              where rq.ReqStatus != 1
+                                              join ap in _context.Apartments
+                                              on rq.ApartmentId equals ap.ApartmentId
+                                              join ow in _context.Owners
+                                              on ap.OwnerId equals ow.OwnerId
+                                              join pa in _context.Packages
+                                              on rq.PackageId equals pa.PackageId
+                                              join ao in _context.AddOns
+                                              on rq.RequestId equals ao.RequestId into t2
+                                              from ao in t2.DefaultIfEmpty()
+                                              group ao by new
+                                              {
+                                                  RequestId = rq.RequestId,
+                                                  ApartmentId = ap.ApartmentId,
+                                                  BookDateTime = (DateTime)rq.BookDateTime,
+                                                  EndDateTime = (DateTime)rq.BookDateTime,
+                                                  ReqStatus = rq.ReqStatus,
+                                                  OwnerId = ow.OwnerId,
+                                                  RequestDescription = rq.Description,
+                                                  PackageRequestedId = (int)rq.PackageId,
+                                                  PackageName = pa.Name,
+                                                  owner = ow.Name,
+                                                  ApartmentName = ap.ApartmentName
+                                              } into reqGroup
+                                              select new RequestView
+                                              {
+                                                  RequestId = reqGroup.Key.RequestId,
+                                                  ApartmentId = reqGroup.Key.ApartmentId,
+                                                  BookDateTime = (DateTime)reqGroup.Key.BookDateTime,
+                                                  EndDateTime = (DateTime)reqGroup.Key.BookDateTime,
+                                                  //ReqStatus = Enum.Parse(typeof(RequestEnum), reqGroup.Key.ReqStatus).ToString()  /* reqGroup.Key.ReqStatus */,
+                                                  OwnerId = reqGroup.Key.OwnerId,
+                                                  RequestDescription = reqGroup.Key.RequestDescription,
+                                                  PackageRequestedId = (int)reqGroup.Key.PackageRequestedId,
+                                                  NumberOfAddOns = reqGroup.Count(x => x != null),
+                                                  PackageName = reqGroup.Key.PackageName,
+                                                  Owner = reqGroup.Key.owner,
+                                                  ApartmentName = reqGroup.Key.ApartmentName
+                                              }
+                           );
+            return await result.ToListAsync();
+        }
+
+        public async Task<List<RequestView>> GetPendingAndProcessingRequestByStaffId(int staffId)
+        {
+            IQueryable<RequestView> result = (from rq in _context.Requests
+                                              where rq.ReqStatus != 1
+                                              join ap in _context.Apartments
+                                              on rq.ApartmentId equals ap.ApartmentId
+                                              join ow in _context.Owners
+                                              on ap.OwnerId equals ow.OwnerId
+                                              join pa in _context.Packages
+                                              on rq.PackageId equals pa.PackageId
+                                              join rl in _context.RequestLogs
+                                              on rq.RequestId equals rl.RequestId
+                                              join ao in _context.AddOns
+                                              on rq.RequestId equals ao.RequestId into t2
+                                              where rl.StaffId == staffId && (rl.Status.Equals(RequestEnum.PENDING.ToString()) || rl.Status.Equals(RequestEnum.PROCESSING.ToString()))
+                                              from ao in t2.DefaultIfEmpty()
+                                              group ao by new
+                                              {
+                                                  RequestId = rq.RequestId,
+                                                  ApartmentId = ap.ApartmentId,
+                                                  BookDateTime = (DateTime)rq.BookDateTime,
+                                                  EndDateTime = (DateTime)rq.BookDateTime,
+                                                  ReqStatus = rq.ReqStatus,
+                                                  OwnerId = ow.OwnerId,
+                                                  RequestDescription = rq.Description,
+                                                  PackageRequestedId = (int)rq.PackageId,
+                                                  PackageName = pa.Name,
+                                                  owner = ow.Name,
+                                                  ApartmentName = ap.ApartmentName
+                                              } into reqGroup
+                                              select new RequestView
+                                              {
+                                                  RequestId = reqGroup.Key.RequestId,
+                                                  ApartmentId = reqGroup.Key.ApartmentId,
+                                                  BookDateTime = (DateTime)reqGroup.Key.BookDateTime,
+                                                  EndDateTime = (DateTime)reqGroup.Key.BookDateTime,
+                                                  //ReqStatus = Enum.Parse(typeof(RequestEnum), reqGroup.Key.ReqStatus).ToString()  /* reqGroup.Key.ReqStatus */,
+                                                  OwnerId = reqGroup.Key.OwnerId,
+                                                  RequestDescription = reqGroup.Key.RequestDescription,
+                                                  PackageRequestedId = (int)reqGroup.Key.PackageRequestedId,
+                                                  NumberOfAddOns = reqGroup.Count(x => x != null),
+                                                  PackageName = reqGroup.Key.PackageName,
+                                                  Owner = reqGroup.Key.owner,
+                                                  ApartmentName = reqGroup.Key.ApartmentName
+                                              }
                            );
             return await result.ToListAsync();
         }

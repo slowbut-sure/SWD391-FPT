@@ -13,6 +13,8 @@ namespace Services.Interfaces
     public interface IRequestRepository : IGenericRepository<Request>
     {
         Task<List<RequestView>> GetAllRequests();
+
+       Task<List<RequestView>> GetPendingAndProcessingRequestByStaffId(int staffId);
         Task<Request> GetRequestById(int id);
         Task<List<Request>> GetStaffRequests();
     }
