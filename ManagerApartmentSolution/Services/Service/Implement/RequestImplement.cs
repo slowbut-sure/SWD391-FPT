@@ -32,19 +32,50 @@ namespace Services.Servicesss.Implement
             {
                 throw new Exception("Can not found by" + requestId);
             }
-            request.ReqStatus = RequestEnum.NOTPROCESSED.ToString();
+            request.ReqStatus = 1;
             _unitOfWork.Request.Update(request);
             _unitOfWork.Save();
         }
 
-        public async Task<DataResponse<List<ResponseOfRequest>>> GetAllRequests(int page, int pageSize, string sortOrder)
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetPendingAndProcessRequestsByStaffId(int staffId, int page, int pageSize, string sortOrder)
         {
-            var rqs = await _unitOfWork.Request.GetAllRequests();
+            var rqs = await _unitOfWork.Request.GetPendingAndProcessingRequestByStaffId(staffId);
             if (rqs is null)
             {
                 throw new Exception("The request list is empty");
             }
             var response = new DataResponse<List<ResponseOfRequest>>();
+            var requestDtos = _mapper.Map<List<ResponseOfRequest>>(rqs);
+
+            // Sắp xếp danh sách yêu cầu theo BookDateTime gần nhất
+            if (sortOrder == "desc")
+            {
+                requestDtos = requestDtos.OrderByDescending(r => r.BookDateTime).ToList();
+            }
+            else
+            {
+                requestDtos = requestDtos.OrderBy(r => r.BookDateTime).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedRequests = requestDtos.Skip(startIndex).Take(pageSize).ToList();
+            response.Data = pagedRequests;
+            response.Success = true;
+            response.Message = "Successfully get requested";
+            return response;
+        }
+
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetAllRequests(int page, int pageSize, string sortOrder)
+        {
+            var response = new DataResponse<List<ResponseOfRequest>>();
+            var rqs = await _unitOfWork.Request.GetAllRequests();
+            if (rqs is null)
+            {
+                response.Data = null;
+                response.Success = true;
+                response.Message = "Empty requests";
+                return response;
+            }
             var requestDtos = _mapper.Map<List<ResponseOfRequest>>(rqs);
 
             // Sắp xếp danh sách yêu cầu theo BookDateTime gần nhất

@@ -11,5 +11,7 @@ namespace Services.Models.Request.RequestDetailRequest
         public int RequestId { get; set; }
         public string rqLogMaintainItem { get; set; }
         public string ReqLogDescription { get; set; }
+
+        public DateTime UpdateDate { get; set; }
     }
 }

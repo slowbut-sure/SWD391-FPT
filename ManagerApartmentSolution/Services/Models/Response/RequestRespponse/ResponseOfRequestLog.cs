@@ -13,5 +13,7 @@ namespace Services.Models.Response.Response.RequestRespponse
         public string MaintainItem { get; set; }
         public string ReqLogDescription { get; set; }
         public string RqLogStatus { get; set; }
+
+        public DateTime UpdateTime { get; set; }
     }
 }
