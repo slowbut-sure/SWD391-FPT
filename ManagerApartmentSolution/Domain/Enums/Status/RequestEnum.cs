@@ -8,7 +8,9 @@ namespace Domain.Enums.Status
 {
     public enum RequestEnum
     {
-        PROCESSED,
-        NOTPROCESSED,
+        PENDING=0,
+        PROCESSING=1,
+        PROCESSED=2,
+        NOTPROCESSED=3,
     }
 }
