@@ -20,7 +20,8 @@ public partial class Request
 
     public int? Sequence { get; set; }
 
-    public string? ReqStatus { get; set; }
+    public byte? ReqStatus { get; set; } // isDeleted
+
 
 
     [JsonInclude] public virtual ICollection<AddOn> AddOns { get; set; } = new List<AddOn>();
