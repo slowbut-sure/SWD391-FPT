@@ -28,6 +28,6 @@ namespace Domain.Entity
 
         public string ReqStatus { get; set; }
 
-        public int NumberOfAddOns { get; set; } = 0;
+        public int? NumberOfAddOns { get; set; } = 0;
     }
 }

@@ -15,7 +15,7 @@ namespace Services.Interfaces
         Task<List<RequestView>> GetAllRequests();
 
        Task<List<RequestView>> GetPendingAndProcessingRequestByStaffId(int staffId);
-        Task<Request> GetRequestById(int id);
+        Task<RequestView> GetRequestById(int id);
         Task<List<Request>> GetStaffRequests();
     }
 }

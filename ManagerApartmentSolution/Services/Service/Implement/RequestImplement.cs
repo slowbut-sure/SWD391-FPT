@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Entity;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
 using Services.Interfaces.IUnitOfWork;
@@ -96,15 +97,6 @@ namespace Services.Servicesss.Implement
             return response;
         }
 
-        public async Task<ResponseOfRequest> GetRequestById(int id)
-        {
-            var rq = await _unitOfWork.Request.GetRequestById(id);
-            if (rq is null)
-            {
-                throw new Exception("The request does not exist");
-            }
-            return _mapper.Map<ResponseOfRequest>(rq);
-        }
-
+        
     }
 }

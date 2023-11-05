@@ -112,11 +112,36 @@ namespace Repository.Repository
             return await result.ToListAsync();
         }
 
-        public async Task<Request> GetRequestById(int id)
+        public async Task<RequestView?> GetRequestById(int id)
         {
-            return _context.Requests
-                .Include(a => a.Apartment)
-                .FirstOrDefault(r => r.RequestId == id);
+            IQueryable<RequestView> requestView = (from rq in _context.Requests
+                                                    where rq.ReqStatus != 1 && rq.RequestId == id
+                                                    join ap in _context.Apartments
+                                                    on rq.ApartmentId equals ap.ApartmentId
+                                                    join ow in _context.Owners
+                                                    on ap.OwnerId equals ow.OwnerId
+                                                    join pa in _context.Packages
+                                                    on rq.PackageId equals pa.PackageId
+                                                    join ao in _context.AddOns
+                                                    on rq.RequestId equals ao.RequestId
+                                                    select new RequestView
+                                                    {
+                                                        RequestId = rq.RequestId,
+                                                        ApartmentId = ap.ApartmentId,
+                                                        BookDateTime = (DateTime)rq.BookDateTime,
+                                                        EndDateTime = (DateTime)rq.EndDate,
+                                                        ReqStatus = /* rq.ReqStatus */  RequestEnum.PENDING.ToString(),
+                                                        OwnerId = ow.OwnerId,
+                                                        RequestDescription = rq.Description,
+                                                        PackageRequestedId = (int)rq.PackageId,
+                                                        PackageName = pa.Name,
+                                                        Owner = ow.Name,
+                                                        ApartmentName = ap.ApartmentName
+                                                    }
+                           );
+
+            List<RequestView> list = await requestView.ToListAsync();
+            return  await Task.FromResult(list[0]);
         }
 
         public Task<List<Request>> GetStaffRequests()

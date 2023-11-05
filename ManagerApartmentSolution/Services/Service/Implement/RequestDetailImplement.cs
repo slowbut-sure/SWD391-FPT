@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Domain.Entity;
+using ManagerApartment.Models;
 using Services.Interfaces.IUnitOfWork;
+using Services.Models.Response;
 using Services.Models.Response.Response.RequestRespponse;
 using Services.Models.Response.Response.TennantResponse;
 using System;
@@ -29,14 +32,47 @@ namespace Services.Servicesss.Implement
             return _mapper.Map<List<ResponseOfRequestDetail>>(rqDetails);
         }
 
-        public async Task<ResponseOfRequestDetail> GetRequestDetailById(int id)
+      
+
+        public async Task<DataResponse<ResponseOfRequestDetail>> GetRequestDetailByRequestId(int id)
         {
-            var rqDetail = await _unitOfWork.RequestDetail.GetRequestDetailById(id);
-            if (rqDetail is null)
+            RequestView rq = await _unitOfWork.Request.GetRequestById(id);
+            var response = new DataResponse<ResponseOfRequestDetail>();
+
+            if (rq is null)
             {
-                throw new Exception("The  request detail does not exist");
+                response.Data = null;
+                response.Success = false;
+                response.Message = "Request is not existed";
+                return response;
             }
-            return _mapper.Map<ResponseOfRequestDetail>(rqDetail);
+
+            List<Service> serviceList = await _unitOfWork.Service.GetAddOnServiceByRequestId(id);
+            RequestDetailView detail = new RequestDetailView
+            {
+                ApartmentId = rq.ApartmentId,
+                ApartmentName = rq.ApartmentName,
+                BookDateTime = rq.BookDateTime,
+                EndDateTime = rq.EndDateTime,
+                IsSequence = rq.IsSequence,
+                Owner = rq.Owner,
+                OwnerId = rq.OwnerId,
+                PackageName = rq.PackageName,
+                PackageRequestedId = rq.PackageRequestedId,
+                ReqStatus = rq.ReqStatus,
+                RequestDescription = rq.RequestDescription,
+                RequestId = rq.RequestId,
+                RequestSequence = rq.RequestSequence,
+                AddOnList = serviceList,
+
+            };
+
+            response.Data = detail;
+            response.Success = true;
+            response.Message = "Get Request Detail Successfully";
+
+            return response;
         }
+
     }
 }

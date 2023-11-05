@@ -275,6 +275,20 @@ namespace Services.AutoMappers
                 .ForPath(re => re.Packages, act => act.MapFrom(src => src.PackageId))
                 .ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.AddOns.Count));
 
+            CreateMap<RequestDetailView, ResponseOfRequestDetail>()
+                           .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
+                .ForMember(re => re.OwnerId, act => act.MapFrom(src => src.OwnerId))
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.RequestDescription))
+                .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
+                .ForMember(re => re.EndDateTime, act => act.MapFrom(src => src.EndDateTime))
+                .ForMember(re => re.ReqStatus, act => act.MapFrom(src => src.ReqStatus))
+                .ForMember(re => re.NumberOfAddOns, act => act.MapFrom(src => src.NumberOfAddOns))
+                .ForMember(re => re.PackageRequestedId, act => act.MapFrom(src => src.PackageRequestedId))
+                .ForMember(re => re.PackageName, act => act.MapFrom(src => src.PackageName))
+                .ForMember(re => re.Owner, act => act.MapFrom(src => src.Owner))
+                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.ApartmentName))
+                .ForMember(re => re.AddOnsList, act => act.MapFrom(src => src.AddOnList));
             //================================================================================================================
 
             /*			CreateMap<RequestDetail, ResponseOfRequestDetail>()

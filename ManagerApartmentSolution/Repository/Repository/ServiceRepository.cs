@@ -24,5 +24,27 @@ namespace Repository.Repository
         {
             return _context.Services.FirstOrDefault(s => s.ServiceId == id);
         }
+
+        public async Task<List<Service>> GetAddOnServiceByRequestId(int requestId)
+        {
+            IQueryable<Service> addOnServicesList = from rq in _context.Requests
+                                                    where rq.RequestId == requestId
+                                                    join ao in _context.AddOns
+                                                    on rq.RequestId equals ao.RequestId
+                                                    join ser in _context.Services
+                                                    on ao.ServiceId equals ser.ServiceId
+                                                    select new Service
+                                                    {
+                                                        ServiceId = ser.ServiceId,
+                                                        Name = ser.Name,
+                                                        Code = ser.Code,
+                                                        ServiceStatus = ser.ServiceStatus,
+                                                        Price = ser.Price,
+                                                        Unit = ser.Unit,
+                                                        PackageServiceDetails = ser.PackageServiceDetails,
+                                                        StaffDetails = ser.StaffDetails
+                                                    };
+            return await addOnServicesList.ToListAsync();
+        }
     }
 }

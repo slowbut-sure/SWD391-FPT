@@ -30,19 +30,34 @@ namespace ManagerApartment.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ResponseOfRequest>> GetRequestById(int id)
-        {
-            try
-            {
-                var request = await _requestService.GetRequestById(id);
-                return Ok(request);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<ResponseOfRequest>> GetRequestById(int id)
+        //{
+        //    try
+        //    {
+        //        var request = await _requestService.GetRequestById(id);
+        //        return Ok(request);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return NotFound(ex.Message);
+        //    }
+        //}
+
+        //[HttpGet("{staffid")]
+        //public async Task<ActionResult<List<ResponseOfRequest>>> GetPendingAndProcessRequestByStaffId(int staffid, int page = 1, int pageSize = 5, string sortOrder = "asc")
+        //{
+        //    try
+        //    {
+        //        var requests = await _requestService.GetPendingAndProcessRequestsByStaffId(staffid,page, pageSize, sortOrder);
+        //        return Ok(requests);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return NotFound(ex.Message);
+        //    }
+        //}
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteRequest(int id)
         {

@@ -16,5 +16,6 @@ namespace Services.Servicesss
         Task<ResponseOfService> CreateService(RequestCreateService service);
         Task DeleteService(int serviceId);
         Task<ResponseOfService> UpdateService(int serviceId, UpdateService updateService);
+
     }
 }

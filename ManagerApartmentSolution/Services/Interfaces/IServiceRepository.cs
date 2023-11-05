@@ -12,5 +12,7 @@ namespace Services.Interfaces
     {
         Task<List<Service>> GetAllServices();
         Task<Service> GetServiceById(int id);
+
+        Task<List<Service>> GetAddOnServiceByRequestId(int id);
     }
 }
