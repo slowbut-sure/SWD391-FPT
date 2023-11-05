@@ -48,7 +48,7 @@ namespace Services.Servicesss.Implement
                 if (Id != null)
                 {
 
-                    var staff = await _unitOfWork.Staff.GetStaffById(Id);
+                    var staff = await _unitOfWork.Staff.GetStaffByIdAsync(Id);
                     if (_authentication.Verify(staff.Password, request.OldPassword))
                     {
                         staff.Password = _authentication.Hash(request.NewPassword);
@@ -167,7 +167,7 @@ namespace Services.Servicesss.Implement
 
             try
             {
-                var staff = await _unitOfWork.Staff.GetStaffById(id);
+                var staff = await _unitOfWork.Staff.GetStaffByIdAsync(id);
                 if (staff is null)
                 {
                     response.Message = "Staff not exist";

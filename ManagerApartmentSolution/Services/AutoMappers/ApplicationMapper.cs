@@ -17,6 +17,7 @@ using Services.Models.Request.RequestRequest;
 using Services.Models.Request.ServiceRequest;
 using Services.Models.Request.StaffRequest;
 using Services.Models.Request.TennantRequest;
+using Services.Models.Response;
 using Services.Models.Response.Response.AddOnResponse;
 using Services.Models.Response.Response.ApartmentResponse;
 using Services.Models.Response.Response.Asset;
@@ -340,7 +341,7 @@ namespace Services.AutoMappers
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.rqLogMaintainItem))
                 .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription))
-                .ForMember(re => re.UpdateDate, act => act.MapFrom(src => src.UpdateDate));
+                .ForMember(re => re.StaffId, act => act.MapFrom(src => src.StaffId));
 
             CreateMap<UpdateRequestLog, RequestLog>()
                 .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))

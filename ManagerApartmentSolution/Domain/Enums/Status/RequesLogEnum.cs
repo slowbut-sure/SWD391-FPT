@@ -8,8 +8,8 @@ namespace Domain.Enums.Status
 {
     public enum RequesLogEnum
     {
-        PROCESSED,
+        PROCESSING,
         PENDING,
-        CANCEL,
+        CANCELED,
     }
 }

@@ -9,9 +9,8 @@ namespace Services.Models.Request.RequestDetailRequest
     public class RqLogCreateRequest
     {
         public int RequestId { get; set; }
-        public string rqLogMaintainItem { get; set; }
-        public string ReqLogDescription { get; set; }
-
-        public DateTime UpdateDate { get; set; }
+        public int StaffId { get; set; }
+        public string? rqLogMaintainItem { get; set; }
+        public string? ReqLogDescription { get; set; }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
+using Services.Helpers.Utils;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request.RequestDetailRequest;
+using Services.Models.Response;
 using Services.Models.Response.Response.RequestRespponse;
 
 
@@ -19,14 +21,26 @@ namespace Services.Servicesss.Implement
             _mapper = mapper;
         }
 
-        public async Task<ResponseOfRequestLog> CreateRequestLog(RqLogCreateRequest rqLogRequest)
+        public async Task<DataResponse<ResponseOfRequestLog>> CreateRequestLogAsync(RqLogCreateRequest rqLogRequest)
         {
-            var createRqLog = _mapper.Map<RequestLog>(rqLogRequest);
-            createRqLog.Status = RequesLogEnum.PROCESSED.ToString();
+            DataResponse<ResponseOfRequestLog> res = new DataResponse<ResponseOfRequestLog>();
 
+            Staff staff = await _unitOfWork.Staff.GetStaffByIdAsync(rqLogRequest.StaffId);
+            if(staff == null)
+            {
+                res.Success = false;
+                res.Message = "Staff assigned is not exist";
+                return res;
+            }
+            var createRqLog = _mapper.Map<RequestLog>(rqLogRequest);
+            createRqLog.Status = RequesLogEnum.PENDING.ToString();
+            createRqLog.UpdateDate = Utils.GetClientDateTime();
             _unitOfWork.RequestLog.Add(createRqLog);
             _unitOfWork.Save();
-            return _mapper.Map<ResponseOfRequestLog>(createRqLog);
+            res.Success = true;
+            res.Message = "Assign Staff Sucessfully";
+            res.Data = createRqLog;
+            return res;
         }
 
         public async Task DeleteRequestLog(int rqLogId)
@@ -36,7 +50,7 @@ namespace Services.Servicesss.Implement
             {
                 throw new Exception("Can not found by" + rqLogId);
             }
-            rqLog.Status = RequesLogEnum.CANCEL.ToString();
+            rqLog.Status = RequesLogEnum.CANCELED.ToString();
             _unitOfWork.RequestLog.Update(rqLog);
             _unitOfWork.Save();
         }
@@ -76,5 +90,6 @@ namespace Services.Servicesss.Implement
             _unitOfWork.Save();
             return _mapper.Map<ResponseOfRequestLog>(rqLog);
         }
+
     }
 }

@@ -13,5 +13,7 @@ namespace Services.Interfaces
         Task<List<StaffLog>> GetAllStaffLogs();
         Task<StaffLog> GetStaffLogById(int id);
         Task<List<StaffLog>> GetStaffLogByStaffId(int staffId);
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ManagerApartment.Models;
 using Services.Models.Request.RequestDetailRequest;
+using Services.Models.Response;
 using Services.Models.Response.Response.RequestRespponse;
 
 
@@ -9,7 +10,7 @@ namespace Services.Servicesss
     {
         Task<List<ResponseOfRequestLog>> GetAllRequestLogs();
         Task<ResponseOfRequestLog> GetRequestLogById(int id);
-        Task<ResponseOfRequestLog> CreateRequestLog(RqLogCreateRequest rqLogRequest);
+        Task<DataResponse<ResponseOfRequestLog>> CreateRequestLogAsync(RqLogCreateRequest rqLogRequest);
         Task DeleteRequestLog(int rqLogId);
         Task<ResponseOfRequestLog> UpdateRequestLog(int id, UpdateRequestLog requestLog);
     }
