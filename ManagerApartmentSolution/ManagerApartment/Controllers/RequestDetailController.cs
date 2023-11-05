@@ -31,11 +31,11 @@ namespace ManagerApartment.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ResponseOfRequestDetail>> GetRequestDetailById(int id)
+        public async Task<ActionResult<ResponseOfRequestDetail>> GetRequestDetailByRequestId(int id)
         {
             try
             {
-                var request = await _rqDetailService.GetRequestDetailById(id);
+                var request = await _rqDetailService.GetRequestDetailByRequestId(id);
                 return Ok(request);
             }
             catch (Exception ex)
