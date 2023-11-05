@@ -44,11 +44,12 @@ namespace ManagerApartment.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult<ResponseOfRequestLog>> CreateRequestLog(RqLogCreateRequest rqLog)
+        public async Task<ActionResult<ResponseOfRequestLog>> AssignStaffToRequest(RqLogCreateRequest rqLog)
         {
-            var createdRqLog = await _rqLogService.CreateRequestLog(rqLog);
+            var createdRqLog = await _rqLogService.CreateRequestLogAsync(rqLog);
             return createdRqLog == null ? NotFound() : Ok(createdRqLog);
         }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<ResponseOfRequestLog>> UpdateRequestLog(int id, UpdateRequestLog updateRqLog)
         {
