@@ -51,7 +51,7 @@ namespace Repository.Repository
                                                   ApartmentId = reqGroup.Key.ApartmentId,
                                                   BookDateTime = (DateTime)reqGroup.Key.BookDateTime,
                                                   EndDateTime = (DateTime)reqGroup.Key.EndDateTime,
-                                                  //ReqStatus = Enum.Parse(typeof(RequestEnum), reqGroup.Key.ReqStatus).ToString()  /* reqGroup.Key.ReqStatus */,
+                                                  ReqStatus = RequestEnum.PENDING.ToString()  /* reqGroup.Key.ReqStatus */,
                                                   OwnerId = reqGroup.Key.OwnerId,
                                                   RequestDescription = reqGroup.Key.RequestDescription,
                                                   PackageRequestedId = (int)reqGroup.Key.PackageRequestedId,
@@ -124,8 +124,6 @@ namespace Repository.Repository
                                                     on ap.OwnerId equals ow.OwnerId
                                                     join pa in _context.Packages
                                                     on rq.PackageId equals pa.PackageId
-                                                    join ao in _context.AddOns
-                                                    on rq.RequestId equals ao.RequestId
                                                     select new RequestView
                                                     {
                                                         RequestId = rq.RequestId,
@@ -141,7 +139,6 @@ namespace Repository.Repository
                                                         ApartmentName = ap.ApartmentName,
                                                         PackagePrice = pa.Price
                                                     }
-
                            );
 
             List<RequestView> list = await requestView.ToListAsync();
