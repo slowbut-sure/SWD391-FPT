@@ -18,7 +18,7 @@ public partial class Package
 
     public string? PackageImageLink { get; set; }
 
-    public decimal? Price { get; set; }
+    public decimal Price { get; set; }
 
     [JsonInclude] public virtual ApartmentType? ApartmentType { get; set; }
 

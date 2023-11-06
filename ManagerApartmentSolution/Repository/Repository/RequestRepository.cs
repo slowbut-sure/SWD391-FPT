@@ -42,7 +42,8 @@ namespace Repository.Repository
                                                   PackageRequestedId = (int)rq.PackageId,
                                                   PackageName = pa.Name,
                                                   owner = ow.Name,
-                                                  ApartmentName = ap.ApartmentName
+                                                  ApartmentName = ap.ApartmentName,
+                                                  PackagePrice = pa.Price,
                                               } into reqGroup
                                               select new RequestView
                                               {
@@ -57,7 +58,8 @@ namespace Repository.Repository
                                                   NumberOfAddOns = reqGroup.Count(x => x != null),
                                                   PackageName = reqGroup.Key.PackageName,
                                                   Owner = reqGroup.Key.owner,
-                                                  ApartmentName = reqGroup.Key.ApartmentName
+                                                  ApartmentName = reqGroup.Key.ApartmentName,
+                                                  PackagePrice = reqGroup.Key.PackagePrice
                                               }
                            );
             return await result.ToListAsync();
@@ -136,8 +138,10 @@ namespace Repository.Repository
                                                         PackageRequestedId = (int)rq.PackageId,
                                                         PackageName = pa.Name,
                                                         Owner = ow.Name,
-                                                        ApartmentName = ap.ApartmentName
+                                                        ApartmentName = ap.ApartmentName,
+                                                        PackagePrice = pa.Price
                                                     }
+
                            );
 
             List<RequestView> list = await requestView.ToListAsync();
