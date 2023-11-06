@@ -97,6 +97,31 @@ namespace Services.Servicesss.Implement
             return response;
         }
 
-        
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetRequestsByApartment(int apartmentId)
+        {
+            var response = new DataResponse<List<ResponseOfRequest>>();
+            try
+            {
+                var data = await _unitOfWork.Request.GetRequestsByApartmentId(apartmentId);
+                if (data is null)
+                {
+                    response.Message = "Empty list";
+                }
+                else
+                {
+                    response.Data = _mapper.Map<List<ResponseOfRequest>>(data);
+                    response.Message = "Requests by Apartment";
+                    response.Success = true;
+                }
+            }
+            catch (Exception ex) 
+            {
+                response.Message = "Something wrong; " + ex.Message;
+                response.Success = false;
+            }
+           
+
+            return response;
+        }
     }
 }

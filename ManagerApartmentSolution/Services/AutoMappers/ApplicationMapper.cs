@@ -250,6 +250,21 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.ApartmentName))
                 .ForMember(re => re.PackagePrice, act => act.MapFrom(src => src.PackagePrice));
 
+            CreateMap<Request, ResponseOfRequest>()
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
+                .ForMember(re => re.OwnerId, act => act.MapFrom(src => src.Apartment.OwnerId))
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.Description))
+                .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
+                .ForMember(re => re.EndDateTime, act => act.MapFrom(src => src.EndDate))
+                .ForMember(re => re.IsSequence, act => act.MapFrom(src => src.IsSequence))
+                .ForMember(re => re.sequence, act => act.MapFrom(src => src.Sequence))
+                .ForMember(re => re.ReqStatus, act => act.MapFrom(src => src.ReqStatus))
+                .ForMember(re => re.NumberOfAddOns, act => act.MapFrom(src => src.AddOns.Count))
+                .ForMember(re => re.PackageRequestedId, act => act.MapFrom(src => src.PackageId))
+                .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
+                .ForMember(re => re.Owner, act => act.MapFrom(src => src.Apartment.Owner.Name))
+                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.Apartment.ApartmentName));
 
             CreateMap<RequestCreateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
@@ -278,7 +293,7 @@ namespace Services.AutoMappers
                 .ForPath(re => re.NumberOfAddOnService, act => act.MapFrom(src => src.AddOns.Count));
 
             CreateMap<RequestDetailView, ResponseOfRequestDetail>()
-                           .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
                 .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
                 .ForMember(re => re.OwnerId, act => act.MapFrom(src => src.OwnerId))
                 .ForMember(re => re.Description, act => act.MapFrom(src => src.RequestDescription))
