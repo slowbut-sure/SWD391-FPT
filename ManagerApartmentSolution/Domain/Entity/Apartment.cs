@@ -10,7 +10,7 @@ public partial class Apartment
 
     public int? ApartmentTypeId { get; set; }
 
-    public string? ApartmentName { get; set; }
+    public string ApartmentName { get; set; }
 
     public int? BuildingId { get; set; }
 

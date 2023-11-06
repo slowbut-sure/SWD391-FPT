@@ -12,7 +12,7 @@ public partial class Request
     public int? ApartmentId { get; set; }
     public string? Description { get; set; }
 
-    public DateTime? BookDateTime { get; set; }
+    public DateTime BookDateTime { get; set; }
 
     public DateTime? EndDate { get; set; }
 
