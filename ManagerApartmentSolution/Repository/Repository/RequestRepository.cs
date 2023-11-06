@@ -121,6 +121,8 @@ namespace Repository.Repository
                                                     where rq.ReqStatus != 1 && rq.RequestId == id
                                                     join ap in _context.Apartments
                                                     on rq.ApartmentId equals ap.ApartmentId
+                                                    join bu in _context.Buildings
+                                                    on ap.BuildingId equals bu.BuildingId
                                                     join ow in _context.Owners
                                                     on ap.OwnerId equals ow.OwnerId
                                                     join pa in _context.Packages
@@ -137,6 +139,7 @@ namespace Repository.Repository
                                                         PackageRequestedId = (int)rq.PackageId,
                                                         PackageName = pa.Name,
                                                         Owner = ow.Name,
+                                                        ApartmentAddress = bu.Address,
                                                         ApartmentName = ap.ApartmentName,
                                                         PackagePrice = pa.Price
                                                     }

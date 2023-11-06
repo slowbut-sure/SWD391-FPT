@@ -65,6 +65,7 @@ namespace Services.Servicesss.Implement
                 RequestSequence = rq.RequestSequence,
                 AddOnList = serviceList,
                 PackagePrice = rq.PackagePrice,
+                ApartmentAddress = rq.ApartmentAddress
             };
 
             response.Data = detail;
