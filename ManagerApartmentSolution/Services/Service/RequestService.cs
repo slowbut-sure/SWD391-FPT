@@ -1,4 +1,5 @@
-﻿using Services.Models.Response;
+﻿using Domain.Entity;
+using Services.Models.Response;
 using Services.Models.Response.Response;
 using Services.Models.Response.Response.RequestRespponse;
 using System;
@@ -16,5 +17,7 @@ namespace Services.Servicesss
         Task<DataResponse<List<ResponseOfRequest>>> GetPendingAndProcessRequestsByStaffId(int staffId, int page, int pageSize, string sortOrder);
 
         Task DeleteRequest(int requestId);
+
+        Task<DataResponse<List<ResponseOfRequest>>> GetRequestsByApartment(int apartmentId);
     }
 }

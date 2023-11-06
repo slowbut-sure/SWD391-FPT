@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Models.Response;
 using Services.Models.Response.Response.PackageResponse;
 using Services.Models.Response.Response.RequestRespponse;
 using Services.Servicesss;
@@ -63,6 +64,13 @@ namespace ManagerApartment.Controllers
         {
             var deletedRequest = _requestService.DeleteRequest(id);
             return deletedRequest == null ? NoContent() : Ok(deletedRequest);
+        }
+
+        [HttpGet("apartments/{apartmentId}")]
+        public async Task<ActionResult<DataResponse<List<ResponseOfRequest>>>> GetRequestsByApartment(int apartmentId)
+        {
+            var response = await _requestService.GetRequestsByApartment(apartmentId);
+            return response == null ? NoContent() : Ok(response);
         }
     }
 }

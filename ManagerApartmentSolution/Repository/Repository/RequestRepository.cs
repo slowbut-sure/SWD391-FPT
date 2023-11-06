@@ -144,6 +144,18 @@ namespace Repository.Repository
             return  await Task.FromResult(list[0]);
         }
 
+        public async Task<List<Request>> GetRequestsByApartmentId(int apartmentId)
+        {
+            return await _context.Requests
+                            .Where(rq => rq.ApartmentId == apartmentId)
+                            .Include(rq => rq.Apartment).ThenInclude(a => a.Owner) 
+                            .Include(rq => rq.Package)
+                            .Include(rq => rq.AddOns)
+                            .Include(rq => rq.RequestLogs)
+                            .Include (rq => rq.Bills)
+                            .ToListAsync();
+        }
+
         public Task<List<Request>> GetStaffRequests()
         {
             throw new NotImplementedException();
