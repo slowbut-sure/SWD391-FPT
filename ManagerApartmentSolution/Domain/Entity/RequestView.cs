@@ -11,6 +11,8 @@ namespace Domain.Entity
         public int RequestId { get; set; }
         public int ApartmentId { get; set; }
         public int PackageRequestedId { get; set; }
+
+        public string ApartmentAddress { get; set; }
         public decimal PackagePrice { get; set; }
         public string PackageName { get; set; }
         public string ApartmentName { get; set; }
@@ -27,7 +29,7 @@ namespace Domain.Entity
 
         public int? RequestSequence { get; set; }
 
-        public string ReqStatus { get; set; }
+        public string ReqStatus { get; set; } // Tien trinh
 
         public int? NumberOfAddOns { get; set; } = 0;
     }
