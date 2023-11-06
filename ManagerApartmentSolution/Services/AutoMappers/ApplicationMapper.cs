@@ -247,7 +247,8 @@ namespace Services.AutoMappers
                 .ForMember(re => re.PackageRequestedId, act => act.MapFrom(src => src.PackageRequestedId))
                 .ForMember(re => re.PackageName, act => act.MapFrom(src => src.PackageName))
                 .ForMember(re => re.Owner, act => act.MapFrom(src => src.Owner))
-                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.ApartmentName));
+                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.ApartmentName))
+                .ForMember(re => re.PackagePrice, act => act.MapFrom(src => src.PackagePrice));
 
 
             CreateMap<RequestCreateRequest, Request>()
@@ -289,7 +290,8 @@ namespace Services.AutoMappers
                 .ForMember(re => re.PackageName, act => act.MapFrom(src => src.PackageName))
                 .ForMember(re => re.Owner, act => act.MapFrom(src => src.Owner))
                 .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.ApartmentName))
-                .ForMember(re => re.AddOnsList, act => act.MapFrom(src => src.AddOnList));
+                .ForMember(re => re.AddOnsList, act => act.MapFrom(src => src.AddOnList))
+                .ForMember(re => re.PackagePrice, act => act.MapFrom(src => src.PackagePrice));
             //================================================================================================================
 
             /*			CreateMap<RequestDetail, ResponseOfRequestDetail>()

@@ -64,7 +64,7 @@ namespace Services.Servicesss.Implement
                 RequestId = rq.RequestId,
                 RequestSequence = rq.RequestSequence,
                 AddOnList = serviceList,
-
+                PackagePrice = rq.PackagePrice,
             };
 
             response.Data = detail;

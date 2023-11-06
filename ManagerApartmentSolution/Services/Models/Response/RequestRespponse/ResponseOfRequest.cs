@@ -16,6 +16,8 @@ namespace Services.Models.Response.Response.RequestRespponse
         public string PackageName { get; set; }
         public string Owner { get; set; }
 
+        public decimal PackagePrice { get; set; }
+
         public string Description { get; set; }
 
         public DateTime BookDateTime { get; set; }
