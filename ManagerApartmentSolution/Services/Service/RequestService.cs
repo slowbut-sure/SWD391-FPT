@@ -21,5 +21,7 @@ namespace Services.Servicesss
         Task<DataResponse<List<ResponseOfRequest>>> GetRequestsByApartment(int apartmentId);
 
         Task<DataResponse<List<ResponseOfRequest>>> GetRequestWithCurrentStatus(int page, int pageSize, string sortOrder);
+
+        Task<DataResponse<List<ResponseOfRequest>>> GetAllRequestsByStaffId(int staffId, int page, int pageSize, string sortOrder);
     }
 }

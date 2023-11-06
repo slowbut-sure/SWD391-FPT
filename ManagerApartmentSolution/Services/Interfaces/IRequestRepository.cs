@@ -17,5 +17,6 @@ namespace Services.Interfaces
         Task<RequestView> GetRequestById(int id);
         Task<List<Request>> GetStaffRequests();
         Task<List<Request>> GetRequestsByApartmentId(int apartmentId);
+        Task<List<RequestView>> GetRequestsByStaffId(int staffId);
     }
 }

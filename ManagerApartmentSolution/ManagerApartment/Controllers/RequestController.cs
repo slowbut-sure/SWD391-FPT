@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ManagerApartment.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Response;
 using Services.Models.Response.Response.PackageResponse;
@@ -73,6 +74,13 @@ namespace ManagerApartment.Controllers
             return response == null ? NoContent() : Ok(response);
         }
 
+
+        [HttpGet("staffs/{staffId}")]
+        public async Task<IActionResult> GetAllRequestsByStaffId(int staffId, int page = 1, int pageSize = 10, string sortOrder = "asc")
+        {
+            var response = await _requestService.GetAllRequestsByStaffId(staffId, page, pageSize, sortOrder);
+            return response == null ? NoContent() : Ok(response);
+        }
 
     }
 }
