@@ -124,8 +124,6 @@ namespace Repository.Repository
                                                     on ap.OwnerId equals ow.OwnerId
                                                     join pa in _context.Packages
                                                     on rq.PackageId equals pa.PackageId
-                                                    join ao in _context.AddOns
-                                                    on rq.RequestId equals ao.RequestId
                                                     select new RequestView
                                                     {
                                                         RequestId = rq.RequestId,
