@@ -21,7 +21,7 @@ namespace Domain.Entity
 
         public DateTime BookDateTime { get; set; }
 
-        public DateTime EndDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
 
         public bool? IsSequence { get; set; }
 
