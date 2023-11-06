@@ -10,6 +10,7 @@ using Services.Models.Response.Response.StaffResponse;
 using Services.Models.Response.Response.TennantResponse;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,6 +122,180 @@ namespace Services.Servicesss.Implement
             }
            
 
+            return response;
+        }
+
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetRequestWithCurrentStatus(int page, int pageSize, string sortOrder)
+        {
+            var response = new DataResponse<List<ResponseOfRequest>>();
+            var rqs = await _unitOfWork.Request.GetAllRequests();
+
+            if (rqs is null)
+            {
+                response.Data = null;
+                response.Success = true;
+                response.Message = "Empty requests";
+                return response;
+            }
+
+            foreach (var r in rqs)
+            {
+                var rls = await _unitOfWork.RequestLog.GetRequestLogsByRequestId(r.RequestId);
+
+                if (rls is null) continue;
+
+                var listTime = rls.Select(rl => rl.UpdateDate).ToList();
+
+                var index = 0;
+                TimeSpan timeDifference = TimeSpan.MaxValue;
+                var currentTime = DateTime.UtcNow;
+                for (int i = 0; i < listTime.Count; i++)
+                {
+                    TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
+                    if (currentDifference.Duration() < timeDifference.Duration())
+                    {
+                        timeDifference = currentDifference;
+                        index = i;
+                    }
+                }
+
+                if (index >= rls.Count) continue;
+
+                r.ReqStatus = rls.ElementAt(index).Status;
+                index = 0;
+            }
+
+            var requestDtos = _mapper.Map<List<ResponseOfRequest>>(rqs);
+
+            // Sắp xếp danh sách yêu cầu theo BookDateTime gần nhất
+            if (sortOrder == "desc")
+            {
+                requestDtos = requestDtos.OrderByDescending(r => r.RequestId).ToList();
+            }
+            else
+            {
+                requestDtos = requestDtos.OrderBy(r => r.RequestId).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedRequests = requestDtos.Skip(startIndex).Take(pageSize).ToList();
+            response.Data = pagedRequests;
+            response.Success = true;
+            response.Message = "Successfully get requested";
+            return response;
+        }
+
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetAllRequestsByStaffId(int staffId, int page, int pageSize, string sortOrder)
+        {
+            var rqs = await _unitOfWork.Request.GetRequestsByStaffId(staffId);
+            if (rqs is null)
+            {
+                throw new Exception("The request list is empty");
+            }
+            var response = new DataResponse<List<ResponseOfRequest>>();
+
+
+            foreach (var r in rqs)
+            {
+                var rls = await _unitOfWork.RequestLog.GetRequestLogsByRequestId(r.RequestId);
+
+                if (rls is null) continue;
+
+                var listTime = rls.Select(rl => rl.UpdateDate).ToList();
+
+                var index = 0;
+                TimeSpan timeDifference = TimeSpan.MaxValue;
+                var currentTime = DateTime.UtcNow;
+                for (int i = 0; i < listTime.Count; i++)
+                {
+                    TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
+                    if (currentDifference.Duration() < timeDifference.Duration())
+                    {
+                        timeDifference = currentDifference;
+                        index = i;
+                    }
+                }
+
+                if (index >= rls.Count) continue;
+
+                r.ReqStatus = rls.ElementAt(index).Status;
+                index = 0;
+            }
+
+            var requestDtos = _mapper.Map<List<ResponseOfRequest>>(rqs);
+
+            // Sắp xếp danh sách yêu cầu theo BookDateTime gần nhất
+            if (sortOrder == "desc")
+            {
+                requestDtos = requestDtos.OrderByDescending(r => r.BookDateTime).ToList();
+            }
+            else
+            {
+                requestDtos = requestDtos.OrderBy(r => r.BookDateTime).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedRequests = requestDtos.Skip(startIndex).Take(pageSize).ToList();
+            response.Data = pagedRequests;
+            response.Success = true;
+            response.Message = "Successfully get requested";
+            return response;
+        }
+
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetAllRequestsByStatus(string status, int page, int pageSize, string sortOrder)
+        {
+            var rqs = await _unitOfWork.Request.GetRequestsByStatus(status);
+            if (rqs is null)
+            {
+                throw new Exception("The request list is empty");
+            }
+            var response = new DataResponse<List<ResponseOfRequest>>();
+
+
+            foreach (var r in rqs)
+            {
+                var rls = await _unitOfWork.RequestLog.GetRequestLogsByRequestId(r.RequestId);
+
+                if (rls is null) continue;
+
+                var listTime = rls.Select(rl => rl.UpdateDate).ToList();
+
+                var index = 0;
+                TimeSpan timeDifference = TimeSpan.MaxValue;
+                var currentTime = DateTime.UtcNow;
+                for (int i = 0; i < listTime.Count; i++)
+                {
+                    TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
+                    if (currentDifference.Duration() < timeDifference.Duration())
+                    {
+                        timeDifference = currentDifference;
+                        index = i;
+                    }
+                }
+
+                if (index >= rls.Count) continue;
+
+                r.ReqStatus = rls.ElementAt(index).Status;
+                index = 0;
+            }
+            var tmp = rqs.Where(o => o.ReqStatus.Equals(status)).ToList();
+            var requestDtos = _mapper.Map<List<ResponseOfRequest>>(tmp);
+
+            // Sắp xếp danh sách yêu cầu theo BookDateTime gần nhất
+            if (sortOrder == "desc")
+            {
+                requestDtos = requestDtos.OrderByDescending(r => r.BookDateTime).ToList();
+            }
+            else
+            {
+                requestDtos = requestDtos.OrderBy(r => r.BookDateTime).ToList();
+            }
+
+            var startIndex = (page - 1) * pageSize;
+            var pagedRequests = requestDtos.Skip(startIndex).Take(pageSize).ToList();
+            response.Data = pagedRequests;
+            response.Success = true;
+            response.Message = "Successfully get requested";
             return response;
         }
     }
