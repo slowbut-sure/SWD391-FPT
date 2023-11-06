@@ -7,7 +7,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/request")]
     [ApiController]
     public class RequestController : Controller
@@ -18,11 +18,11 @@ namespace ManagerApartment.Controllers
             _requestService = requestService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfRequest>>> GetRequests(int page = 1, int pageSize = 10, string sortOrder = "asc")
+        public async Task<ActionResult<DataResponse<List<ResponseOfRequest>>>> GetRequests(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
-                var requests = await _requestService.GetAllRequests(page, pageSize, sortOrder);
+                var requests = await _requestService.GetRequestWithCurrentStatus(page, pageSize, sortOrder);
                 return Ok(requests);
             }
             catch (Exception ex)
@@ -72,5 +72,7 @@ namespace ManagerApartment.Controllers
             var response = await _requestService.GetRequestsByApartment(apartmentId);
             return response == null ? NoContent() : Ok(response);
         }
+
+
     }
 }

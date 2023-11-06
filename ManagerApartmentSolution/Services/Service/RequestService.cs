@@ -19,5 +19,7 @@ namespace Services.Servicesss
         Task DeleteRequest(int requestId);
 
         Task<DataResponse<List<ResponseOfRequest>>> GetRequestsByApartment(int apartmentId);
+
+        Task<DataResponse<List<ResponseOfRequest>>> GetRequestWithCurrentStatus(int page, int pageSize, string sortOrder);
     }
 }

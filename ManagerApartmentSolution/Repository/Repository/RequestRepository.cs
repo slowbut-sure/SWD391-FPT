@@ -17,6 +17,7 @@ namespace Repository.Repository
     public class RequestRepository : GenericRepository<Request>, IRequestRepository
     {
         public RequestRepository(ManagerApartmentContext context) : base(context) { }
+
         public async Task<List<RequestView>> GetAllRequests()
         {
             IQueryable<RequestView> result = (from rq in _context.Requests
