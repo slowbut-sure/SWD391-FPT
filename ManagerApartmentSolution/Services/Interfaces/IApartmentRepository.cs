@@ -12,5 +12,7 @@ namespace Services.Interfaces
     {
         Task<List<Apartment>> GetAllApartments();
         Task<Apartment> GetApartmentById(int id);
+
+        Task<List<Apartment>> GetApartmentNameByOwnerId(int ownerId);
     }
 }

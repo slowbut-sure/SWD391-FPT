@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ManagerApartment.Models;
 using Services.Interfaces;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Response;
@@ -60,6 +61,32 @@ namespace Services.Servicesss.Implement
                 response.Success = false;
             }
 
+            return response;
+        }
+
+        public async Task<DataResponse<List<ResponseOfApartment>>> GetAparmentsByOwnerId(int ownerId)
+        {
+            var response = new DataResponse<List<ResponseOfApartment>>();
+            try
+            {
+                List<Apartment> ApartmentList = await _unitOfWork.Apartment.GetApartmentNameByOwnerId(ownerId);
+
+                if (ApartmentList.Count == 0)
+                {
+                    response.Data = ApartmentList;
+                    response.Success = true;
+                    response.Message = "Owner has 0 Apartment";
+                    return response;
+                }
+                response.Data = ApartmentList;
+                response.Success = true;
+                response.Message = "Get Apartment By Owner ID";
+            }
+            catch (Exception ex)
+            {
+                response.Message = response.Message;
+                response.Success = false;
+            }
             return response;
         }
 

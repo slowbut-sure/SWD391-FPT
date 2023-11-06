@@ -28,7 +28,24 @@ namespace ManagerApartment.Controllers
             }
         }
 
+        [HttpGet("/owner/{ownerId}")]
+        [ActionName("GetApartmentByOwnerID")]
+        public async Task<IActionResult> GetApartmentByOwnerID(int ownerId)
+        {
+            try
+            {
+                var apartmentList = await _apartmentService.GetAparmentsByOwnerId(ownerId);
+                return Ok(apartmentList);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("{id}")]
+        [ActionName("GetApartmentById")]
+
         public async Task<IActionResult> GetApartmentById(int id)
         {
             try

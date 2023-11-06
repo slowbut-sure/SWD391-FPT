@@ -14,5 +14,6 @@ namespace Services.Servicesss
     {
         Task<DataResponse<List<ResponseOfApartment>>> GetAllApartments(int page, int pageSize, string sortOrder);
         Task<DataResponse<ResponseOfApartment>> GetApartmentById(int id);
+        Task<DataResponse<List<ResponseOfApartment>>> GetAparmentsByOwnerId(int ownerId);
     }
 }

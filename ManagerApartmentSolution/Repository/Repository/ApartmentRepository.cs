@@ -27,5 +27,10 @@ namespace Repository.Repository
                 .FirstOrDefault(r => r.ApartmentId == id);
             return apartments;
         }
+
+        public async Task<List<Apartment>> GetApartmentNameByOwnerId(int ownerId)
+        {
+            return await _context.Apartments.Where( ap => ap.OwnerId == ownerId ).ToListAsync();
+        }
     }
 }
