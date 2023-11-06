@@ -27,5 +27,10 @@ namespace Repository.Repository
                 .Include(r => r.Request)
                 .FirstOrDefault(r => r.RequestLogId == id);
         }
+
+        public async Task<List<RequestLog>> GetRequestLogsByRequestId(int reqId)
+        {
+            return await _context.RequestLogs.Where(rl => rl.RequestId == reqId).ToListAsync();
+        }
     }
 }

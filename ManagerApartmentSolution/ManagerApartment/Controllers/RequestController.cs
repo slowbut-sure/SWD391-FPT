@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ManagerApartment.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Models.Response;
 using Services.Models.Response.Response.PackageResponse;
@@ -18,11 +19,11 @@ namespace ManagerApartment.Controllers
             _requestService = requestService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<ResponseOfRequest>>> GetRequests(int page = 1, int pageSize = 10, string sortOrder = "asc")
+        public async Task<ActionResult<DataResponse<List<ResponseOfRequest>>>> GetRequests(int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             try
             {
-                var requests = await _requestService.GetAllRequests(page, pageSize, sortOrder);
+                var requests = await _requestService.GetRequestWithCurrentStatus(page, pageSize, sortOrder);
                 return Ok(requests);
             }
             catch (Exception ex)
@@ -72,5 +73,21 @@ namespace ManagerApartment.Controllers
             var response = await _requestService.GetRequestsByApartment(apartmentId);
             return response == null ? NoContent() : Ok(response);
         }
+
+
+        [HttpGet("staffs/{staffId}")]
+        public async Task<IActionResult> GetAllRequestsByStaffId(int staffId, int page = 1, int pageSize = 10, string sortOrder = "asc")
+        {
+            var response = await _requestService.GetAllRequestsByStaffId(staffId, page, pageSize, sortOrder);
+            return response == null ? NoContent() : Ok(response);
+        }
+
+        [HttpGet("status/{status}")]
+        public async Task<IActionResult> GetAllRequestsByStaffId(string status, int page = 1, int pageSize = 10, string sortOrder = "asc")
+        {
+            var response = await _requestService.GetAllRequestsByStatus(status, page, pageSize, sortOrder);
+            return response == null ? NoContent() : Ok(response);
+        }
+
     }
 }
