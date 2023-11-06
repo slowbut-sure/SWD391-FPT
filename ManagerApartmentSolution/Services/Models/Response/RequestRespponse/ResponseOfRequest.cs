@@ -15,6 +15,7 @@ namespace Services.Models.Response.Response.RequestRespponse
         public string ApartmentName { get; set; }
         public string PackageName { get; set; }
         public string Owner { get; set; }
+        public string ApartmentAddress { get; set; }
 
         public decimal PackagePrice { get; set; }
 
