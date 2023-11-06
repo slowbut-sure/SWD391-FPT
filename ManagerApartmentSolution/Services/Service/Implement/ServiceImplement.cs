@@ -4,6 +4,7 @@ using ManagerApartment.Models;
 using Microsoft.Extensions.Hosting;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request.ServiceRequest;
+using Services.Models.Response;
 using Services.Models.Response.Response.ServiceResponse;
 using Services.Models.Response.Response.TennantResponse;
 using System;
@@ -31,7 +32,7 @@ namespace Services.Servicesss.Implement
 
             _unitOfWork.Service.Add(createService);
             _unitOfWork.Save();
-            return _mapper.Map<ResponseOfService>(createService);  
+            return _mapper.Map<ResponseOfService>(createService);
         }
 
         public async Task DeleteService(int serviceId)
@@ -48,7 +49,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<List<ResponseOfService>> GetAllServices()
         {
-            var services =  _unitOfWork.Service.GetAll().ToList();
+            var services = _unitOfWork.Service.GetAll().ToList();
             if (services is null)
             {
                 throw new Exception("The service list is empty");
@@ -64,6 +65,27 @@ namespace Services.Servicesss.Implement
                 throw new Exception("The service does not exist");
             }
             return _mapper.Map<ResponseOfService>(service);
+        }
+
+        public async Task<DataResponse<List<Service>>> GetServicesByPackageId(int packageId)
+        {
+            DataResponse<List<Service>> res = new DataResponse<List<Service>>();
+            Package package = _unitOfWork.Package.GetById(packageId);
+            if (package is null)
+            {
+                res.Success = false;
+                res.Message = "PackageID not exsited";
+                return res;
+            }
+            List<Service> listServices = await _unitOfWork.Service.GetServiceByPackageId(packageId);
+            res.Success = true;
+            if (listServices is null || listServices.Count == 0)
+            {
+                res.Message = "Package has 0 Service";
+            }
+            res.Message = "Get Service Of Package successfully";
+            res.Data = listServices;
+            return res;
         }
 
         public async Task<ResponseOfService> UpdateService(int serviceId, UpdateService updateService)

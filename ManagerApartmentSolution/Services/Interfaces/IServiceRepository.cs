@@ -14,5 +14,6 @@ namespace Services.Interfaces
         Task<Service> GetServiceById(int id);
 
         Task<List<Service>> GetAddOnServiceByRequestId(int id);
+        Task<List<Service>> GetServiceByPackageId(int packageId);
     }
 }
