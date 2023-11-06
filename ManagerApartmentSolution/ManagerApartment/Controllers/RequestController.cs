@@ -8,7 +8,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/request")]
     [ApiController]
     public class RequestController : Controller
@@ -79,6 +79,13 @@ namespace ManagerApartment.Controllers
         public async Task<IActionResult> GetAllRequestsByStaffId(int staffId, int page = 1, int pageSize = 10, string sortOrder = "asc")
         {
             var response = await _requestService.GetAllRequestsByStaffId(staffId, page, pageSize, sortOrder);
+            return response == null ? NoContent() : Ok(response);
+        }
+
+        [HttpGet("status/{status}")]
+        public async Task<IActionResult> GetAllRequestsByStaffId(string status, int page = 1, int pageSize = 10, string sortOrder = "asc")
+        {
+            var response = await _requestService.GetAllRequestsByStatus(status, page, pageSize, sortOrder);
             return response == null ? NoContent() : Ok(response);
         }
 
