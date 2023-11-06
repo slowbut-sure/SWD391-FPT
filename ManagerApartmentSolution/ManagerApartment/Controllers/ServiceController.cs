@@ -30,6 +30,22 @@ namespace ManagerApartment.Controllers
             }
         }
 
+        [HttpGet("packageID/{packageId}")]
+        public async Task<ActionResult<ResponseOfService>> GetServiceByPackageId (int packageId)
+        {
+            try
+            {
+                var res = await _serviceService.GetServicesByPackageId(packageId);
+                return Ok(res);
+            }catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+
+            }
+        }
+
+        
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ResponseOfService>> GetServiceById(int id)
         {

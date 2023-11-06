@@ -46,5 +46,25 @@ namespace Repository.Repository
                                                     };
             return await addOnServicesList.ToListAsync();
         }
+
+        public async Task<List<Service>> GetServiceByPackageId(int packageId)
+        {
+            IQueryable<Service> list = (from pa in _context.Packages
+                                        where pa.PackageId == packageId
+                                        join psd in _context.PackageServiceDetails
+                                       on pa.PackageId equals psd.PackageId
+                                        join ser in _context.Services
+                                        on psd.ServiceId equals ser.ServiceId
+                                        select new Service
+                                        {
+                                            ServiceId = ser.ServiceId,
+                                            Code = ser.Code,
+                                            Name = ser.Name,
+                                            Price = ser.Price,
+                                            Unit = ser.Unit,
+                                            ServiceStatus = ser.ServiceStatus
+                                        });
+            return await list.ToListAsync();
+        }
     }
 }
