@@ -308,7 +308,6 @@ namespace Services.Servicesss.Implement
 
             if (existApartment == null)
             {
-
                 response.Success = false;
                 response.Message = "Apartment Not existed";
                 return response;
