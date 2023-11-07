@@ -1,14 +1,17 @@
 ﻿using ManagerApartment.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Models.Request.RequestRequest;
+using Services.Models.Request.TennantRequest;
 using Services.Models.Response;
 using Services.Models.Response.Response.PackageResponse;
 using Services.Models.Response.Response.RequestRespponse;
+using Services.Models.Response.Response.TennantResponse;
 using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/request")]
     [ApiController]
     public class RequestController : Controller
@@ -87,6 +90,13 @@ namespace ManagerApartment.Controllers
         {
             var response = await _requestService.GetAllRequestsByStatus(status, page, pageSize, sortOrder);
             return response == null ? NoContent() : Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<DataResponse<ResponseOfRequest>>> CreateRequest([FromBody]RequestCreateRequest request)
+        {
+            var createdRequest = await _requestService.CreateRequest(request);
+            return createdRequest == null ? NotFound() : Ok(createdRequest);
         }
 
     }

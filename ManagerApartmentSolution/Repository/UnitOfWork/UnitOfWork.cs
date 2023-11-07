@@ -1,4 +1,5 @@
 ﻿using ManagerApartment.Models;
+using Microsoft.EntityFrameworkCore.Storage;
 using Repository.Repository;
 using Services.Interfaces;
 using Services.Interfaces.IUnitOfWork;
@@ -12,7 +13,7 @@ namespace Repository.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ManagerApartmentContext _context;
+        public readonly ManagerApartmentContext _context;
         public UnitOfWork(ManagerApartmentContext context)
         {
             _context = context;
@@ -37,6 +38,8 @@ namespace Repository.UnitOfWork
             Staff = new StaffRepository(_context);
             Tennant = new TennantRepository(_context);
         }
+
+        public ManagerApartmentContext Context { get { return _context; } }
         public IAddOnRepository AddOn { get; }
         public IApartmentRepository Apartment { get; }
         public IApartmentTypeRepository ApartmentType { get; }
@@ -57,9 +60,27 @@ namespace Repository.UnitOfWork
         public IStaffLogRepository StaffLog { get; }
         public IStaffRepository Staff { get; }
         public ITennantRepository Tennant { get; }
-        public void Save()
+
+        public void RollBack(IDbContextTransaction commit, string name)
         {
-            _context.SaveChanges();
+            commit.RollbackToSavepoint(name);
+        }
+
+        public int Save()
+        {
+           return _context.SaveChanges();
+        }
+
+        public IDbContextTransaction StartTransaction(string name)
+        {
+            using var commit = _context.Database.BeginTransaction();
+            commit.CreateSavepoint(name);
+            return commit;
+        }
+
+        public void StopTransaction(IDbContextTransaction commit)
+        {
+            commit.Commit();
         }
     }
 }

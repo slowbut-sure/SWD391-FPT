@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,11 @@ namespace Services.Interfaces.IUnitOfWork
         IStaffLogRepository StaffLog { get; }
         IStaffRepository Staff { get; }
         ITennantRepository Tennant { get; }
-        void Save();
+
+        IDbContextTransaction StartTransaction(string name);
+        void StopTransaction(IDbContextTransaction commit);
+        void RollBack(IDbContextTransaction commit, string name);
+        
+        int Save();
     }
 }

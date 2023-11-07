@@ -3,9 +3,11 @@ using Domain.Entity;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
 using Services.Interfaces.IUnitOfWork;
+using Services.Models.Request.RequestRequest;
 using Services.Models.Response;
 using Services.Models.Response.Response;
 using Services.Models.Response.Response.RequestRespponse;
+using Services.Models.Response.Response.ServiceResponse;
 using Services.Models.Response.Response.StaffResponse;
 using Services.Models.Response.Response.TennantResponse;
 using System;
@@ -296,6 +298,42 @@ namespace Services.Servicesss.Implement
             response.Data = pagedRequests;
             response.Success = true;
             response.Message = "Successfully get requested";
+            return response;
+        }
+
+        public async Task<DataResponse<ResponseOfRequest>> CreateRequest(RequestCreateRequest request)
+        {
+            string savePoint = "before Create Request";
+            var commit = _unitOfWork.StartTransaction(savePoint);
+            var response = new DataResponse<ResponseOfRequest>();
+            try 
+            {
+              
+                var createRequest = _mapper.Map<Request>(request);
+                createRequest.RequestLogs.Add( new RequestLog 
+                { 
+                    Status = RequestEnum.PENDING.ToString()
+                });
+                _unitOfWork.Request.Add(createRequest);
+
+                bool createRequestSuccess = _unitOfWork.Save() == 1;
+                if (!createRequestSuccess )
+                {
+                    throw new Exception();
+                }
+                _unitOfWork.StopTransaction(commit);
+
+                response.Success = true;
+                response.Data = _mapper.Map<ResponseOfRequest>(createRequest);
+                response.Message = "Successully create";
+            }
+            catch (Exception e)
+            {
+                _unitOfWork.RollBack(commit, savePoint);
+                response.Success = false;
+                response.Message = "Failed create";
+                return response;
+            }
             return response;
         }
     }
