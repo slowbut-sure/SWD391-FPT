@@ -7,7 +7,7 @@ namespace ManagerApartment.Models;
 public partial class RequestLog
 {
     public int RequestLogId { get; set; }
-    public int StaffId { get; set; }
+    public int? StaffId { get; set; }
     public int? RequestId { get; set; }
     public string? MaintainItem { get; set; }
 
