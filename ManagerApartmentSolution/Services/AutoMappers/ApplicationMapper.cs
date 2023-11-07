@@ -271,10 +271,8 @@ namespace Services.AutoMappers
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
                 .ForMember(s => s.PackageId, act => act.MapFrom(src => src.PackageId))
                 .ForMember(s => s.Description, act => act.MapFrom(src => src.RequestDescription))
-                .ForMember(s => s.BookDateTime, act => act.MapFrom(src => src.rqBookDateTime))
-                .ForMember(s => s.EndDate, act => act.MapFrom(src => src.rqEndDate))
-                .ForMember(s => s.IsSequence, act => act.MapFrom(src => src.rqIsSequence))
-                .ForMember(s => s.Sequence, act => act.MapFrom(src => src.RequestSequence));
+                .ForMember(s => s.BookDateTime, act => act.MapFrom(src => src.rqBookDateTime));
+;
 
             CreateMap<UpdateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))

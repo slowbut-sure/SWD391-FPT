@@ -303,9 +303,26 @@ namespace Services.Servicesss.Implement
 
         public async Task<DataResponse<ResponseOfRequest>> CreateRequest(RequestCreateRequest request)
         {
+            var response = new DataResponse<ResponseOfRequest>();
+            Apartment existApartment = await  _unitOfWork.Apartment.GetApartmentById(request.ApartmentId);
+
+            if (existApartment == null)
+            {
+                response.Success = false;
+                response.Message = "Apartment Not existed";
+                return response;
+            }
+
+            Package existPackage = await _unitOfWork.Package.GetPackageById(request.PackageId);
+            if (existPackage == null)
+            {
+                response.Success = false;
+                response.Message = "Package Not existed";
+                return response;
+            }
+
             string savePoint = "before Create Request";
             var commit = _unitOfWork.StartTransaction(savePoint);
-            var response = new DataResponse<ResponseOfRequest>();
             try 
             {
               
