@@ -357,12 +357,12 @@ public partial class ManagerApartmentContext : DbContext
 
             entity.Property(e => e.RequestId).HasColumnName("RequestID");
             entity.Property(e => e.ApartmentId).HasColumnName("ApartmentID");
-            entity.Property(e => e.BookDateTime).HasColumnType("datetime");
+            entity.Property(e => e.BookDateTime).HasColumnType("datetime2");
             entity.Property(e => e.PackageId).HasColumnName("PackageID");
             entity.Property(e => e.Description)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.EndDate).HasColumnType("date");
+            entity.Property(e => e.EndDate).HasColumnType("datetime2");
             entity.Property(e => e.ReqStatus)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -395,9 +395,11 @@ public partial class ManagerApartmentContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.RequestId).HasColumnName("RequestID");
-            entity.Property(e => e.Status)
+            entity.Property(e => e.StaffId).HasColumnName("StaffId");
+            entity.Property(e => e.Status).HasColumnName("Status")
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.UpdateDate).HasColumnName("updateDate").HasColumnType("datetime");
 
             entity.HasOne(d => d.Request).WithMany(p => p.RequestLogs)
                 .HasForeignKey(d => d.RequestId)
