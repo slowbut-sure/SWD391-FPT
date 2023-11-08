@@ -96,7 +96,7 @@ namespace ManagerApartment.Controllers
         public async Task<ActionResult<DataResponse<ResponseOfRequest>>> CreateRequest([FromBody]RequestCreateRequest request)
         {
             var createdRequest = await _requestService.CreateRequest(request);
-            return createdRequest == null ? NotFound() : Ok(createdRequest);
+            return createdRequest.Data == null ? UnprocessableEntity(createdRequest) : Ok(createdRequest);
         }
 
         [HttpGet("{id}")]
