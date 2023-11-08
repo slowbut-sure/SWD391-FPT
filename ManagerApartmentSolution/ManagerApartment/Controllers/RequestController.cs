@@ -99,5 +99,12 @@ namespace ManagerApartment.Controllers
             return createdRequest.Data == null ? UnprocessableEntity(createdRequest) : Ok(createdRequest);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<DataResponse<ResponseOfRequestDetail>>> GetRequestDetail(int id)
+        {
+            var result = await _requestService.GetRequestDetail(id);
+            return result == null ? NotFound() : Ok(result);
+        }
+
     }
 }

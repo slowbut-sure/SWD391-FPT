@@ -1,4 +1,5 @@
 ﻿using ManagerApartment.Models;
+using Services.Models.Response.Response.AddOnResponse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Services.Models.Response.Response.RequestRespponse
 {
     public class ResponseOfRequestDetail : ResponseOfRequest
     {
-       public List<AddOn>? AddOnsList { get; set; }
+       public List<ResponseOfAddOn>? AddOnsList { get; set; }
     }
 }
