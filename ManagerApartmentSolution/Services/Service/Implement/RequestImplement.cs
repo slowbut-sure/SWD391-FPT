@@ -2,6 +2,7 @@
 using Domain.Entity;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
+using Services.Helpers.Utils;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request.RequestRequest;
 using Services.Models.Response;
@@ -117,12 +118,12 @@ namespace Services.Servicesss.Implement
                     response.Success = true;
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 response.Message = "Something wrong; " + ex.Message;
                 response.Success = false;
             }
-           
+
 
             return response;
         }
@@ -304,7 +305,7 @@ namespace Services.Servicesss.Implement
         public async Task<DataResponse<ResponseOfRequest>> CreateRequest(RequestCreateRequest request)
         {
             var response = new DataResponse<ResponseOfRequest>();
-            Apartment existApartment = await  _unitOfWork.Apartment.GetApartmentById(request.ApartmentId);
+            Apartment existApartment = await _unitOfWork.Apartment.GetApartmentById(request.ApartmentId);
 
             if (existApartment == null)
             {
@@ -322,22 +323,29 @@ namespace Services.Servicesss.Implement
             }
 
             string savePoint = "before Create Request";
-            var commit = _unitOfWork.StartTransaction(savePoint);
-            try 
+            using var commit = _unitOfWork.StartTransaction(savePoint);
+            try
             {
-              
-                var createRequest = _mapper.Map<Request>(request);
-                createRequest.RequestLogs.Add( new RequestLog 
-                { 
-                    Status = RequestEnum.PENDING.ToString()
-                });
+
+                var createRequest = new Request { ApartmentId = request.ApartmentId, PackageId = request.PackageId, BookDateTime = Utils.GetClientDateTime() };
+
                 _unitOfWork.Request.Add(createRequest);
 
                 bool createRequestSuccess = _unitOfWork.Save() == 1;
-                if (!createRequestSuccess )
+                if (!createRequestSuccess)
                 {
                     throw new Exception();
                 }
+
+                RequestLog rqLog = new RequestLog { UpdateDate = createRequest.BookDateTime, Status= RequestEnum.PENDING.ToString(), RequestId=createRequest.RequestId  };
+                _unitOfWork.RequestLog.Add(rqLog);
+
+                bool createRqLogSuccess = _unitOfWork.Save() == 1;
+                if (!createRqLogSuccess)
+                {
+                    throw new Exception();
+                }
+
                 _unitOfWork.StopTransaction(commit);
 
                 response.Success = true;
@@ -348,7 +356,7 @@ namespace Services.Servicesss.Implement
             {
                 _unitOfWork.RollBack(commit, savePoint);
                 response.Success = false;
-                response.Message = "Failed create";
+                response.Message = "Something went wrong";
                 return response;
             }
             return response;
@@ -358,7 +366,6 @@ namespace Services.Servicesss.Implement
         {
             var response = new DataResponse<ResponseOfRequestDetail>();
             var request = await _unitOfWork.Request.GetRequestDetailView(requestId);
-
             try
             {
                 if (request == null)
@@ -398,10 +405,10 @@ namespace Services.Servicesss.Implement
 
 
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 response.Success = false;
-                response.Message = "Failed Get Request Detail. ".ToUpper() + e ;
+                response.Message = "Failed Get Request Detail. ".ToUpper() + e;
                 return response;
             }
 

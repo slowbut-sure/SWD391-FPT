@@ -270,8 +270,7 @@ namespace Services.AutoMappers
             CreateMap<RequestCreateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
                 .ForMember(s => s.PackageId, act => act.MapFrom(src => src.PackageId))
-                .ForMember(s => s.Description, act => act.MapFrom(src => src.RequestDescription))
-                .ForMember(s => s.BookDateTime, act => act.MapFrom(src => src.rqBookDateTime));
+                .ForMember(s => s.Description, act => act.MapFrom(src => src.RequestDescription));
 ;
 
             CreateMap<UpdateRequest, Request>()

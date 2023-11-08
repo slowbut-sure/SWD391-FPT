@@ -73,7 +73,7 @@ namespace Repository.UnitOfWork
 
         public IDbContextTransaction StartTransaction(string name)
         {
-            using var commit = _context.Database.BeginTransaction();
+            var commit = _context.Database.BeginTransaction();
             commit.CreateSavepoint(name);
             return commit;
         }
