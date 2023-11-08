@@ -40,9 +40,9 @@ namespace Services.AutoMappers
         {
             CreateMap<AddOn, ResponseOfAddOn>()
                 .ForMember(re => re.AddOnId, act => act.MapFrom(src => src.AddOnId))
-                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
-                .ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
-                .ForMember(re => re.RequestBookDate, act => act.MapFrom(src => src.Request.BookDateTime))
+                //.ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                //.ForMember(re => re.RequestDescription, act => act.MapFrom(src => src.Request.Description))
+                //.ForMember(re => re.RequestBookDate, act => act.MapFrom(src => src.Request.BookDateTime))
                 .ForMember(re => re.ServiceId, act => act.MapFrom(src => src.ServiceId))
                 .ForMember(re => re.ServiceName, act => act.MapFrom(src => src.Service.Name))
                 .ForMember(re => re.ServicePrice, act => act.MapFrom(src => src.Service.Price))
@@ -307,6 +307,23 @@ namespace Services.AutoMappers
                 .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.ApartmentName))
                 .ForMember(re => re.AddOnsList, act => act.MapFrom(src => src.AddOnList))
                 .ForMember(re => re.PackagePrice, act => act.MapFrom(src => src.PackagePrice));
+
+            CreateMap<Request, ResponseOfRequestDetail>()
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
+                .ForMember(re => re.OwnerId, act => act.MapFrom(src => src.Apartment.OwnerId))
+                .ForMember(re => re.Description, act => act.MapFrom(src => src.Description))
+                .ForMember(re => re.BookDateTime, act => act.MapFrom(src => src.BookDateTime))
+                .ForMember(re => re.EndDateTime, act => act.MapFrom(src => src.EndDate))
+                .ForMember(re => re.IsSequence, act => act.MapFrom(src => src.IsSequence))
+                .ForMember(re => re.sequence, act => act.MapFrom(src => src.Sequence))
+                //.ForMember(re => re.ReqStatus, act => act.MapFrom(src => src.ReqStatus))
+                .ForMember(re => re.NumberOfAddOns, act => act.MapFrom(src => src.AddOns.Count))
+                .ForMember(re => re.PackageRequestedId, act => act.MapFrom(src => src.PackageId))
+                .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
+                .ForMember(re => re.Owner, act => act.MapFrom(src => src.Apartment.Owner.Name))
+                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.Apartment.ApartmentName))
+                .ForMember(re => re.AddOnsList, act => act.MapFrom(src => src.AddOns));
             //================================================================================================================
 
             /*			CreateMap<RequestDetail, ResponseOfRequestDetail>()

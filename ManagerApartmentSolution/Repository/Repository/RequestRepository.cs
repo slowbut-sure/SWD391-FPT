@@ -264,6 +264,17 @@ namespace Repository.Repository
             throw new NotImplementedException();
         }
 
+        public async Task<Request?> GetRequestDetailView(int requestId)
+        {
+            return await _context.Requests
+                            .Include(rq => rq.Apartment).ThenInclude(a => a.Owner)
+                            .Include(rq => rq.Package)
+                            .Include(rq => rq.AddOns).ThenInclude(ao => ao.Service)
+                            .Include(rq => rq.RequestLogs)
+                            .Include(rq => rq.Bills)
+                            .FirstOrDefaultAsync(r => r.RequestId == requestId);                                               
+        }
+
 
 
 

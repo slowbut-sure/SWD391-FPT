@@ -9,9 +9,6 @@ namespace Services.Models.Response.Response.AddOnResponse
     public class ResponseOfAddOn
     {
         public int AddOnId { get; set; }
-        public int RequestId { get; set; }
-        public string RequestDescription { get; set; }
-        public DateTime RequestBookDate { get; set; }
         public int ServiceId { get; set; }
         public string ServiceName { get; set; }
         public int ServicePrice { get; set; }

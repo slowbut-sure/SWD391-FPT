@@ -353,5 +353,61 @@ namespace Services.Servicesss.Implement
             }
             return response;
         }
+
+        public async Task<DataResponse<ResponseOfRequestDetail>> GetRequestDetail(int requestId)
+        {
+            var response = new DataResponse<ResponseOfRequestDetail>();
+            var request = await _unitOfWork.Request.GetRequestDetailView(requestId);
+
+            try
+            {
+                if (request == null)
+                {
+                    response.Message = "Empty Request";
+                    return response;
+                }
+
+                var data = _mapper.Map<ResponseOfRequestDetail>(request);
+                var rls = await _unitOfWork.RequestLog.GetRequestLogsByRequestId(requestId);
+
+                if (rls is null)
+                {
+                    response.Message = "Request Log of Request empty";
+                    return response;
+                }
+
+                var listTime = rls.Select(rl => rl.UpdateDate).ToList();
+
+                var index = 0;
+                TimeSpan timeDifference = TimeSpan.MaxValue;
+                var currentTime = DateTime.UtcNow;
+                for (int i = 0; i < listTime.Count; i++)
+                {
+                    TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
+                    if (currentDifference.Duration() < timeDifference.Duration())
+                    {
+                        timeDifference = currentDifference;
+                        index = i;
+                    }
+                }
+                data.ReqStatus = rls.ElementAt(index).Status;
+
+                response.Data = data;
+                response.Message = "Request Detail";
+                response.Success = true;
+
+
+            }
+            catch (Exception e) 
+            {
+                response.Success = false;
+                response.Message = "Failed Get Request Detail. ".ToUpper() + e ;
+                return response;
+            }
+
+
+
+            return response;
+        }
     }
 }
