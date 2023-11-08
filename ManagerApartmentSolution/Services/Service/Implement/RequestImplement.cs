@@ -334,7 +334,7 @@ namespace Services.Servicesss.Implement
                 bool createRequestSuccess = _unitOfWork.Save() == 1;
                 if (!createRequestSuccess)
                 {
-                    throw new Exception();
+                    throw new Exception("Cannot create Request");
                 }
 
                 RequestLog rqLog = new RequestLog { UpdateDate = createRequest.BookDateTime, Status= RequestEnum.PENDING.ToString(), RequestId=createRequest.RequestId  };
@@ -343,20 +343,20 @@ namespace Services.Servicesss.Implement
                 bool createRqLogSuccess = _unitOfWork.Save() == 1;
                 if (!createRqLogSuccess)
                 {
-                    throw new Exception();
+                    throw new Exception("Cannot create RequestLog");
                 }
 
                 _unitOfWork.StopTransaction(commit);
 
                 response.Success = true;
                 response.Data = _mapper.Map<ResponseOfRequest>(createRequest);
-                response.Message = "Successully create";
+                response.Message = "Successully created";
             }
             catch (Exception e)
             {
                 _unitOfWork.RollBack(commit, savePoint);
                 response.Success = false;
-                response.Message = "Something went wrong";
+                response.Message = e.Message;
                 return response;
             }
             return response;
