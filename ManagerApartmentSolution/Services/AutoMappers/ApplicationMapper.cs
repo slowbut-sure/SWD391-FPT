@@ -265,7 +265,9 @@ namespace Services.AutoMappers
                 .ForMember(re => re.PackageRequestedId, act => act.MapFrom(src => src.PackageId))
                 .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
                 .ForMember(re => re.Owner, act => act.MapFrom(src => src.Apartment.Owner.Name))
-                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.Apartment.ApartmentName));
+                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.Apartment.ApartmentName))
+                .ForMember(re => re.ApartmentAddress, act => act.MapFrom(src => src.Apartment.Building.Address));
+            
 
             CreateMap<RequestCreateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))

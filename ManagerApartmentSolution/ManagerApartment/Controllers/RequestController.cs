@@ -106,5 +106,12 @@ namespace ManagerApartment.Controllers
             return result == null ? NotFound() : Ok(result);
         }
 
+        [HttpGet("owners/{ownerId}")]
+        public async Task<IActionResult> GetRequestsByOwnerId(int ownerId)
+        {
+            var result = await _requestService.GetRequestByOwnerId(ownerId);
+            return result == null ? NotFound() : Ok(result);
+        }
+
     }
 }
