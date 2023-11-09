@@ -110,13 +110,14 @@ namespace ManagerApartment.Controllers
         public async Task<IActionResult> GetRequestsByOwnerId(int ownerId)
         {
             var result = await _requestService.GetRequestByOwnerId(ownerId);
-            return result == null ? NotFound() : Ok(result);
+            return result.Data == null ? NotFound() : Ok(result);
         }
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<DataResponse<ResponseOfRequest>>> UpdateRequest(RequestRequestLog log)
-        //{
-        //    var updatedRequest = await _requestService.UpdateRequest(id, updateRequest);
-        //    return updatedRequest == null ? NotFound() : Ok(updatedRequest);
-        //}
+
+        [HttpPut]
+        public async Task<ActionResult<DataResponse<ResponseOfRequestLog>>> UpdateRequest([FromBody] RequestRequestLog log)
+        {
+            var updatedRequest = await _requestService.UpdateRequest(log);
+            return updatedRequest == null ? NotFound() : Ok(updatedRequest);
+        }
     }
 }

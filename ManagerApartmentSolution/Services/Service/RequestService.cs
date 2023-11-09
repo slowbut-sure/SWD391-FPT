@@ -30,6 +30,6 @@ namespace Services.Servicesss
         Task<DataResponse<ResponseOfRequest>> CreateRequest(RequestCreateRequest request);
         Task<DataResponse<ResponseOfRequestDetail>> GetRequestDetail(int requestId);
         Task<DataResponse<List<ResponseOfRequest>>> GetRequestByOwnerId(int ownerId);
-        Task<DataResponse<ResponseOfRequest>> UpdateRequest( RequestRequestLog log);
+        Task<DataResponse<ResponseOfRequestLog>> UpdateRequest( RequestRequestLog log);
     }
 }

@@ -462,9 +462,9 @@ namespace Services.Servicesss.Implement
             return response;
         }
 
-        public async Task<DataResponse<ResponseOfRequest>> UpdateRequest(RequestRequestLog log)
+        public async Task<DataResponse<ResponseOfRequestLog>> UpdateRequest(RequestRequestLog log)
         {
-            var response = new DataResponse<ResponseOfRequest>();
+            var response = new DataResponse<ResponseOfRequestLog>();
             Request existedRequest=  _unitOfWork.Request.GetById(log.RequestId);
 
             if (existedRequest == null)
@@ -476,21 +476,8 @@ namespace Services.Servicesss.Implement
 
             try
             {
-                string status = log.Status;
-                //switch (status)
-                //{
-                //    case "test":
-                //        {
 
-                //        }
-                //    default: { }
-
-                //}
-                if(log.Status == RequestEnum.PROCESSING.ToString())
-                {
-                    status = RequestEnum.WORKING.ToString();
-                }
-                RequestLog rqLog = new RequestLog { UpdateDate = Utils.GetClientDateTime(), Status= log.Status, RequestId=log.RequestId  };
+                RequestLog rqLog = new RequestLog { UpdateDate = Utils.GetClientDateTime(), Status= log.Status, RequestId=log.RequestId, MaintainItem = log.MaintainItem, Description = log.Description  };
                 _unitOfWork.RequestLog.Add(rqLog);
 
                 bool createRqLogSuccess = _unitOfWork.Save() == 1;
@@ -501,7 +488,7 @@ namespace Services.Servicesss.Implement
 
 
                 response.Success = true;
-                //response.Data = _mapper.Map<ResponseOfRequest>(updateRequest);
+                response.Data = rqLog;
                 response.Message = "Successully created";
             }
             catch (Exception e)
