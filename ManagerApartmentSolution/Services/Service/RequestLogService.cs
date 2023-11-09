@@ -10,7 +10,7 @@ namespace Services.Servicesss
     {
         Task<List<ResponseOfRequestLog>> GetAllRequestLogs();
         Task<ResponseOfRequestLog> GetRequestLogById(int id);
-        Task<DataResponse<ResponseOfRequestLog>> CreateRequestLogAsync(RqLogCreateRequest rqLogRequest);
+        Task<DataResponse<ResponseOfRequestLog>> AssignStaffToRequestAsync(int requestID);
         Task DeleteRequestLog(int rqLogId);
         Task<ResponseOfRequestLog> UpdateRequestLog(int id, UpdateRequestLog requestLog);
     }

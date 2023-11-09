@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Entity;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
 using Services.Helpers.Utils;
@@ -21,7 +22,7 @@ namespace Services.Servicesss.Implement
             _mapper = mapper;
         }
 
-        public async Task<DataResponse<ResponseOfRequestLog>> CreateRequestLogAsync(RqLogCreateRequest rqLogRequest)
+        public async Task<DataResponse<ResponseOfRequestLog>> AssignStaffToRequestAsync(RqLogCreateRequest rqLogRequest)
         {
             DataResponse<ResponseOfRequestLog> res = new DataResponse<ResponseOfRequestLog>();
 
@@ -32,11 +33,25 @@ namespace Services.Servicesss.Implement
                 res.Message = "Staff assigned is not exist";
                 return res;
             }
+
+            RequestView request = await _unitOfWork.Request.GetRequestById(rqLogRequest.RequestId);
+            if(request == null)
+            {
+                res.Success = false;
+                res.Message = "Request assigned is not exist";
+                return res;
+            }
+
             var createRqLog = _mapper.Map<RequestLog>(rqLogRequest);
-            createRqLog.Status = RequesLogEnum.PENDING.ToString();
+            createRqLog.Status = RequesLogEnum.PROCESSING.ToString();
             createRqLog.UpdateDate = Utils.GetClientDateTime();
             _unitOfWork.RequestLog.Add(createRqLog);
-            _unitOfWork.Save();
+            bool suceess   = _unitOfWork.Save() == 1;
+            if (!suceess)
+            {
+                res.Success = false;
+                res.Message = "Assign Staff Failed";
+            }
             res.Success = true;
             res.Message = "Assign Staff Sucessfully";
             res.Data = createRqLog;
