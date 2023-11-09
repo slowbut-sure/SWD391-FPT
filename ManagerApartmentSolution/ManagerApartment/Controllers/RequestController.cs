@@ -12,7 +12,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     //[Authorize]
-    [Route("api/request")]
+    [Route("api/requests")]
     [ApiController]
     public class RequestController : Controller
     {

@@ -267,6 +267,7 @@ namespace Repository.Repository
         public async Task<Request?> GetRequestDetailView(int requestId)
         {
             return await _context.Requests
+                            .Include(rq => rq.Apartment).ThenInclude(a => a.Building)
                             .Include(rq => rq.Apartment).ThenInclude(a => a.Owner)
                             .Include(rq => rq.Package)
                             .Include(rq => rq.AddOns).ThenInclude(ao => ao.Service)
