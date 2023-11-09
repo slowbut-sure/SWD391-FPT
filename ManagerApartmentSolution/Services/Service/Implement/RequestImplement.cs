@@ -432,7 +432,7 @@ namespace Services.Servicesss.Implement
 
                     var index = 0;
                     TimeSpan timeDifference = TimeSpan.MaxValue;
-                    var currentTime = DateTime.UtcNow;
+                    var currentTime = Utils.GetClientDateTime();
                     for (int i = 0; i < listTime.Count; i++)
                     {
                         TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
@@ -477,9 +477,18 @@ namespace Services.Servicesss.Implement
             try
             {
                 string status = log.Status;
+                //switch (status)
+                //{
+                //    case "test":
+                //        {
+
+                //        }
+                //    default: { }
+
+                //}
                 if(log.Status == RequestEnum.PROCESSING.ToString())
                 {
-                    //status = 
+                    status = RequestEnum.WORKING.ToString();
                 }
                 RequestLog rqLog = new RequestLog { UpdateDate = Utils.GetClientDateTime(), Status= log.Status, RequestId=log.RequestId  };
                 _unitOfWork.RequestLog.Add(rqLog);
