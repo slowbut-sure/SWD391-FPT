@@ -34,7 +34,7 @@ namespace Services.Servicesss.Implement
                 return res;
             }
 
-            RequestView request = await _unitOfWork.Request.GetRequestById(rqLogRequest.RequestId);
+            RequestView request = await _unitOfWork.Request.GetRequestViewById(rqLogRequest.RequestId);
             if(request == null)
             {
                 res.Success = false;
@@ -58,10 +58,7 @@ namespace Services.Servicesss.Implement
             return res;
         }
 
-        public Task<DataResponse<ResponseOfRequestLog>> AssignStaffToRequestAsync(int requestID)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public async Task DeleteRequestLog(int rqLogId)
         {

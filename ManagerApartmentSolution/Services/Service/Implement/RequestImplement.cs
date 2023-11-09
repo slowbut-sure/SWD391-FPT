@@ -465,42 +465,21 @@ namespace Services.Servicesss.Implement
             return response;
         }
 
-        public async Task<DataResponse<ResponseOfRequest>> UpdateRequest(int id, UpdateRequest requestRequest)
+        public async Task<DataResponse<ResponseOfRequest>> UpdateRequest(RequestRequestLog log)
         {
             var response = new DataResponse<ResponseOfRequest>();
-            Apartment existApartment = await _unitOfWork.Apartment.GetApartmentById(requestRequest.ApartmentId);
+            Request existedRequest=  _unitOfWork.Request.GetById(log.RequestId);
 
-            if (existApartment == null)
+            if (existedRequest == null)
             {
                 response.Success = false;
-                response.Message = "Apartment Not existed";
+                response.Message = "Request Not existed";
                 return response;
             }
 
-            Package existPackage = await _unitOfWork.Package.GetPackageById(requestRequest.PackageId);
-            if (existPackage == null)
-            {
-                response.Success = false;
-                response.Message = "Package Not existed";
-                return response;
-            }
-
-            string savePoint = "Before Update Request";
-            using var commit = _unitOfWork.StartTransaction(savePoint);
             try
             {
-
-                var updateRequest = new Request { ApartmentId = requestRequest.ApartmentId, PackageId = requestRequest.PackageId, BookDateTime = Utils.GetClientDateTime() };
-
-                _unitOfWork.Request.Update(updateRequest);
-
-                bool updateRequestSuccess = _unitOfWork.Save() == 1;
-                if (!updateRequestSuccess)
-                {
-                    throw new Exception("Cannot update Request");
-                }
-
-                RequestLog rqLog = new RequestLog { UpdateDate = updateRequest.BookDateTime, Status= RequestEnum.PROCESSING.ToString(), RequestId=updateRequest.RequestId  };
+                RequestLog rqLog = new RequestLog { UpdateDate = Utils.GetClientDateTime(), Status= log.Status, RequestId=log.RequestId  };
                 _unitOfWork.RequestLog.Add(rqLog);
 
                 bool createRqLogSuccess = _unitOfWork.Save() == 1;
@@ -509,15 +488,13 @@ namespace Services.Servicesss.Implement
                     throw new Exception("Cannot create RequestLog");
                 }
 
-                _unitOfWork.StopTransaction(commit);
 
                 response.Success = true;
-                response.Data = _mapper.Map<ResponseOfRequest>(updateRequest);
+                //response.Data = _mapper.Map<ResponseOfRequest>(updateRequest);
                 response.Message = "Successully created";
             }
             catch (Exception e)
             {
-                _unitOfWork.RollBack(commit, savePoint);
                 response.Success = false;
                 response.Message = e.Message;
                 return response;
