@@ -151,7 +151,7 @@ namespace Services.Servicesss.Implement
 
                 var index = 0;
                 TimeSpan timeDifference = TimeSpan.MaxValue;
-                var currentTime = DateTime.UtcNow;
+                var currentTime = Utils.GetClientDateTime();
                 for (int i = 0; i < listTime.Count; i++)
                 {
                     TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
@@ -265,7 +265,7 @@ namespace Services.Servicesss.Implement
 
                 var index = 0;
                 TimeSpan timeDifference = TimeSpan.MaxValue;
-                var currentTime = DateTime.UtcNow;
+                var currentTime = Utils.GetClientDateTime();
                 for (int i = 0; i < listTime.Count; i++)
                 {
                     TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
