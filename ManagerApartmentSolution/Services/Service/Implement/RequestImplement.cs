@@ -477,7 +477,7 @@ namespace Services.Servicesss.Implement
             try
             {
 
-                RequestLog rqLog = new RequestLog { UpdateDate = Utils.GetClientDateTime(), Status= log.Status, RequestId=log.RequestId, MaintainItem = log.MaintainItem, Description = log.Description  };
+                RequestLog rqLog = new RequestLog { UpdateDate = Utils.GetClientDateTime(), Status= log.Status, RequestId=log.RequestId, MaintainItem = log.MaintainItem, Description = log.Description, StaffId=log.StaffId  };
                 _unitOfWork.RequestLog.Add(rqLog);
 
                 bool createRqLogSuccess = _unitOfWork.Save() == 1;
