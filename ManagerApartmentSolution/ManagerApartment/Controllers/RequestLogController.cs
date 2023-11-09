@@ -43,12 +43,12 @@ namespace ManagerApartment.Controllers
                 return NotFound(ex.Message);
             }
         }
-        [HttpPost]
-        public async Task<ActionResult<ResponseOfRequestLog>> AssignStaffToRequest(RqLogCreateRequest rqLog)
-        {
-            var createdRqLog = await _rqLogService.CreateRequestLogAsync(rqLog);
-            return createdRqLog == null ? NotFound() : Ok(createdRqLog);
-        }
+        //[HttpPost]
+        //public async Task<ActionResult<ResponseOfRequestLog>> AssignStaffToRequest(RqLogCreateRequest rqLog)
+        //{
+        //    var createdRqLog = await _rqLogService.CreateRequestLogAsync(rqLog);
+        //    return createdRqLog == null ? NotFound() : Ok(createdRqLog);
+        //}
 
         [HttpPut("{id}")]
         public async Task<ActionResult<ResponseOfRequestLog>> UpdateRequestLog(int id, UpdateRequestLog updateRqLog)

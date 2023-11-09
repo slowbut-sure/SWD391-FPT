@@ -58,6 +58,11 @@ namespace Services.Servicesss.Implement
             return res;
         }
 
+        public Task<DataResponse<ResponseOfRequestLog>> AssignStaffToRequestAsync(int requestID)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteRequestLog(int rqLogId)
         {
             var rqLog = _unitOfWork.RequestLog.GetById(rqLogId);
