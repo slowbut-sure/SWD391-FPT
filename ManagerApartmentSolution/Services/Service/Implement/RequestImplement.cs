@@ -416,5 +416,53 @@ namespace Services.Servicesss.Implement
 
             return response;
         }
+
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetRequestByOwnerId(int ownerId)
+        {
+            var response = new DataResponse<List<ResponseOfRequest>>();
+            try
+            {
+                var list = await _unitOfWork.Request.GetRequestsByOwnerId(ownerId);
+                var data = _mapper.Map<List<ResponseOfRequest>>(list);
+
+                foreach (var r in data)
+                {
+                    var rls = await _unitOfWork.RequestLog.GetRequestLogsByRequestId(r.RequestId);
+
+                    if (rls is null) continue;
+
+                    var listTime = rls.Select(rl => rl.UpdateDate).ToList();
+
+                    var index = 0;
+                    TimeSpan timeDifference = TimeSpan.MaxValue;
+                    var currentTime = DateTime.UtcNow;
+                    for (int i = 0; i < listTime.Count; i++)
+                    {
+                        TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
+                        if (currentDifference.Duration() < timeDifference.Duration())
+                        {
+                            timeDifference = currentDifference;
+                            index = i;
+                        }
+                    }
+
+                    if (index >= rls.Count) continue;
+
+                    r.ReqStatus = rls.ElementAt(index).Status;
+                    index = 0;
+                }
+
+                response.Data = data;
+                response.Message = "Get requests of owner";
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = "Something wrong! " + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
+        }
     }
 }

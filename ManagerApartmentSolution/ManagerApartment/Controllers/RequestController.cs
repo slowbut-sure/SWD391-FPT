@@ -12,7 +12,7 @@ using Services.Servicesss;
 namespace ManagerApartment.Controllers
 {
     //[Authorize]
-    [Route("api/request")]
+    [Route("api/requests")]
     [ApiController]
     public class RequestController : Controller
     {
@@ -103,6 +103,13 @@ namespace ManagerApartment.Controllers
         public async Task<ActionResult<DataResponse<ResponseOfRequestDetail>>> GetRequestDetail(int id)
         {
             var result = await _requestService.GetRequestDetail(id);
+            return result == null ? NotFound() : Ok(result);
+        }
+
+        [HttpGet("owners/{ownerId}")]
+        public async Task<IActionResult> GetRequestsByOwnerId(int ownerId)
+        {
+            var result = await _requestService.GetRequestByOwnerId(ownerId);
             return result == null ? NotFound() : Ok(result);
         }
 

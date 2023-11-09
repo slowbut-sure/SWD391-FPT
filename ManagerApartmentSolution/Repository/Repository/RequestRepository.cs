@@ -267,12 +267,27 @@ namespace Repository.Repository
         public async Task<Request?> GetRequestDetailView(int requestId)
         {
             return await _context.Requests
+                            .Include(rq => rq.Apartment).ThenInclude(a => a.Building)
                             .Include(rq => rq.Apartment).ThenInclude(a => a.Owner)
                             .Include(rq => rq.Package)
                             .Include(rq => rq.AddOns).ThenInclude(ao => ao.Service)
                             .Include(rq => rq.RequestLogs)
                             .Include(rq => rq.Bills)
                             .FirstOrDefaultAsync(r => r.RequestId == requestId);                                               
+        }
+
+        public async Task<List<Request>> GetRequestsByOwnerId(int ownerId)
+        {
+            return await _context.Requests
+                            .Include(rq => rq.Apartment).ThenInclude(a => a.Building)
+                            .Include(rq => rq.Apartment).ThenInclude(a => a.Owner)
+                            .Where(rq => rq.Apartment.OwnerId == ownerId)
+                            .Include(rq => rq.Package)
+                            .Include(rq => rq.AddOns).ThenInclude(ao => ao.Service)
+                            .Include(rq => rq.RequestLogs)
+                            .Include(rq => rq.Bills)                           
+                            .OrderByDescending(rq => rq.BookDateTime)
+                            .ToListAsync();
         }
 
 
