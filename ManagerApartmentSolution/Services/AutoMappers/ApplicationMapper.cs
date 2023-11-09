@@ -265,7 +265,9 @@ namespace Services.AutoMappers
                 .ForMember(re => re.PackageRequestedId, act => act.MapFrom(src => src.PackageId))
                 .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
                 .ForMember(re => re.Owner, act => act.MapFrom(src => src.Apartment.Owner.Name))
-                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.Apartment.ApartmentName));
+                .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.Apartment.ApartmentName))
+                .ForMember(re => re.ApartmentAddress, act => act.MapFrom(src => src.Apartment.Building.Address));
+            
 
             CreateMap<RequestCreateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
@@ -275,6 +277,7 @@ namespace Services.AutoMappers
 
             CreateMap<UpdateRequest, Request>()
                 .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
+                .ForMember(s => s.PackageId, act => act.MapFrom(src => src.PackageId))
                 .ForMember(s => s.Description, act => act.MapFrom(src => src.RequestDescription))
                 .ForMember(s => s.BookDateTime, act => act.MapFrom(src => src.rqBookDateTime))
                 .ForMember(s => s.EndDate, act => act.MapFrom(src => src.rqEndDate))
@@ -322,7 +325,8 @@ namespace Services.AutoMappers
                 .ForMember(re => re.PackageName, act => act.MapFrom(src => src.Package.Name))
                 .ForMember(re => re.Owner, act => act.MapFrom(src => src.Apartment.Owner.Name))
                 .ForMember(re => re.ApartmentName, act => act.MapFrom(src => src.Apartment.ApartmentName))
-                .ForMember(re => re.AddOnsList, act => act.MapFrom(src => src.AddOns));
+                .ForMember(re => re.AddOnsList, act => act.MapFrom(src => src.AddOns))
+                .ForMember(re => re.ApartmentAddress, act => act.MapFrom(src => src.Apartment.Building.Address));
             //================================================================================================================
 
             /*			CreateMap<RequestDetail, ResponseOfRequestDetail>()

@@ -29,5 +29,7 @@ namespace Services.Servicesss
         Task<DataResponse<List<ResponseOfRequest>>> GetAllRequestsByStatus(string status, int page, int pageSize, string sortOrder);
         Task<DataResponse<ResponseOfRequest>> CreateRequest(RequestCreateRequest request);
         Task<DataResponse<ResponseOfRequestDetail>> GetRequestDetail(int requestId);
+        Task<DataResponse<List<ResponseOfRequest>>> GetRequestByOwnerId(int ownerId);
+        Task<DataResponse<ResponseOfRequest>> UpdateRequest(int id, UpdateRequest requestRequest);
     }
 }

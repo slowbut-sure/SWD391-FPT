@@ -416,5 +416,113 @@ namespace Services.Servicesss.Implement
 
             return response;
         }
+
+        public async Task<DataResponse<List<ResponseOfRequest>>> GetRequestByOwnerId(int ownerId)
+        {
+            var response = new DataResponse<List<ResponseOfRequest>>();
+            try
+            {
+                var list = await _unitOfWork.Request.GetRequestsByOwnerId(ownerId);
+                var data = _mapper.Map<List<ResponseOfRequest>>(list);
+
+                foreach (var r in data)
+                {
+                    var rls = await _unitOfWork.RequestLog.GetRequestLogsByRequestId(r.RequestId);
+
+                    if (rls is null) continue;
+
+                    var listTime = rls.Select(rl => rl.UpdateDate).ToList();
+
+                    var index = 0;
+                    TimeSpan timeDifference = TimeSpan.MaxValue;
+                    var currentTime = DateTime.UtcNow;
+                    for (int i = 0; i < listTime.Count; i++)
+                    {
+                        TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
+                        if (currentDifference.Duration() < timeDifference.Duration())
+                        {
+                            timeDifference = currentDifference;
+                            index = i;
+                        }
+                    }
+
+                    if (index >= rls.Count) continue;
+
+                    r.ReqStatus = rls.ElementAt(index).Status;
+                    index = 0;
+                }
+
+                response.Data = data;
+                response.Message = "Get requests of owner";
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = "Something wrong! " + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
+        }
+
+        public async Task<DataResponse<ResponseOfRequest>> UpdateRequest(int id, UpdateRequest requestRequest)
+        {
+            var response = new DataResponse<ResponseOfRequest>();
+            Apartment existApartment = await _unitOfWork.Apartment.GetApartmentById(requestRequest.ApartmentId);
+
+            if (existApartment == null)
+            {
+                response.Success = false;
+                response.Message = "Apartment Not existed";
+                return response;
+            }
+
+            Package existPackage = await _unitOfWork.Package.GetPackageById(requestRequest.PackageId);
+            if (existPackage == null)
+            {
+                response.Success = false;
+                response.Message = "Package Not existed";
+                return response;
+            }
+
+            string savePoint = "Before Update Request";
+            using var commit = _unitOfWork.StartTransaction(savePoint);
+            try
+            {
+
+                var updateRequest = new Request { ApartmentId = requestRequest.ApartmentId, PackageId = requestRequest.PackageId, BookDateTime = Utils.GetClientDateTime() };
+
+                _unitOfWork.Request.Update(updateRequest);
+
+                bool updateRequestSuccess = _unitOfWork.Save() == 1;
+                if (!updateRequestSuccess)
+                {
+                    throw new Exception("Cannot update Request");
+                }
+
+                RequestLog rqLog = new RequestLog { UpdateDate = updateRequest.BookDateTime, Status= RequestEnum.PROCESSING.ToString(), RequestId=updateRequest.RequestId  };
+                _unitOfWork.RequestLog.Add(rqLog);
+
+                bool createRqLogSuccess = _unitOfWork.Save() == 1;
+                if (!createRqLogSuccess)
+                {
+                    throw new Exception("Cannot create RequestLog");
+                }
+
+                _unitOfWork.StopTransaction(commit);
+
+                response.Success = true;
+                response.Data = _mapper.Map<ResponseOfRequest>(updateRequest);
+                response.Message = "Successully created";
+            }
+            catch (Exception e)
+            {
+                _unitOfWork.RollBack(commit, savePoint);
+                response.Success = false;
+                response.Message = e.Message;
+                return response;
+            }
+            return response;
+        }
     }
 }
