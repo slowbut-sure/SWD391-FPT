@@ -464,5 +464,65 @@ namespace Services.Servicesss.Implement
 
             return response;
         }
+
+        public async Task<DataResponse<ResponseOfRequest>> UpdateRequest(int id, UpdateRequest requestRequest)
+        {
+            var response = new DataResponse<ResponseOfRequest>();
+            Apartment existApartment = await _unitOfWork.Apartment.GetApartmentById(requestRequest.ApartmentId);
+
+            if (existApartment == null)
+            {
+                response.Success = false;
+                response.Message = "Apartment Not existed";
+                return response;
+            }
+
+            Package existPackage = await _unitOfWork.Package.GetPackageById(requestRequest.PackageId);
+            if (existPackage == null)
+            {
+                response.Success = false;
+                response.Message = "Package Not existed";
+                return response;
+            }
+
+            string savePoint = "Before Update Request";
+            using var commit = _unitOfWork.StartTransaction(savePoint);
+            try
+            {
+
+                var updateRequest = new Request { ApartmentId = requestRequest.ApartmentId, PackageId = requestRequest.PackageId, BookDateTime = Utils.GetClientDateTime() };
+
+                _unitOfWork.Request.Update(updateRequest);
+
+                bool updateRequestSuccess = _unitOfWork.Save() == 1;
+                if (!updateRequestSuccess)
+                {
+                    throw new Exception("Cannot update Request");
+                }
+
+                RequestLog rqLog = new RequestLog { UpdateDate = updateRequest.BookDateTime, Status= RequestEnum.PROCESSING.ToString(), RequestId=updateRequest.RequestId  };
+                _unitOfWork.RequestLog.Add(rqLog);
+
+                bool createRqLogSuccess = _unitOfWork.Save() == 1;
+                if (!createRqLogSuccess)
+                {
+                    throw new Exception("Cannot create RequestLog");
+                }
+
+                _unitOfWork.StopTransaction(commit);
+
+                response.Success = true;
+                response.Data = _mapper.Map<ResponseOfRequest>(updateRequest);
+                response.Message = "Successully created";
+            }
+            catch (Exception e)
+            {
+                _unitOfWork.RollBack(commit, savePoint);
+                response.Success = false;
+                response.Message = e.Message;
+                return response;
+            }
+            return response;
+        }
     }
 }

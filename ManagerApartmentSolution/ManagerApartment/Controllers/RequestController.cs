@@ -11,7 +11,7 @@ using Services.Servicesss;
 
 namespace ManagerApartment.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/requests")]
     [ApiController]
     public class RequestController : Controller
@@ -112,6 +112,11 @@ namespace ManagerApartment.Controllers
             var result = await _requestService.GetRequestByOwnerId(ownerId);
             return result == null ? NotFound() : Ok(result);
         }
-
+        [HttpPut("{id}")]
+        public async Task<ActionResult<DataResponse<ResponseOfRequest>>> UpdateRequest(int id, UpdateRequest updateRequest)
+        {
+            var updatedRequest = await _requestService.UpdateRequest(id, updateRequest);
+            return updatedRequest == null ? NotFound() : Ok(updatedRequest);
+        }
     }
 }
