@@ -10,7 +10,6 @@ namespace Services.Models.Request.RequestDetailRequest
     {
         public int RequestId { get; set; }
         public int StaffId { get; set; }
-        public string? rqLogMaintainItem { get; set; }
-        public string? ReqLogDescription { get; set; }
     }
+
 }
