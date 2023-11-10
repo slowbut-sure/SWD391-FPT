@@ -504,5 +504,9 @@ namespace Services.Servicesss.Implement
         {
             return await _unitOfWork.Request.GetApartmentRequestCountByMonth();
         }
+        public async Task<List<dynamic>> GetMostRequestedApartmentsByMonth()
+        {
+            return await _unitOfWork.Request.GetMostRequestedApartmentsByMonth();
+        }
     }
 }
