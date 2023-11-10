@@ -135,5 +135,18 @@ namespace ManagerApartment.Controllers
             }
         }
 
+        [HttpGet("most-apartments-requested-by-month")]
+        public async Task<ActionResult<List<dynamic>>> GetMostRequestedApartmentsByMonth()
+        {
+            try
+            {
+                var result = await _requestService.GetMostRequestedApartmentsByMonth();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

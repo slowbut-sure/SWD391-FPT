@@ -309,7 +309,7 @@ namespace Repository.Repository
         public async Task<List<dynamic>> GetApartmentRequestCountByMonth()
         {
             var result = await _context.Requests
-                .Where(r => r.ReqStatus != 1)
+                //.Where(r => r.ReqStatus != 1)
                 .GroupBy(r => r.BookDateTime.Month)
                 .Select(g => new
                 {
@@ -322,6 +322,22 @@ namespace Repository.Repository
 
             return result.Cast<dynamic>().ToList();
         }
+        public async Task<List<dynamic>> GetMostRequestedApartmentsByMonth()
+        {
+            var result = await _context.Requests
+                //.Where(r => r.ReqStatus != 1)
+                .GroupBy(r => new { r.ApartmentId, r.BookDateTime.Month })
+                .Select(g => new
+                {
+                    ApartmentId = g.Key.ApartmentId,
+                    Month = g.Key.Month,
+                    Count = g.Count()
+                })
+                .OrderByDescending(g => g.Count)
+                .Take(5)
+                .ToListAsync();
 
+            return result.Cast<dynamic>().ToList();
+        }
     }
 }

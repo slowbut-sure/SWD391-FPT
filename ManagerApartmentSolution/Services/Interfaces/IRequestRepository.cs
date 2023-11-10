@@ -24,5 +24,6 @@ namespace Services.Interfaces
         Task<Request?> GetRequestDetailView(int requestId);
         Task<List<Request>> GetRequestsByOwnerId(int ownerId);
         Task<List<dynamic>> GetApartmentRequestCountByMonth();
+        Task<List<dynamic>> GetMostRequestedApartmentsByMonth();
     }
 }

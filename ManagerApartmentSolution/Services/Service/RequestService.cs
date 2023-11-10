@@ -32,5 +32,6 @@ namespace Services.Servicesss
         Task<DataResponse<List<ResponseOfRequest>>> GetRequestByOwnerId(int ownerId);
         Task<DataResponse<ResponseOfRequestLog>> UpdateRequest( RequestRequestLog log);
         Task<List<dynamic>> GetApartmentRequestCountByMonth();
+        Task<List<dynamic>> GetMostRequestedApartmentsByMonth();
     }
 }
