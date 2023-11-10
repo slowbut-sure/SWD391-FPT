@@ -151,7 +151,7 @@ namespace Services.Servicesss.Implement
 
                 var index = 0;
                 TimeSpan timeDifference = TimeSpan.MaxValue;
-                var currentTime = DateTime.UtcNow;
+                var currentTime = Utils.GetClientDateTime();
                 for (int i = 0; i < listTime.Count; i++)
                 {
                     TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
@@ -208,7 +208,7 @@ namespace Services.Servicesss.Implement
 
                 var index = 0;
                 TimeSpan timeDifference = TimeSpan.MaxValue;
-                var currentTime = DateTime.UtcNow;
+                var currentTime = Utils.GetClientDateTime();
                 for (int i = 0; i < listTime.Count; i++)
                 {
                     TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
@@ -265,7 +265,7 @@ namespace Services.Servicesss.Implement
 
                 var index = 0;
                 TimeSpan timeDifference = TimeSpan.MaxValue;
-                var currentTime = DateTime.UtcNow;
+                var currentTime = Utils.GetClientDateTime();
                 for (int i = 0; i < listTime.Count; i++)
                 {
                     TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
@@ -387,7 +387,7 @@ namespace Services.Servicesss.Implement
 
                 var index = 0;
                 TimeSpan timeDifference = TimeSpan.MaxValue;
-                var currentTime = DateTime.UtcNow;
+                var currentTime = Utils.GetClientDateTime();
                 for (int i = 0; i < listTime.Count; i++)
                 {
                     TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
@@ -411,9 +411,6 @@ namespace Services.Servicesss.Implement
                 response.Message = "Failed Get Request Detail. ".ToUpper() + e;
                 return response;
             }
-
-
-
             return response;
         }
 
@@ -435,7 +432,7 @@ namespace Services.Servicesss.Implement
 
                     var index = 0;
                     TimeSpan timeDifference = TimeSpan.MaxValue;
-                    var currentTime = DateTime.UtcNow;
+                    var currentTime = Utils.GetClientDateTime();
                     for (int i = 0; i < listTime.Count; i++)
                     {
                         TimeSpan currentDifference = listTime[i].ToUniversalTime() - currentTime;
@@ -465,42 +462,22 @@ namespace Services.Servicesss.Implement
             return response;
         }
 
-        public async Task<DataResponse<ResponseOfRequest>> UpdateRequest(int id, UpdateRequest requestRequest)
+        public async Task<DataResponse<ResponseOfRequestLog>> UpdateRequest(RequestRequestLog log)
         {
-            var response = new DataResponse<ResponseOfRequest>();
-            Apartment existApartment = await _unitOfWork.Apartment.GetApartmentById(requestRequest.ApartmentId);
+            var response = new DataResponse<ResponseOfRequestLog>();
+            Request existedRequest=  _unitOfWork.Request.GetById(log.RequestId);
 
-            if (existApartment == null)
+            if (existedRequest == null)
             {
                 response.Success = false;
-                response.Message = "Apartment Not existed";
+                response.Message = "Request Not existed";
                 return response;
             }
 
-            Package existPackage = await _unitOfWork.Package.GetPackageById(requestRequest.PackageId);
-            if (existPackage == null)
-            {
-                response.Success = false;
-                response.Message = "Package Not existed";
-                return response;
-            }
-
-            string savePoint = "Before Update Request";
-            using var commit = _unitOfWork.StartTransaction(savePoint);
             try
             {
 
-                var updateRequest = new Request { ApartmentId = requestRequest.ApartmentId, PackageId = requestRequest.PackageId, BookDateTime = Utils.GetClientDateTime() };
-
-                _unitOfWork.Request.Update(updateRequest);
-
-                bool updateRequestSuccess = _unitOfWork.Save() == 1;
-                if (!updateRequestSuccess)
-                {
-                    throw new Exception("Cannot update Request");
-                }
-
-                RequestLog rqLog = new RequestLog { UpdateDate = updateRequest.BookDateTime, Status= RequestEnum.PROCESSING.ToString(), RequestId=updateRequest.RequestId  };
+                RequestLog rqLog = new RequestLog { UpdateDate = Utils.GetClientDateTime(), Status= log.Status, RequestId=log.RequestId, MaintainItem = log.MaintainItem, Description = log.Description, StaffId=log.StaffId  };
                 _unitOfWork.RequestLog.Add(rqLog);
 
                 bool createRqLogSuccess = _unitOfWork.Save() == 1;
@@ -509,15 +486,13 @@ namespace Services.Servicesss.Implement
                     throw new Exception("Cannot create RequestLog");
                 }
 
-                _unitOfWork.StopTransaction(commit);
 
                 response.Success = true;
-                response.Data = _mapper.Map<ResponseOfRequest>(updateRequest);
+                response.Data = rqLog;
                 response.Message = "Successully created";
             }
             catch (Exception e)
             {
-                _unitOfWork.RollBack(commit, savePoint);
                 response.Success = false;
                 response.Message = e.Message;
                 return response;

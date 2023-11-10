@@ -10,7 +10,8 @@ namespace Domain.Enums.Status
     {
         PENDING=0,
         PROCESSING=1,
-        PROCESSED=2,
-        NOTPROCESSED=3,
+        WORKING=2,
+        DONE=3,
+        CANCELED=4
     }
 }

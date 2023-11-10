@@ -115,7 +115,7 @@ namespace Repository.Repository
             return await result.ToListAsync();
         }
 
-        public async Task<RequestView?> GetRequestById(int id)
+        public async Task<RequestView?> GetRequestViewById(int id)
         {
             IQueryable<RequestView> requestView = (from rq in _context.Requests
                                                     where rq.ReqStatus != 1 && rq.RequestId == id
@@ -289,6 +289,8 @@ namespace Repository.Repository
                             .OrderByDescending(rq => rq.BookDateTime)
                             .ToListAsync();
         }
+
+     
 
 
 

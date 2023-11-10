@@ -32,5 +32,6 @@ namespace Repository.Repository
         {
             return await _context.RequestLogs.Where(rl => rl.RequestId == reqId).ToListAsync();
         }
+
     }
 }

@@ -13,5 +13,6 @@ namespace Services.Interfaces
         Task<List<RequestLog>> GetAllRequestLogs();
         Task<RequestLog> GetRequestLogById(int id);
         Task<List<RequestLog>> GetRequestLogsByRequestId(int reqId);
+
     }
 }

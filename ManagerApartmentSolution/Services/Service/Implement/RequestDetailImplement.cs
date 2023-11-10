@@ -36,7 +36,7 @@ namespace Services.Servicesss.Implement
 
         public async Task<DataResponse<ResponseOfRequestDetail>> GetRequestDetailByRequestId(int id)
         {
-            RequestView rq = await _unitOfWork.Request.GetRequestById(id);
+            RequestView rq = await _unitOfWork.Request.GetRequestViewById(id);
             var response = new DataResponse<ResponseOfRequestDetail>();
 
             if (rq is null)

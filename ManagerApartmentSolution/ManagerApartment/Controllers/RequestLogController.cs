@@ -46,7 +46,7 @@ namespace ManagerApartment.Controllers
         [HttpPost]
         public async Task<ActionResult<ResponseOfRequestLog>> AssignStaffToRequest(RqLogCreateRequest rqLog)
         {
-            var createdRqLog = await _rqLogService.CreateRequestLogAsync(rqLog);
+            var createdRqLog = await _rqLogService.AssignStaffToRequestAsync(rqLog);
             return createdRqLog == null ? NotFound() : Ok(createdRqLog);
         }
 

@@ -17,7 +17,7 @@ using Services.Models.Request.RequestRequest;
 using Services.Models.Request.ServiceRequest;
 using Services.Models.Request.StaffRequest;
 using Services.Models.Request.TennantRequest;
-using Services.Models.Response;
+using Services.Models.Response.Response;
 using Services.Models.Response.Response.AddOnResponse;
 using Services.Models.Response.Response.ApartmentResponse;
 using Services.Models.Response.Response.Asset;
@@ -275,15 +275,7 @@ namespace Services.AutoMappers
                 .ForMember(s => s.Description, act => act.MapFrom(src => src.RequestDescription));
 ;
 
-            CreateMap<UpdateRequest, Request>()
-                .ForMember(s => s.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
-                .ForMember(s => s.PackageId, act => act.MapFrom(src => src.PackageId))
-                .ForMember(s => s.Description, act => act.MapFrom(src => src.RequestDescription))
-                .ForMember(s => s.BookDateTime, act => act.MapFrom(src => src.rqBookDateTime))
-                .ForMember(s => s.EndDate, act => act.MapFrom(src => src.rqEndDate))
-                .ForMember(s => s.IsSequence, act => act.MapFrom(src => src.rqIsSequence))
-                .ForMember(s => s.Sequence, act => act.MapFrom(src => src.RequestSequence));
-
+    
             CreateMap<Request, StaffRequestListResponse>()
                 .ForPath(re => re.ApartmentId, act => act.MapFrom(src => src.ApartmentId))
                 .ForPath(re => re.ApartmentOwnerId, act => act.MapFrom(src => src.Apartment.OwnerId))
@@ -385,6 +377,13 @@ namespace Services.AutoMappers
                 .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.rqLogMaintainItem))
                 .ForMember(re => re.Description, act => act.MapFrom(src => src.ReqLogDescription))
                 .ForMember(re => re.UpdateDate, act => act.MapFrom(src => src.UpdateTime));
+            
+            CreateMap<RequestLog, ResponseOfRequestLog>()
+                .ForMember(re => re.RequestId, act => act.MapFrom(src => src.RequestId))
+                .ForMember(re => re.MaintainItem, act => act.MapFrom(src => src.MaintainItem))
+                .ForMember(re => re.ReqLogDescription, act => act.MapFrom(src => src.Description))
+                .ForMember(re => re.RqLogStatus, act => act.MapFrom(src => src.UpdateDate));
+
 
             //==============================================================================================================
 
