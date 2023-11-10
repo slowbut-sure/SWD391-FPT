@@ -119,5 +119,21 @@ namespace ManagerApartment.Controllers
             var updatedRequest = await _requestService.UpdateRequest(log);
             return updatedRequest == null ? NotFound() : Ok(updatedRequest);
         }
+
+
+        [HttpGet("apartment-request-by-month")]
+        public async Task<ActionResult<List<dynamic>>> GetApartmentRequestCountByMonth()
+        {
+            try
+            {
+                var apartmentRequestCounts = await _requestService.GetApartmentRequestCountByMonth();
+                return Ok(apartmentRequestCounts);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
     }
 }

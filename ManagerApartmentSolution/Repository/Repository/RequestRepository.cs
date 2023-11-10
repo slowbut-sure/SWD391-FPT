@@ -11,6 +11,7 @@ using Services.Models.Response.Response.RequestRespponse;
 using Domain.Entity;
 using Microsoft.IdentityModel.Tokens;
 using Domain.Enums.Status;
+using System.Globalization;
 
 namespace Repository.Repository
 {
@@ -290,7 +291,7 @@ namespace Repository.Repository
                             .ToListAsync();
         }
 
-     
+
 
 
 
@@ -302,5 +303,25 @@ namespace Repository.Repository
         //                                .Include(r => r.AddOns).ToListAsync();
         //    return result;
         //}
+
+
+
+        public async Task<List<dynamic>> GetApartmentRequestCountByMonth()
+        {
+            var result = await _context.Requests
+                .Where(r => r.ReqStatus != 1)
+                .GroupBy(r => r.BookDateTime.Month)
+                .Select(g => new
+                {
+                    //Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(g.Key),
+                    //Count = g.Count()
+                    Month = g.Key.ToString(),
+                    Count = g.Count()
+                })
+                .ToListAsync();
+
+            return result.Cast<dynamic>().ToList();
+        }
+
     }
 }
