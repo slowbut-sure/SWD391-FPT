@@ -121,7 +121,7 @@ namespace ManagerApartment.Controllers
         }
 
 
-        [HttpGet("apartment-request-count-by-month")]
+        [HttpGet("apartment-request-by-month")]
         public async Task<ActionResult<List<dynamic>>> GetApartmentRequestCountByMonth()
         {
             try
