@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowOrigin", builder =>
     {
         builder
-            .WithOrigins("http://localhost:3000") // Thay đổi địa chỉ frontend của bạn
+            .WithOrigins("http://localhost:3000", "https://apartment-management-plum.vercel.app") // Thay đổi địa chỉ frontend của bạn
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
@@ -47,7 +47,6 @@ builder.Services.ManagerApartmentConfiguration(appConfiguration.JWTSecretKey);
 builder.Services.AddSingleton(appConfiguration);
 
 var app = builder.Build();
-
 
 app.UseSwagger();
 app.UseSwaggerUI();
