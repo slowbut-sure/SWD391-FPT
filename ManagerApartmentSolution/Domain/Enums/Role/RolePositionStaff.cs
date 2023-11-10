@@ -9,6 +9,7 @@ namespace Domain.Enums.Role
     public enum RolePositionStaff
     {
         STAFFMANAGER,
-        STAFF
+        STAFF,
+        ADMIN
     }
 }

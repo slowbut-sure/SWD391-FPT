@@ -90,9 +90,13 @@ namespace Services.Servicess.Implement
             {
                 role = RolePositionStaff.STAFFMANAGER.ToString();
             }
-            else
+            else if(Int32.Parse(role) == (int)RolePositionStaff.STAFF)
             {
                 role = RolePositionStaff.STAFF.ToString();
+            }
+            else
+            {
+                role = RolePositionStaff.ADMIN.ToString();
             }
 
             //_cacheManager.Set(Staff.StaffId.ToString(), true, 60);
@@ -325,7 +329,7 @@ namespace Services.Servicess.Implement
                     if (roleClaim != null)
                     {
                         var role = roleClaim.Value;
-                        if (role.Equals(RolePositionStaff.STAFFMANAGER.ToString()) || role.Equals(RolePositionStaff.STAFF.ToString()))
+                        if (role.Equals(RolePositionStaff.STAFFMANAGER.ToString()) || role.Equals(RolePositionStaff.STAFF.ToString()) || role.Equals(RolePositionStaff.ADMIN.ToString()))
                         {                          
                             if (emailClaim != null) 
                             {
