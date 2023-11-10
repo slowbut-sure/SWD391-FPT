@@ -3,6 +3,7 @@ using Domain.Entity;
 using Domain.Enums.Status;
 using ManagerApartment.Models;
 using Services.Helpers.Utils;
+using Services.Interfaces;
 using Services.Interfaces.IUnitOfWork;
 using Services.Models.Request.RequestRequest;
 using Services.Models.Response;
@@ -498,6 +499,10 @@ namespace Services.Servicesss.Implement
                 return response;
             }
             return response;
+        }
+        public async Task<List<dynamic>> GetApartmentRequestCountByMonth()
+        {
+            return await _unitOfWork.Request.GetApartmentRequestCountByMonth();
         }
     }
 }
