@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Services.Interfaces.IUnitOfWork;
+using Services.Models.Response;
 using Services.Models.Response.Response.OwnerResponse;
 using Services.Models.Response.Response.TennantResponse;
 using System;
@@ -19,24 +20,53 @@ namespace Services.Servicesss.Implement
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ResponseOfOwner>> GetAllOwners()
+
+        public async Task<DataResponse<List<ResponseOfOwner>>> GetAllOwners()
         {
-            var owners =  _unitOfWork.Owner.GetAll().ToList();
-            if (owners is null)
+            var response = new DataResponse<List<ResponseOfOwner>>();
+
+            try
             {
-                throw new Exception("The owner list is empty");
+                var owners = _unitOfWork.Owner.GetAll().ToList();
+                if (owners is null)
+                {
+                    throw new Exception("The owner list is empty");
+                }
+                response.Data = _mapper.Map<List<ResponseOfOwner>>(owners);
+                response.Message = "List owners";
+                response.Success = true;
             }
-            return _mapper.Map<List<ResponseOfOwner>>(owners);
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
 
-        public async Task<ResponseOfOwner> GetOwnerById(int id)
+        public async Task<DataResponse<ResponseOfOwner>> GetOwnerById(int id)
         {
-            var owner = await _unitOfWork.Owner.GetOwnerById(id);
-            if (owner is null)
+            var response = new DataResponse<ResponseOfOwner>();
+
+            try
             {
-                throw new Exception("The owner does not exist");
+                var owner = await _unitOfWork.Owner.GetOwnerById(id);
+                if (owner is null)
+                {
+                    throw new Exception("The owner does not exist");
+                }
+                response.Data = _mapper.Map<ResponseOfOwner>(owner);
+                response.Message = $"OwnerId {owner.OwnerId}";
+                response.Success = true;
             }
-            return _mapper.Map<ResponseOfOwner>(owner);
+            catch (Exception ex)
+            {
+                response.Message = "Oops! Some thing went wrong.\n" + ex.Message;
+                response.Success = false;
+            }
+
+            return response;
         }
     }
 }
